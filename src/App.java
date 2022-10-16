@@ -1,3 +1,6 @@
 public class App {
-    // call the main UI here
+    public static void main(String[] args) {
+        // call the main UI here
+
+    }
 }
