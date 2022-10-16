@@ -1,3 +1,3 @@
 public class App {
-    // we will call the main UI here!!
+    // call the main UI here
 }
