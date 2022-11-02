@@ -1,322 +1,175 @@
+import Model.*; 
+import java.io.IOException; 
+import java.util.*;
+
+import Constant.Cineplex;
+
+import static Model.Constant.*; 
+import static Controller.IOController; 
+
+/**
+	* This class contains static method to read data from file and to manipulate data from files. 
+ */
+
 public class CineplexController extends DataController {
 
-	private String MOVIE_FILENAME;
-	private String STAFF_FILENAME;
-	private String CINEMALIST_FILENAME;
-	private String REVIEWLIST_FILENAME;
-	private String SHOWTIME_FILENAME;
-	private String BOOKINGHISTORY_FILENAME;
-	private String HOLIDAYLIST_FILENAME;
-	private String SYSTEM_FILENAME;
-	private HashMap<string, string> staffAccount;
-	private HashMap<Cineplex, ArrayList<Cinema>> cinemaList;
-	private HashMap<Movie, ArrayList<Review>> reviewList;
-	private HashMap<String, Holiday> holidayList;
-	private ArrayList<Movie> movieListing;
-	private ArrayList<BookingHistory> bookingHistory;
-	private HashMap<Movie, ArrayList<Showtime>> movieShowtime;
-	private HashMap<String, Boolean> system;
+	/** Addresses of the files */
+	private static final String MOVIE_FILENAME = "./data/movieListing.dat";
+	private static final String STAFF_FILENAME= "./data/staffAccount.dat";
+	private static final String CINEMALIST_FILENAME= "./data/cinemaList.dat";
+	private static final String REVIEWLIST_FILENAME= "./data/reviewList.dat";
+	private static final String SHOWTIME_FILENAME= "./data/showtime.dat";
+	private static final String BOOKINGHISTORY_FILENAME= "./data/bookingHistory.dat";
+	private static final String HOLIDAYLIST_FILENAME= "./data/holidayList.dat";
+	private static final String SYSTEM_FILENAME= "./data/system.dat";
 
-	public HashMap<string, string> getStaffAccount() {
-		return this.staffAccount;
-	}
+	/** To store data from file */
+	private static HashMap<String, String> staffAccount;
+	private static HashMap<Cineplex, ArrayList<Cinema>> cinemaList;
+	private static HashMap<Movie, ArrayList<Review>> reviewList;
+	private static HashMap<String, Holiday> holidayList;
+	private static ArrayList<Movie> movieListing;
+	private static ArrayList<BookingHistory> bookingHistory;
+	private static HashMap<Movie, ArrayList<Showtime>> movieShowtime;
+	private static HashMap<String, Boolean> system;
 
-	public void setStaffAccount(HashMap<string, string> staffAccount) {
-		this.staffAccount = staffAccount;
-	}
 
-	public HashMap<Cineplex, ArrayList<Cinema>> getCinemaList() {
-		return this.cinemaList;
-	}
 
-	public void setCinemaList(HashMap<Cineplex, ArrayList<Cinema>> cinemaList) {
-		this.cinemaList = cinemaList;
-	}
+	/** Private Constructor to supress instantiation */
+	private CineplexController(){}
 
-	public HashMap<Movie, ArrayList<Review>> getReviewList() {
-		return this.reviewList;
-	}
-
-	public void setReviewList(HashMap<Movie, ArrayList<Review>> reviewList) {
-		this.reviewList = reviewList;
-	}
-
-	public HashMap<String, Holiday> getHolidayList() {
-		return this.holidayList;
-	}
-
-	public void setHolidayList(HashMap<String, Holiday> holidayList) {
-		this.holidayList = holidayList;
-	}
-
-	public ArrayList<Movie> getMovieListing() {
-		return this.movieListing;
-	}
-
-	public void setMovieListing(ArrayList<Movie> movieListing) {
-		this.movieListing = movieListing;
-	}
-
-	public ArrayList<BookingHistory> getBookingHistory() {
-		return this.bookingHistory;
-	}
-
-	public void setBookingHistory(ArrayList<BookingHistory> bookingHistory) {
-		this.bookingHistory = bookingHistory;
-	}
-
-	public HashMap<String, Boolean> getSystem() {
-		return this.system;
-	}
-
-	public void setSystem(HashMap<String, Boolean> system) {
-		this.system = system;
-	}
-
-	private CineplexController() {
-		// TODO - implement CineplexController.CineplexController
-		throw new UnsupportedOperationException();
-	}
 
 	public boolean initialize() {
-		// TODO - implement CineplexController.initialize
-		throw new UnsupportedOperationException();
 	}
+	
+
+
+
+
+	//READ METHODS 
+
+
 
 	/**
-	 * 
-	 * @param userName
-	 * @param password
-	 */
-	public boolean verification(String userName, String password) {
-		// TODO - implement CineplexController.verification
-		throw new UnsupportedOperationException();
-	}
+     * This method is to read cinema list and store it inside {@code HashMap<Cineplex, ArrayList<Cinema>>}.
+     * @throws IOException when the file is not found
+     * @throws ClassNotFoundException when the class is not found
+     */
+    @SuppressWarnings("unchecked")
+    private static void readCinemaList() throws IOException, ClassNotFoundException {
+        if (readFile(CINEMALIST_FILENAME) == null) cinemaList = new HashMap<>();
+        else cinemaList = (HashMap<Cineplex, ArrayList<Cinema>>) readFile(CINEMALIST_FILENAME);
+    }
 
-	private void readCinemaList() {
-		// TODO - implement CineplexController.readCinemaList
-		throw new UnsupportedOperationException();
-	}
 
-	private void readStaffAccount() {
-		// TODO - implement CineplexController.readStaffAccount
-		throw new UnsupportedOperationException();
-	}
+    /**
+     * This method is to read staff account and store it inside {@code HashMap<String, String>}.
+     * @throws IOException when the file is not found
+     * @throws ClassNotFoundException when the class is not found
+     */
+    @SuppressWarnings("unchecked")
+    private static void readStaffAccount() throws IOException, ClassNotFoundException {
+        if (readFile(STAFF_FILENAME) == null) staffAccount = new HashMap<>();
+        else staffAccount = (HashMap<String, String>) readFile(STAFF_FILENAME);
+    }
 
-	private void readReviewList() {
-		// TODO - implement CineplexController.readReviewList
-		throw new UnsupportedOperationException();
-	}
 
-	private void readHolidayList() {
-		// TODO - implement CineplexController.readHolidayList
-		throw new UnsupportedOperationException();
-	}
 
-	private void readMovieListing() {
-		// TODO - implement CineplexController.readMovieListing
-		throw new UnsupportedOperationException();
-	}
+    /**
+     * This method is to read review list and store it inside {@code HashMap<Movie, ArrayList<Review>>}.
+     * @throws IOException when the file is not found
+     * @throws ClassNotFoundException when the class is not found
+     */
+    @SuppressWarnings("unchecked")
+    private static void readReviewList() throws IOException, ClassNotFoundException {
+        if (readFile(REVIEWLIST_FILENAME) == null) reviewList = new HashMap<>();
+        else reviewList = (HashMap<Movie, ArrayList<Review>>) readFile(REVIEWLIST_FILENAME);
+    }
 
-	private void readBookingHistory() {
-		// TODO - implement CineplexController.readBookingHistory
-		throw new UnsupportedOperationException();
-	}
 
-	private void readSystem() {
-		// TODO - implement CineplexController.readSystem
-		throw new UnsupportedOperationException();
-	}
+	 /**
+     * This method is to read holiday list and store it inside {@code HashMap<String, Holiday>}.
+     * @throws IOException when the file is not found
+     * @throws ClassNotFoundException when the class is not found
+     */
+    @SuppressWarnings("unchecked")
+    private static void readHolidayList() throws IOException, ClassNotFoundException {
+        if (readFile(HOLIDAYLIST_FILENAME) == null) holidayList = new HashMap<>();
+        else holidayList = (HashMap<String, Holiday>) readFile(HOLIDAYLIST_FILENAME);
+    }
 
-	private void readMovieShowtime() {
-		// TODO - implement CineplexController.readMovieShowtime
-		throw new UnsupportedOperationException();
-	}
 
-	public void updateCinemaList() {
-		// TODO - implement CineplexController.updateCinemaList
-		throw new UnsupportedOperationException();
-	}
-
-	public void updateHolidayList() {
-		// TODO - implement CineplexController.updateHolidayList
-		throw new UnsupportedOperationException();
-	}
-
-	public void updateReviewList() {
-		// TODO - implement CineplexController.updateReviewList
-		throw new UnsupportedOperationException();
-	}
-
-	public void updateMovieListing() {
-		// TODO - implement CineplexController.updateMovieListing
-		throw new UnsupportedOperationException();
-	}
-
-	public void updateBookingSystem() {
-		// TODO - implement CineplexController.updateBookingSystem
-		throw new UnsupportedOperationException();
-	}
-
-	public void updateMovieShowtime() {
-		// TODO - implement CineplexController.updateMovieShowtime
-		throw new UnsupportedOperationException();
-	}
-
-	public void updateSystem() {
-		// TODO - implement CineplexController.updateSystem
-		throw new UnsupportedOperationException();
-	}
-
-	public ArrayList<Movie> getTop5MovieListing() {
-		// TODO - implement CineplexController.getTop5MovieListing
-		throw new UnsupportedOperationException();
-	}
 
 	/**
-	 * 
-	 * @param movie
+	 * This method is to read a movie listing from the file and store it inside {@code ArrayList<Movie>}
+	 * @throws IOException if the file cannot be found
+	 * @throws ClassNotFoundException if the class cannot be found
 	 */
-	public ArrayList<Showtime> getMovieShowTime(Movie movie) {
-		// TODO - implement CineplexController.getMovieShowTime
-		throw new UnsupportedOperationException();
+	@SuppressWarnings("unchecked")
+	private static void readMovieListing() throws IOException, ClassNotFoundException{
+		if (readFile(MOVIE_FILENAME) == null) movieListing = new ArrayList<>(); 
+		
+		else{
+			movieListing = (ArrayList<Movie>) readFile(MOVIE_FILENAME); 
+
+			//sort the listings according to the movie status 
+			Collections.sort(movieListing, Comparator.comparing(obj-> obj.getMovieStatus().toString())); 
+		}
 	}
 
-	/**
-	 * 
-	 * @param cineplex
-	 */
-	public ArrayList<Cinema> getCinemaList(Cineplex cineplex) {
-		// TODO - implement CineplexController.getCinemaList
-		throw new UnsupportedOperationException();
-	}
+
 
 	/**
-	 * 
-	 * @param movie
+	 *	This method is to read Booking History and store it inside {@code ArrayList<BookingHistory>}
+	 *	@throws IOException if the file is not found
+	 *  @throws ClassNotFoundException if the class is not found
 	 */
-	public ArrayList<Review> getReviewList(Movie movie) {
-		// TODO - implement CineplexController.getReviewList
-		throw new UnsupportedOperationException();
+	@SuppressWarnings("unchecked")
+	private static void readBookingHistory() throws IOException, ClassCastException{
+		if (readFile(BOOKINGHISTORY_FILENAME) == null) bookingHistory = new ArrayList<>(); 
+		else bookingHistory = (ArrayList<BookingHistory>) readFile(BOOKINGHISTORY_FILENAME); 
 	}
 
-	/**
-	 * 
-	 * @param title
-	 */
-	public ArrayList<Movie> getMovieByTitle(String title) {
-		// TODO - implement CineplexController.getMovieByTitle
-		throw new UnsupportedOperationException();
-	}
+
 
 	/**
-	 * 
-	 * @param cinemaCode
-	 */
-	public Cinema getCinemaByCode(String cinemaCode) {
-		// TODO - implement CineplexController.getCinemaByCode
-		throw new UnsupportedOperationException();
-	}
+     * This method is to read movie showtime and store it inside {@code HashMap<Movie, ArrayList<Showtime>>}
+     * @throws IOException when the file is not found
+     * @throws ClassNotFoundException when the class is not found
+     */
+    @SuppressWarnings("unchecked")
+    private static void readMovieShowtime() throws IOException, ClassNotFoundException {
+        if (readFile(SHOWTIME_FILENAME) == null) movieShowtime = new HashMap<>();
+        else movieShowtime = (HashMap<Movie, ArrayList<Showtime>>) readFile(SHOWTIME_FILENAME);
+    }
+
+
 
 	/**
-	 * 
-	 * @param movie
-	 */
-	public double getMovieRating(Movie movie) {
-		// TODO - implement CineplexController.getMovieRating
-		throw new UnsupportedOperationException();
-	}
+     * This method is to read system and store it inside {@code HashMap<String, Boolean>}
+     * @throws IOException when the file is not found
+     * @throws ClassNotFoundException when the class is not found
+     */
+    @SuppressWarnings("unchecked")
+    private static void readSystem() throws IOException, ClassNotFoundException {
+        if (readFile(SYSTEM_FILENAME) == null) system = new HashMap<>();
+        else system = (HashMap<String, Boolean>) readFile(SYSTEM_FILENAME);
+    }
 
-	/**
-	 * 
-	 * @param holidayDate
-	 */
-	public Holiday getHolidayByDate(date holidayDate) {
-		// TODO - implement CineplexController.getHolidayByDate
-		throw new UnsupportedOperationException();
-	}
 
-	/**
-	 * 
-	 * @param movie
-	 */
-	public void addMovieListing(Movie movie) {
-		// TODO - implement CineplexController.addMovieListing
-		throw new UnsupportedOperationException();
-	}
 
-	/**
-	 * 
-	 * @param showtime
-	 */
-	public void addShowtime(Showtime showtime) {
-		// TODO - implement CineplexController.addShowtime
-		throw new UnsupportedOperationException();
-	}
+	//UPDATE METHODS
 
-	/**
-	 * 
-	 * @param cinema
-	 */
-	public void addCinema(Cinema cinema) {
-		// TODO - implement CineplexController.addCinema
-		throw new UnsupportedOperationException();
-	}
 
-	/**
-	 * 
-	 * @param booking
-	 */
-	public void addBooking(BookingHistory booking) {
-		// TODO - implement CineplexController.addBooking
-		throw new UnsupportedOperationException();
-	}
 
-	/**
-	 * 
-	 * @param movie
-	 * @param review
-	 */
-	public void addReview(Movie movie, Review review) {
-		// TODO - implement CineplexController.addReview
-		throw new UnsupportedOperationException();
-	}
+    /**
+     * This method is to overwrite cinema list file.
+     * @throws IOException when the file address is invalid
+     */
+    public static void updateCinemaList() throws IOException {
+        writeSerializedObject(CINEMALIST_FILENAME, cinemaList);
+    }
 
-	/**
-	 * 
-	 * @param holidayDate
-	 * @param holiday
-	 */
-	public void addHoliday(date holidayDate, Holiday holiday) {
-		// TODO - implement CineplexController.addHoliday
-		throw new UnsupportedOperationException();
-	}
 
-	/**
-	 * 
-	 * @param movie
-	 */
-	public void removeMovieListing(Movie movie) {
-		// TODO - implement CineplexController.removeMovieListing
-		throw new UnsupportedOperationException();
-	}
-
-	/**
-	 * 
-	 * @param showTime
-	 */
-	public void removeShowTime(ShowTime showTime) {
-		// TODO - implement CineplexController.removeShowTime
-		throw new UnsupportedOperationException();
-	}
-
-	/**
-	 * 
-	 * @param movie
-	 */
-	public void removeAllShowTime(Movie movie) {
-		// TODO - implement CineplexController.removeAllShowTime
-		throw new UnsupportedOperationException();
-	}
 
 }
