@@ -1,10 +1,9 @@
-import Model.*; 
+import Model.*;
+import Model.Constant.Cineplex;
+
 import java.io.IOException; 
 import java.util.*;
 
-import Constant.Cineplex;
-
-import static Model.Constant.*; 
 import static Controller.IOController; 
 
 /**

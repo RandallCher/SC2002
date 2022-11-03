@@ -1,4 +1,5 @@
 package Model;
+
 public class Seat {
 
 	private int row;

@@ -1,7 +1,8 @@
 package Model;
 
-import Model.Constant.Cineplex;
 import java.io.Serializable;
+
+import Model.Constant.Cineplex;
 
 public class Cinema implements Serializable{
 

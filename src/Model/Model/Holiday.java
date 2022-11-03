@@ -1,4 +1,5 @@
 package Model;
+
 public class Holiday {
 
 	private String name;
