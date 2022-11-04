@@ -2,7 +2,7 @@ package Model;
 
 import java.io.Serializable;
 
-import Model.Constant.Cineplex;
+import Model.Parameters.Cineplex;
 
 public class Cinema implements Serializable{
 
@@ -21,7 +21,6 @@ public class Cinema implements Serializable{
 	 * @param basePrice
 	 */
 	public Cinema(Cineplex cineplex, boolean isPlatinum, boolean is3D, String code, double basePrice) {
-		// TODO - implement Cinema.Cinema
 		this.isPlatinum = isPlatinum;
 		this.cineplex = cineplex;
 		this.is3D = is3D;
@@ -30,7 +29,6 @@ public class Cinema implements Serializable{
 	}
 
 	public boolean isPlatinum() {
-		// TODO - implement Cinema.isPlatinum
 		return this.isPlatinum;
 	}
 	public Cineplex getCineplex(){
@@ -38,7 +36,6 @@ public class Cinema implements Serializable{
 	}
 
 	public boolean is3D() {
-		// TODO - implement Cinema.is3D
 		return this.is3D;
 	}
 	public String getCode(){
@@ -53,7 +50,6 @@ public class Cinema implements Serializable{
 	 * @param o
 	 */
 	public boolean equals(Object o) {
-		// TODO - implement Cinema.equals
 		if (this==o){
 			return true;
 		} 
@@ -65,13 +61,8 @@ public class Cinema implements Serializable{
 	}
 
 	public int hashCode() {
-		// TODO - implement Cinema.hashCode
 		return code.hashCode();
 	}
 
-	public String toString() {
-		// TODO - implement Cinema.toString
-		return code;
-	}
 
 }

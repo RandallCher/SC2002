@@ -1,5 +1,7 @@
 package Model;
 
+import java.util.Date;
+
 public class Holiday {
 
 	private String name;
@@ -13,6 +15,9 @@ public class Holiday {
 	public Date getDate() {
 		return this.date;
 	}
+	public double getRate() {
+		return this.rate;
+	}
 
 	/**
 	 * 
@@ -21,18 +26,18 @@ public class Holiday {
 	 * @param rate
 	 */
 	public Holiday(String name, Date date, double rate) {
-		// TODO - implement Holiday.Holiday
-		throw new UnsupportedOperationException();
+		this.name = name;
+		this.date = date;
+		this.rate =rate;
 	}
 
 	public String printDetail() {
-		// TODO - implement Holiday.printDetail
-		throw new UnsupportedOperationException();
+		return("The Date is: "+ date+"\n" + " The Price is: "+ rate*Movie.price + "\n");
+
 	}
 
-	public String toString() {
-		// TODO - implement Holiday.toString
-		throw new UnsupportedOperationException();
+	public String Query() {
+		return (name + "("+date+")");
 	}
 
 }

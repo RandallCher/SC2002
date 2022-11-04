@@ -1,7 +1,7 @@
 package Model;
 
 
-public class Constant {
+public class Parameters {
 
 
 	public enum Cineplex {
@@ -24,13 +24,10 @@ public class Constant {
 		private Cineplex(String cineplex) {
 			this.cineplex = cineplex;
 
-			// TODO - implement Cineplex.Cineplex
-
 		}
 
-		public String toString() {
-			// TODO - implement Cineplex.toString
-			return cineplex;
+		public String Query() {
+			return this.cineplex;
 		}
 
 	}
@@ -46,18 +43,15 @@ public class Constant {
 		;
 
 		private String movieRestriction;
-
 		/**
 		 * 
 		 * @param movieRestriction
 		 */
 		private AgeRestriction(String movieRestriction) {
-			// TODO - implement AgeRestriction.AgeRestriction
 			this.movieRestriction = movieRestriction;
 		}
 
-		public String toString() {
-			// TODO - implement AgeRestriction.toString
+		public String Query() {
 			return movieRestriction;
 		}
 
@@ -78,13 +72,12 @@ public class Constant {
 		 */
 		MovieStatus(String status) {
 			this.status = status;
-			// TODO - implement MovieStatus.MovieStatus
+		}
+		public String Query(){
+			return this.status;
 		}
 
-		public String toString() {
-			// TODO - implement MovieStatus.toString
-			return status;
-		}
+
 
 	}
 

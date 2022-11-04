@@ -1,9 +1,10 @@
 package Model;
 
-import Model.Constant.*;
+import Model.Parameters.*;
 
 public class Movie {
 
+	public static int price;
 	private String title;
 	private String director;
 	private String sypnosis;
