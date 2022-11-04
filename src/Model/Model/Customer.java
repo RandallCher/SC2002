@@ -1,5 +1,5 @@
 package Model;
-
+//do serializable
 public class Customer {
 
 	private boolean isSeniorCitizen;

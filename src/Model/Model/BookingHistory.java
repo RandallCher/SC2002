@@ -1,6 +1,8 @@
 package Model;
 
-public class BookingHistory {
+import java.io.Serializable;
+
+public class BookingHistory implements Serializable{
 
 	private String TID;
 	private Customer customer;
@@ -13,13 +15,14 @@ public class BookingHistory {
 	 * @param seat
 	 */
 	public BookingHistory(String TID, Customer customer, Seat seat) {
-		// TODO - implement BookingHistory.BookingHistory
-		throw new UnsupportedOperationException();
+		this.TID = TID;
+		this.customer = customer;
+		this.seat = seat;
 	}
-
+	@Override 
 	public String toString() {
 		// TODO - implement BookingHistory.toString
-		throw new UnsupportedOperationException();
+		return ("TODO");
 	}
 
 }

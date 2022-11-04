@@ -26,7 +26,7 @@ public class Parameters {
 
 		}
 
-		public String Query() {
+		public String toString() {
 			return this.cineplex;
 		}
 
@@ -51,7 +51,7 @@ public class Parameters {
 			this.movieRestriction = movieRestriction;
 		}
 
-		public String Query() {
+		public String toString() {
 			return movieRestriction;
 		}
 
@@ -73,7 +73,7 @@ public class Parameters {
 		MovieStatus(String status) {
 			this.status = status;
 		}
-		public String Query(){
+		public String toString(){
 			return this.status;
 		}
 

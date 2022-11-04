@@ -64,5 +64,7 @@ public class Cinema implements Serializable{
 		return code.hashCode();
 	}
 
-
+	public String toString(){
+		return code;
+	}
 }
