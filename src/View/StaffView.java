@@ -2,6 +2,8 @@ package View;
 
 import java.util.Scanner;
 
+import View.staff.*;
+
 // cant find rn
 // import Controller.CineplexController.verification;
 
@@ -9,6 +11,17 @@ public class StaffView extends View {
 
 	private boolean loggedIn;
 
+	/**
+	 * StaffView constructor initialises class attributes
+	 */
+	public StaffView() {
+		this.loggedIn = false;
+	}
+
+	/**
+	 * This method displays the menu and processes user input on what
+	 * the staff member wants to do
+	 */
 	public void start() {
 		System.out.println("\nStaff Login");
 		while (!loggedIn) {
@@ -16,19 +29,22 @@ public class StaffView extends View {
 		}
 		while (true) {
 			System.out.println("\n------------- STAFF MENU -------------\n"
-					+ "1: Configure Settings\n"
-					+ "2: Create/Update/Edit movie listing\n"
-					+ "3: Create/Update/Remove cinema showtimes and the movies to be shown\n"
+					+ "1: Configure settings(ticket price, holidays, top 5 movies)\n"
+					+ "2: Create/Update/Remove movie listing\n"
+					+ "3: Create/Update/Remove cinema shows and showtimes\n"
 					+ "4: Exit\n\n"
 					+ "Enter your choice: ");
 			Scanner scan = new Scanner(System.in);
 			int choice = scan.nextInt();
 			switch (choice) {
 				case 1:
+					navigateNextView(this, new ModifySettingsView());
 					break;
 				case 2:
+					navigateNextView(this, new EditMovieListingView());
 					break;
 				case 3:
+					navigateNextView(this, new EditShowtimeView());
 					break;
 				case 4:
 					this.end();

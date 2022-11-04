@@ -1,5 +1,7 @@
 package View.MovieGoer;
 
+import Model.*;
+
 public class ShowtimeView {
 
 	private Movie movie;
@@ -27,7 +29,7 @@ public class ShowtimeView {
 	 * 
 	 * @param showtime
 	 */
-	private void displayShowtimeDetailMenu(Showtime showtime) {
+	private void displayShowtimeDetailMenu(ShowtimeView showtime) {
 		// TODO - implement ShowtimeView.displayShowtimeDetailMenu
 		throw new UnsupportedOperationException();
 	}
@@ -36,7 +38,7 @@ public class ShowtimeView {
 	 * 
 	 * @param showtime
 	 */
-	private void displayPrice(Showtime showtime) {
+	private void displayPrice(ShowtimeView showtime) {
 		// TODO - implement ShowtimeView.displayPrice
 		throw new UnsupportedOperationException();
 	}
@@ -54,7 +56,7 @@ public class ShowtimeView {
 	 * 
 	 * @param showtime
 	 */
-	private void displayBookSeatMenu(Showtime showtime) {
+	private void displayBookSeatMenu(ShowtimeView showtime) {
 		// TODO - implement ShowtimeView.displayBookSeatMenu
 		throw new UnsupportedOperationException();
 	}

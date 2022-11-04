@@ -1,6 +1,8 @@
-package View;
+package View.MovieGoer;
 
-public class BookingView extends View {
+import View.View;
+
+public class BookingHistoryView extends View {
 
 	public void start() {
 
