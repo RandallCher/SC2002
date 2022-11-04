@@ -2,6 +2,10 @@ package View;
 
 public class BookingView extends View {
 
+	public void start() {
+
+	}
+
 	public void displaySeats() {
 		// TODO - implement BookingView.displaySeats
 		throw new UnsupportedOperationException();

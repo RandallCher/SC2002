@@ -2,6 +2,10 @@ package View;
 
 public class MovieListingsView extends View {
 
+	public void start() {
+
+	}
+
 	public void searchMovie() {
 		// TODO - implement MovieListingsView.searchMovie
 		throw new UnsupportedOperationException();
