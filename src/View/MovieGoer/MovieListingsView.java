@@ -1,4 +1,7 @@
-package View;
+package View.MovieGoer;
+
+import View.View;
+import Model.*;
 
 public class MovieListingsView extends View {
 

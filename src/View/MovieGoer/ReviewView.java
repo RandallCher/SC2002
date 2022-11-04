@@ -1,6 +1,6 @@
 package View.MovieGoer;
 
-public class ReviewVeiw {
+public class ReviewView {
 
 	private Movie movie;
 

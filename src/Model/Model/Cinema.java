@@ -4,7 +4,7 @@ import java.io.Serializable;
 
 import Model.Parameters.Cineplex;
 
-public class Cinema implements Serializable{
+public class Cinema implements Serializable {
 
 	private boolean isPlatinum;
 	private boolean is3D;
@@ -31,18 +31,26 @@ public class Cinema implements Serializable{
 	public boolean isPlatinum() {
 		return this.isPlatinum;
 	}
-	public Cineplex getCineplex(){
+
+	public Cineplex getCineplex() {
 		return this.cineplex;
 	}
 
 	public boolean is3D() {
 		return this.is3D;
 	}
-	public String getCode(){
+
+	public String getCode() {
 		return this.code;
 	}
-	public double getBasePrice(){
+
+	public double getBasePrice() {
 		return this.basePrice;
+	}
+
+	public void setBasePrice(double newPrice) {
+		this.basePrice = newPrice;
+		return;
 	}
 
 	/**
@@ -50,10 +58,10 @@ public class Cinema implements Serializable{
 	 * @param o
 	 */
 	public boolean equals(Object o) {
-		if (this==o){
+		if (this == o) {
 			return true;
-		} 
-		if (o==null){
+		}
+		if (o == null) {
 			return false;
 		}
 
@@ -64,7 +72,7 @@ public class Cinema implements Serializable{
 		return code.hashCode();
 	}
 
-	public String toString(){
+	public String toString() {
 		return code;
 	}
 }

@@ -1,6 +1,6 @@
 package View.staff;
 
-public class CinemaList {
+public class EditCinemaListView {
 
 	private boolean help;
 
@@ -8,7 +8,7 @@ public class CinemaList {
 	 * 
 	 * @param args
 	 */
-	private CinemaList(String args) {
+	private EditCinemaListView(String args) {
 		// TODO - implement CinemaList.CinemaList
 		throw new UnsupportedOperationException();
 	}
