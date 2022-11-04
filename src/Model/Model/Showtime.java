@@ -1,17 +1,21 @@
 package Model;
 
+import java.util.*;
+
 public class Showtime {
 
 	private Date time;
+	//total cols
 	private static int COLS = 17;
+	//total rows
 	private static int ROWS = 9;
 	private Movie movie;
 	private Cinema cinema;
 	private Seat[][] seats;
 
 	public Showtime() {
-		// TODO - implement Showtime.Showtime
-		throw new UnsupportedOperationException();
+		seats = new Seat [ROWS][COLS];
+		initializeSeat();
 	}
 
 	/**
@@ -20,23 +24,52 @@ public class Showtime {
 	 * @param col
 	 */
 	public Seat getSeatAt(int row, int col) {
-		// TODO - implement Showtime.getSeatAt
-		throw new UnsupportedOperationException();
+		if(col>8){
+			col++;
+		}
+		return seats[row-1][col-1];
 	}
 
 	private void initializeSeat() {
-		// TODO - implement Showtime.initializeSeat
-		throw new UnsupportedOperationException();
+		int Row = 0;
+		int Col = 0;
+
+		for( Col=0;Col<2;Col++){
+			for(Row=0;Row<5;Row++){
+				seats[Row][Col] = new Seat(Row, Col, this);
+			}
+		}
+
+		for(Col=2;Col<8;Col++){
+			for(Row=0;Row<9;Row++){
+				seats[Row][Col] = new Seat(Row, Col, this);
+			}
+		}
+			//aisle
+		for(Col=9;Col<11;Col++){
+			for(Row=1;Row<9;Row++){
+				seats[Row][Col] = new Seat(Row, Col, this);
+			}
+		}	
+		for(Col=11;Col<17;Col++){
+			for(Row=0;Row<9;Row++){
+				seats[Row][Col] = new Seat(Row, Col, this);
+			}
+		}	
 	}
 
-	public string getDetails() {
-		// TODO - implement Showtime.getDetails
-		throw new UnsupportedOperationException();
+	public String getDetails() {
+		StringBuilder builtString = new StringBuilder();
+
+		builtString.append("Cineplex: ").append(cinema.getCineplex()).append("|");
+		builtString.append("Cinema: ").append(cinema.toString()).append("|");
+		builtString.append("Time: ").append(time.toString()).append("|");
+		return builtString.toString();
+		//Cineplex|Cinema|Time
 	}
 
-	public string toString() {
-		// TODO - implement Showtime.toString
-		throw new UnsupportedOperationException();
+	public String toString() {
+		return cinema.getCineplex().toString() + ": " + time;
 	}
 
 	/**

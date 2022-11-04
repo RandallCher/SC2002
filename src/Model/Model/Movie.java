@@ -78,7 +78,10 @@ public class Movie implements Serializable{
 		builtString.append(casts.toString()).append("|");
 		builtString.append("Age Restriction: ").append(getAgeRestriction()).append("|");
 		builtString.append("Movie Status: ").append(getMovieStatus()).append("|");
-		//example: Title|Director|casts|ageRestriction|movieStatus
+		builtString.append("Movie Rating: ").append(//insert get movie rating here
+		 ).append("|");
+		builtString.append("Movie Sales: ").append(getSales()).append("|");
+		//example: Title|Director|casts|ageRestriction|movieStatus|Rating|Sales
 		//
 		return builtString.toString();
 	}
