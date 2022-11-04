@@ -2,7 +2,7 @@ package View;
 
 public class BookingView extends View {
 
-	protected void start() {
+	public void start() {
 
 	}
 

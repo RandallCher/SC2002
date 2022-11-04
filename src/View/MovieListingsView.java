@@ -2,7 +2,7 @@ package View;
 
 public class MovieListingsView extends View {
 
-	protected void start() {
+	public void start() {
 
 	}
 
