@@ -1,8 +1,10 @@
 package Model;
-
+//do serializable
 import Model.Parameters.*;
+import java.io.Serializable;
+import java.util.*;
 
-public class Movie {
+public class Movie implements Serializable{
 
 	public static int price;
 	private String title;
@@ -14,18 +16,71 @@ public class Movie {
 	private MovieStatus movieStatus;
 
 	public Movie() {
-		// TODO - implement Movie.Movie
-		throw new UnsupportedOperationException();
+		this.sales = 0;
 	}
-
+	public void setTitle(String title){
+		this.title = title;
+	}
+	public void setDirector(String director){
+		this.director = director;
+	}
+	public void setSypnosis(String sypnosis){
+		this.sypnosis = sypnosis;
+	}
+	public void setCast(ArrayList<String> cast){
+		this.cast = cast;
+	}
 	public void incrementSales() {
-		// TODO - implement Movie.incrementSales
-		throw new UnsupportedOperationException();
+		this.sales ++;
+	}
+	public void decrementSales() {
+		this.sales --;
+	}
+	public void setAgeRestrictions(AgeRestriction ageRestriction){
+		this.ageRestriction = ageRestriction;
+	}
+	public void setMovieStatus(MovieStatus movieStatus){
+		this.movieStatus = movieStatus;
 	}
 
+	//get functions
+	public String getTitle(){
+		return this.title;
+	}
+	public String getDirector(){
+		return this.director;
+	}
+	public String getSypnosis(){
+		return this.sypnosis;
+	}
+	public ArrayList<String> getCast(){
+		return this.cast;
+	}
+	public int getSales(){
+		return this.sales;
+	}
+	public AgeRestriction getAgeRestriction(){
+		return this.ageRestriction;
+	}
+	public MovieStatus getMovieStatus(){
+		return this.movieStatus;
+	}
+
+	
 	public String toString() {
-		// TODO - implement Movie.toString
-		throw new UnsupportedOperationException();
+		StringBuilder builtString = new StringBuilder();
+		StringBuilder casts = new StringBuilder();
+
+		builtString.append("Title: ").append(getTitle()).append("|");
+		builtString.append("Director: ").append(getDirector()).append("|");
+		builtString.append("Cast: ");
+		for (String Cast : cast) casts.append(Cast).append(", ");
+		builtString.append(casts.toString()).append("|");
+		builtString.append("Age Restriction: ").append(getAgeRestriction()).append("|");
+		builtString.append("Movie Status: ").append(getMovieStatus()).append("|");
+		//example: Title|Director|casts|ageRestriction|movieStatus
+		//
+		return builtString.toString();
 	}
 
 	/**
@@ -33,13 +88,28 @@ public class Movie {
 	 * @param o
 	 */
 	public boolean equals(Object o) {
-		// TODO - implement Movie.equals
-		throw new UnsupportedOperationException();
+		if(getClass() != o.getClass()){
+			return false;
+		}
+
+		Movie movie = (Movie) o;
+		if(title == null){
+			return false;
+		}
+		return true;
+
 	}
 
-	public int hashCode() {
-		// TODO - implement Movie.hashCode
-		throw new UnsupportedOperationException();
-	}
+    public int hashCode() {
+		int result;
+		if(title != null){
+			result = title.hashCode();
+		}
+		else {
+			result = 0;
+		}
+        result = 31 * result + (director != null ? director.hashCode() : 0);
+        return result;
+    }
 
 }

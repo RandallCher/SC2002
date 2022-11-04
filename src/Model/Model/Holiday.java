@@ -2,11 +2,16 @@ package Model;
 
 import java.util.Date;
 
+
+//do serializable
+
 public class Holiday {
+
 
 	private String name;
 	private Date date;
 	private double rate;
+
 
 	public String getName() {
 		return this.name;
@@ -36,7 +41,7 @@ public class Holiday {
 
 	}
 
-	public String Query() {
+	public String toString() {
 		return (name + "("+date+")");
 	}
 
