@@ -30,18 +30,17 @@ public class Seat {
 	 * @param showtime
 	 */
 	public Seat(int row, int col, Showtime showtime) {
-		// TODO - implement Seat.Seat
-		throw new UnsupportedOperationException();
+
+		this.row = row;
+		this.col = col;
+		this.showtime = showtime;
+		booked = false;
 	}
 
 	public void bookSeat() {
-		// TODO - implement Seat.bookSeat
-		throw new UnsupportedOperationException();
+
+		booked = true;
 	}
 
-	public String toString() {
-		// TODO - implement Seat.toString
-		throw new UnsupportedOperationException();
-	}
 
 }

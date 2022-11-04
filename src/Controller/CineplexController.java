@@ -1,5 +1,5 @@
 import Model.*;
-import Model.Constant.Cineplex;
+import Model.Parameters.Cineplex;
 
 import java.io.IOException; 
 import java.util.*;

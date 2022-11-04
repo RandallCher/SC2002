@@ -3,19 +3,19 @@ package Model;
 public class Customer {
 
 	private boolean isSeniorCitizen;
-	private string name;
-	private string mobile;
-	private string email;
+	private String name;
+	private String mobile;
+	private String email;
 
-	public string getName() {
+	public String getName() {
 		return this.name;
 	}
 
-	public string getMobile() {
+	public String getMobile() {
 		return this.mobile;
 	}
 
-	public string getEmail() {
+	public String getEmail() {
 		return this.email;
 	}
 
@@ -27,13 +27,16 @@ public class Customer {
 	 * @param isSeniorCitizen
 	 */
 	public Customer(String name, String mobile, String email, boolean isSeniorCitizen) {
-		// TODO - implement Customer.Customer
-		throw new UnsupportedOperationException();
+
+		this.name = name;
+		this.mobile = mobile;
+		this.email = email;
+		this.isSeniorCitizen = isSeniorCitizen;
 	}
 
 	public boolean isSeniorCitizen() {
-		// TODO - implement Customer.isSeniorCitizen
-		throw new UnsupportedOperationException();
+	
+		return isSeniorCitizen;
 	}
 
 	/**
@@ -41,13 +44,31 @@ public class Customer {
 	 * @param o
 	 */
 	public boolean equals(Object o) {
-		// TODO - implement Customer.equals
-		throw new UnsupportedOperationException();
+		// 
+		//checks if the customer object exists
+		if(o==null){
+			return false;
+		}
+		if(this.getClass() != o.getClass()){
+			return false;
+		}
+		
+		Customer customer = (Customer) o;
+		if (!name.equals(customer.name)){
+			return false;
+		} 
+        if (!mobile.equals(customer.mobile)){
+			return false;
+		} 
+
+		return true;
 	}
 
 	public int hashCode() {
-		// TODO - implement Customer.hashCode
-		throw new UnsupportedOperationException();
+		// 
+		int result = name.hashCode();
+		//The HashCode is computed as s[0]*31^(n-1) + s[1]*31^(n-2) + ... + s[n-1]
+		return result;
 	}
 
 }
