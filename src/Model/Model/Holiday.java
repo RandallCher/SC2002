@@ -1,6 +1,9 @@
 package Model;
 
+import java.util.Calendar;
 import java.util.Date;
+//import java.util.GregorianCalendar;
+//import java.util.Locale;
 
 
 //do serializable
@@ -10,6 +13,7 @@ public class Holiday {
 
 	private String name;
 	private Date date;
+	Calendar calendar = Calendar.getInstance();
 	private double rate;
 
 
@@ -18,6 +22,10 @@ public class Holiday {
 	}
 
 	public Date getDate() {
+		//XXXYYYYMMDDhhmm
+		//int uear = calendar.get(Calendar.YEAR);
+		//int month = calendar.get(Calendar.MONTH);
+		//int day = calendar.get(Calendar.DAY_OF_MONTH);
 		return this.date;
 	}
 	public double getRate() {
@@ -42,7 +50,7 @@ public class Holiday {
 	}
 
 	public String toString() {
-		return (name + "("+date+")");
+		return ("Name: "+name + "Date: "+date);
 	}
 
 }

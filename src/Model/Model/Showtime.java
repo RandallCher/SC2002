@@ -77,13 +77,28 @@ public class Showtime {
 	 * @param o
 	 */
 	public boolean equals(Object o) {
-		// TODO - implement Showtime.equals
-		throw new UnsupportedOperationException();
+		if(getClass() != o.getClass()){
+			return false;
+		}
+
+		Showtime showtime = (Showtime) o;
+		if(movie != showtime.movie){
+			return false;
+		}
+		if(cinema != showtime.cinema){
+			return false;
+		}
+		if(time != showtime.time){
+			return false;
+		}
+		return true;
 	}
 
-	public int hashCode() {
-		// TODO - implement Showtime.hashCode
-		throw new UnsupportedOperationException();
-	}
+    public int hashCode() {
+        int result = movie.hashCode();
+        result = 31 * result + cinema.hashCode();
+        result = 31 * result + time.hashCode();
+        return result;
+    }
 
 }

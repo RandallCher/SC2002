@@ -1,17 +1,18 @@
 package Model;
+import java.io.Serializable;
+import java.util.*;
 
-public class Review {
+public class Review implements Serializable{
 
 	private Date date;
 	private int rating;
 	private String content;
 	private String name;
-	private static int maxRating = 5;
-	private static int minRating = 1;
+	private Movie movie;
+	public final static int maxRating = 5;
+	public final static int minRating = 1;
 
-	public Date getDate() {
-		return this.date;
-	}
+
 
 	public void setDate(Date date) {
 		this.date = date;
@@ -28,6 +29,13 @@ public class Review {
 	public String getName() {
 		return this.name;
 	}
+	public Movie getMovie(){
+		return this.movie;
+	}
+	public Date getDate() {
+		return this.date;
+	}
+
 
 	/**
 	 * 
@@ -37,8 +45,14 @@ public class Review {
 	 * @param name
 	 */
 	public Review(Movie movie, int rating, String content, String name) {
-		// TODO - implement Review.Review
-		throw new UnsupportedOperationException();
-	}
+		if(rating > maxRating) this.rating = maxRating;
+        else if (rating < minRating) this.rating = minRating;
+        this.rating = rating;
+
+        this.date = new Date();
+        this.content = content;
+        this.movie = movie;
+        this.name = name;
+    }
 
 }

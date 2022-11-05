@@ -1,5 +1,7 @@
 package View.MovieGoer;
 
+import Model.*;
+
 public class ReviewView {
 
 	private Movie movie;

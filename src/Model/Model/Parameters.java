@@ -25,7 +25,8 @@ public class Parameters {
 			this.cineplex = cineplex;
 
 		}
-
+		
+		@Override
 		public String toString() {
 			return this.cineplex;
 		}
@@ -50,9 +51,9 @@ public class Parameters {
 		private AgeRestriction(String movieRestriction) {
 			this.movieRestriction = movieRestriction;
 		}
-
+		@Override
 		public String toString() {
-			return movieRestriction;
+			return this.movieRestriction;
 		}
 
 	}
@@ -73,6 +74,7 @@ public class Parameters {
 		MovieStatus(String status) {
 			this.status = status;
 		}
+		@Override
 		public String toString(){
 			return this.status;
 		}
