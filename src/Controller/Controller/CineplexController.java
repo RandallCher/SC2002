@@ -1,11 +1,11 @@
-import Model.*;
-import Model.Parameters.Cineplex;
 package Controller;
 
+import Model.*;
+import Model.Parameters.Cineplex;
 import java.io.IOException; 
 import java.util.*;
 
-import static Controller.IOController; 
+import Controller.IOController; 
 
 /**
 	* This class contains static method to read data from file and to manipulate data from files. 
