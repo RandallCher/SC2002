@@ -8,8 +8,7 @@ import java.io.IOException;
 import java.util.*;
 import java.lang.Math; 
 
-
-import Controller.IOController; 
+import Controller.IOController.*; 
 
 /**
 	* This class contains static method to read data from file and to manipulate data from files. 
@@ -386,7 +385,7 @@ public class CineplexController extends DataController {
             double sum = 0, avgRating;
             for (Review review : reviewList) sum += review.getRating();
             avgRating = sum / reviewList.size(); 
-            return Math.round(avgRating * 100.0)/100.0;
+            return IOController.round(avgRating, 2);
         }
     }
 
@@ -399,7 +398,7 @@ public class CineplexController extends DataController {
      */
     public static Holiday getHolidayByDate(Date time) {
         HashMap<String, Holiday> holidayList = getHolidayList();
-        return holidayList.get(formatTimeMMdd(time));
+        return holidayList.get(IOController.formatDateMMdd(time));
     }
 
 
