@@ -1,5 +1,8 @@
 package View.staff;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.HashMap;
 import java.util.Scanner;
 
 import View.*;
@@ -42,11 +45,39 @@ public class ModifySettingsView extends View {
 		}
 	}
 
+	/**
+	 * This method allows the user to modify the top five movie ranking order
+	 */
 	protected void configureTopFiveMovies() {
-		// TODO - implement Settings.configureTopFiveMovies
-		throw new UnsupportedOperationException();
+		System.out.println("**** Configuring Top Five Movies ****");
+		System.out.println("");
+		Scanner scan = new Scanner(System.in);
+		boolean isRatingRanked = CineplexController.getSystem().get("movieOrder");
+		if (isRatingRanked) {
+			System.out.print("Top Five movies are currently ranked by ratings.\nChange to ranking by sales? (Y/N) ");
+		} else {
+			System.out.print("Top Five movies are currently ranked by sales.\nChange to ranking by ratings? (Y/N) ");
+		}
+
+		String choice = scan.next().toUpperCase();
+		if (!choice.equals("Y")) {
+			System.out.println("No changes made. Exiting...\n");
+			return;
+		}
+
+		try {
+			CineplexController.getSystem().put("movieOrder", !isRatingRanked);
+			CineplexController.updateSystem();
+			System.out.println("Rankings changed successfully.\n");
+		} catch (Exception e) {
+			System.out.println("Error. Rankings could not be changed.\n");
+		}
+		return;
 	}
 
+	/**
+	 * This method allows the user to choose how to configure holidays
+	 */
 	protected void configureHolidays() {
 		while (true) {
 			System.out.println("**** Configuring Holidays ****");
@@ -60,7 +91,7 @@ public class ModifySettingsView extends View {
 				choice = scan.nextInt();
 			} catch (Exception e) {
 				System.out.println("Invalid input. Try again.");
-				break;
+				continue;
 			}
 			// TODO
 			switch (choice) {
@@ -78,7 +109,6 @@ public class ModifySettingsView extends View {
 					break;
 				default:
 					System.out.println("Invalid input. Try again.");
-
 			}
 		}
 	}
@@ -112,18 +142,79 @@ public class ModifySettingsView extends View {
 		return;
 	}
 
+	/**
+	 * This method displays all the current holidays in the system
+	 */
 	protected void displayHolidays() {
-		// TODO
+		HashMap<String, Holiday> holidaysList = CineplexController.getHolidayList();
+		if (holidaysList.isEmpty()) {
+			System.out.println("There are no holidays.\n");
+			return;
+		}
+		int i = 1;
+		for (String holidayDate : holidaysList.keySet()) {
+			System.out.println(i++ + ": " + holidaysList.get(holidayDate));
+		}
+		return;
 	}
 
+	/**
+	 * This method adds a holiday to the system
+	 */
 	protected void addHoliday() {
-		// TODO
+		Scanner scan = new Scanner(System.in);
+		System.out.print("Enter new holiday date in format 'dd/MM/yyyy': ");
+		String dateInputString = scan.nextLine();
+		System.out.print("Enter holiday name: ");
+		String name = scan.nextLine();
 
+		Date date;
+		String dateString;
+		try {
+			date = new SimpleDateFormat("dd/MM/yyyy").parse(dateInputString);
+			dateString = new SimpleDateFormat().format(date);
+		} catch (Exception e) {
+			System.out.println("Invalid input.");
+			return;
+		}
+		Holiday holiday = new Holiday(name, date);
+
+		try {
+			CineplexController.addHoliday(dateString, holiday);
+			System.out.println("Successfully added the holiday.");
+		} catch (Exception e) {
+			System.out.println("Failed to add the holiday.");
+		}
+		return;
 	}
 
+	/**
+	 * This method removes a holiday from the system
+	 */
 	protected void removeHoliday() {
-		// TODO
+		this.displayHolidays();
+		HashMap<String, Holiday> holidaysList = CineplexController.getHolidayList();
 
+		System.out.print("\nEnter holiday dates to remove in format 'dd/MM/yyyy': ");
+		Scanner scan = new Scanner(System.in);
+		String dateInputString = scan.nextLine();
+		Date date;
+		String dateString;
+		try {
+			date = new SimpleDateFormat("dd/MM/yyyy").parse(dateInputString);
+			dateString = new SimpleDateFormat().format(date);
+		} catch (Exception e) {
+			System.out.println("Invalid input. Could not remove date.");
+			return;
+		}
+		holidaysList.remove(dateString);
+		try {
+			CineplexController.updateHolidayList();
+			System.out.println("Successfully deleted the holiday.");
+		} catch (Exception e) {
+			System.out.println("Failed to delete the holiday.");
+		}
+		return;
 	}
 
 }

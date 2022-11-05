@@ -6,6 +6,9 @@ public class View {
 
 	public View prevView;
 
+	/**
+	 * This method displays the menu and prompts for the user's choice
+	 */
 	public void start() {
 		System.out.print("------------- MAIN MENU -------------\n"
 				+ "1: I am a Movie Goer\n"
@@ -22,6 +25,9 @@ public class View {
 			this.end();
 	}
 
+	/**
+	 * This method terminates the current View
+	 */
 	protected void end() {
 		if (this.prevView != null)
 			this.prevView.start();
@@ -32,8 +38,7 @@ public class View {
 	}
 
 	/**
-	 * This method navigates the user from one View to the next.
-	 * This allows the user to return to a previous View.
+	 * This method navigates the user from one View to the next
 	 * 
 	 * @param cur
 	 * @param next
@@ -43,6 +48,11 @@ public class View {
 		next.start();
 	}
 
+	/**
+	 * This method gets the previous View and returns it
+	 * 
+	 * @return prevView
+	 */
 	protected View getPrevView() {
 		return this.prevView;
 	}

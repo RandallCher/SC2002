@@ -1,5 +1,6 @@
 package View.staff;
 
+// might remove file (add cinema not necessary)
 public class EditCinemaListView {
 
 	private boolean help;

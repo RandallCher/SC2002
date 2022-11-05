@@ -80,14 +80,4 @@ public class StaffView extends View {
 		this.loggedIn = true;
 		return;
 	}
-
-	/**
-	 * 
-	 * @param option
-	 */
-	public void editMovieListings(int option) {
-		// TODO - implement StaffView.editMovieListings
-		throw new UnsupportedOperationException();
-	}
-
 }
