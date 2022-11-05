@@ -1,6 +1,11 @@
 package View.MovieGoer;
 
+import Model.BookingHistory;
 import View.View;
+import java.util.ArrayList;
+import Controller.CineplexController.*;
+
+import static Controller.CineplexController.getBookingHistory;
 
 public class BookingHistoryView extends View {
 
@@ -9,18 +14,29 @@ public class BookingHistoryView extends View {
 	}
 
 	public void displaySeats() {
-		// TODO - implement BookingView.displaySeats
-		throw new UnsupportedOperationException();
+
 	}
 
 	public void makeBooking() {
-		// TODO - implement BookingView.makeBooking
-		throw new UnsupportedOperationException();
+		navigateNextView(this, new Booking(showtime));
 	}
 
 	public void displayBookingHistory() {
-		// TODO - implement BookingView.displayBookingHistory
-		throw new UnsupportedOperationException();
+		System.out.println("Booking history");
+		ArrayList<BookingHistory> bookingHistory = getBookingHistory();
+
+		if (bookingHistory.isEmpty()) {
+			System.out.println("No previous bookings");
+		}
+		else {
+			for(int i = 0; i< bookingHistory.size(); i++){
+				System.out.println(bookingHistory.get(i));
+			}
+
+
+		}
+
+		getPrevView();
 	}
 
 }

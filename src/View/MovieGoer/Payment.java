@@ -1,5 +1,7 @@
 package View.MovieGoer;
 
+import Model.Seat;
+import Model.Customer;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.lang.Math;

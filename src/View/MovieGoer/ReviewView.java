@@ -1,6 +1,6 @@
 package View.MovieGoer;
 
-import Controller.CineplexManager;
+import Controller.CineplexController;
 import Model.Movie;
 import Model.Review;
 import View.View;
@@ -10,14 +10,14 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 
-import static Controller.CineplexManager.*;
+import static Controller.CineplexController.*;
 import static Controller.IOController.*;
 import static Model.Constant.MovieStatus.*;
 
 /**
  * This class represents the review view.
  */
-public class ReviewVeiw extends View {
+public class ReviewView extends View {
 
 	private Movie movie;
 
