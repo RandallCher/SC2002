@@ -2,8 +2,12 @@ package Controller;
 
 import Model.*;
 import Model.Parameters.Cineplex;
+import Model.Parameters.MovieStatus;
+
 import java.io.IOException; 
 import java.util.*;
+import java.lang.Math; 
+
 
 import Controller.IOController; 
 
@@ -13,15 +17,6 @@ import Controller.IOController;
 
 public class CineplexController extends DataController {
 
-	/** Addresses of the files */
-	private static final String MOVIE_FILENAME = "./data/movieListing.dat";
-	private static final String STAFF_FILENAME= "./data/staffAccount.dat";
-	private static final String CINEMALIST_FILENAME= "./data/cinemaList.dat";
-	private static final String REVIEWLIST_FILENAME= "./data/reviewList.dat";
-	private static final String SHOWTIME_FILENAME= "./data/showtime.dat";
-	private static final String BOOKINGHISTORY_FILENAME= "./data/bookingHistory.dat";
-	private static final String HOLIDAYLIST_FILENAME= "./data/holidayList.dat";
-	private static final String SYSTEM_FILENAME= "./data/system.dat";
 
 	/** To store data from file */
 	private static HashMap<String, String> staffAccount;
@@ -39,10 +34,48 @@ public class CineplexController extends DataController {
 	private CineplexController(){}
 
 
+
+                                                                                   
+    /**
+     * This method initializes all the necessary data from the files and store it inside the variables. 
+     * @return true if there is no error an false if there is an error
+     */
 	public boolean initialize() {
+        try{
+            //these must not have ClassNotFound exception
+            readSystem(); 
+            readStaffAccount();
+
+
+            //these may have ClassNotFound exception
+            readCinemaList(); 
+            readMovieListing();
+            readBookingHistory(); 
+            readReviewList(); 
+            readHolidayList(); 
+            readMovieShowtime(); 
+
+        } catch (IOException e){
+            return false; 
+
+        } catch (ClassNotFoundException e){
+            return true; 
+        }
+        return true;
 	}
 	
 
+
+    /**
+     * The method is to verify whether the username and the password are valid. 
+     * @param username the username
+     * @param password the password
+     * @return true if the username exists and the corresponding password is correct, false otherwise
+     */
+    public static boolean verification (String username, String password) {
+        if (staffAccount.get(username) == null) return false;  // username does not exist
+        else return staffAccount.get(username).equals(password);  // password does not match
+    }
 
 
 
@@ -125,7 +158,7 @@ public class CineplexController extends DataController {
 	 *  @throws ClassNotFoundException if the class is not found
 	 */
 	@SuppressWarnings("unchecked")
-	private static void readBookingHistory() throws IOException, ClassCastException{
+	private static void readBookingHistory() throws IOException, ClassNotFoundException{
 		if (readFile(BOOKINGHISTORY_FILENAME) == null) bookingHistory = new ArrayList<>(); 
 		else bookingHistory = (ArrayList<BookingHistory>) readFile(BOOKINGHISTORY_FILENAME); 
 	}
@@ -167,7 +200,7 @@ public class CineplexController extends DataController {
      * @throws IOException when the file address is invalid
      */
     public static void updateCinemaList() throws IOException {
-        writeSerializedObject(CINEMALIST_FILENAME, cinemaList);
+        writeFile(CINEMALIST_FILENAME, cinemaList);
     }
 
 
@@ -350,9 +383,10 @@ public class CineplexController extends DataController {
         ArrayList<Review> reviewList = getReviewList(movie);
         if (reviewList == null || reviewList.isEmpty()) return 0;
         else {
-            double sum = 0;
+            double sum = 0, avgRating;
             for (Review review : reviewList) sum += review.getRating();
-            return round(sum / reviewList.size(), 1);
+            avgRating = sum / reviewList.size(); 
+            return Math.round(avgRating * 100.0)/100.0;
         }
     }
 
@@ -486,6 +520,39 @@ public class CineplexController extends DataController {
 	
 
 
+    /**
+     * This method is to remove a movie from a movie listing (i.e set status of the movie to END_OF_SHOWING) and update the local files 
+     * @param movie the Movie to be removed from the list 
+     * @throws IOException 
+     */
+    public static void removeMovieListing(Movie movie) throws IOException {
+        movie.setMovieStatus(MovieStatus.END_OF_SHOWING);
+        updateMovieListing(); 
+    }
 
+
+
+    /**
+     * This method is to remove an existing showtime of a movie from a movie listing 
+     * @param showtime the showtime of a movie to be removed from the list 
+     * @throws IOException 
+     */
+    public static void removeShowtimee(Showtime showtime) throws IOException {
+        Movie movie = showtime.getMovie();
+        movieShowtime.get(movie).remove(showtime); 
+        updateMovieShowtime(); 
+    }
+
+
+
+     /**
+     * This method is to remove all showtimes of a movie from a movie listing 
+     * @param movie the movie to remove all its showtime
+     * @throws IOException 
+     */
+    public static void removeAllShowtimee(Movie movie) throws IOException {
+        movieShowtime.remove(movie); 
+        updateMovieShowtime(); 
+    }
 
 }

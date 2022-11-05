@@ -3,10 +3,21 @@ import java.io.*;
 
 
 /**
-	* This class contains only two methods - to read a serializable object from a file 
+	* This abstract contains the file paths which store data files 
+	* This abstract class contains only two methods - to read a serializable object from a file 
 	* to write a serializable object into a file.
  */
-public abstract class DataController implements Controller {
+public abstract class DataController implements Controller{
+
+		/** Addresses of the files */
+		protected static final String MOVIE_FILENAME = "./data/movieListing.dat";
+		protected static final String STAFF_FILENAME= "./data/staffAccount.dat";
+		protected static final String CINEMALIST_FILENAME= "./data/cinemaList.dat";
+		protected static final String REVIEWLIST_FILENAME= "./data/reviewList.dat";
+		protected static final String SHOWTIME_FILENAME= "./data/showtime.dat";
+		protected static final String BOOKINGHISTORY_FILENAME= "./data/bookingHistory.dat";
+		protected static final String HOLIDAYLIST_FILENAME= "./data/holidayList.dat";
+		protected static final String SYSTEM_FILENAME= "./data/system.dat";
 
 		/**
 		 * This method reads a serializble object from a given file name.
@@ -15,7 +26,7 @@ public abstract class DataController implements Controller {
 		 * @throws IOException if the file cannot be found
 		 * @throws ClassNotFoundException if the class is not found. 
 		 */
-		protected static Object readFile(String fileName) throws IOException, ClassNotFoundException {
+		public static Object readFile(String fileName) throws IOException, ClassNotFoundException {
 			Object obj; 
 			FileInputStream fileInput; 
 			ObjectInputStream objInput; 
@@ -39,15 +50,14 @@ public abstract class DataController implements Controller {
 	 * @param data the data to be written into the file 
 	 * @throws IOException if the file cannot be found
 	 */
-		protected static void writeFile(String fileName, Object data) throws IOException {
-			FileOutputStream fileOutput; 
-			ObjectOutputStream objOutput; 
-				
-			
-			fileOutput = new FileOutputStream(fileName); 
-			objOutput  = new ObjectOutputStream(fileOutput); 
-			objOutput.writeObject(data); 
-			objOutput.close(); 
+		public static void writeFile(String fileName, Object data) throws IOException {
+				FileOutputStream fileOutput; 
+				ObjectOutputStream objOutput; 
+					
+				fileOutput = new FileOutputStream(fileName); 
+				objOutput  = new ObjectOutputStream(fileOutput); 
+				objOutput.writeObject(data); 
+				objOutput.close(); 
 		
 		}
 

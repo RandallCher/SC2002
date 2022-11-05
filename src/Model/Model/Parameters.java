@@ -61,7 +61,7 @@ public class Parameters {
 
 	public enum MovieStatus {
 		COMING_SOON("Coming soon"),
-		End_OF_SHOWING("End of showing"),
+		END_OF_SHOWING("End of showing"),
 		NOW_SHOWING("Now showing");
 		;
 
