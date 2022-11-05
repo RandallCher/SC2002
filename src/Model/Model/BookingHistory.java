@@ -1,7 +1,7 @@
 package Model;
 
 import java.io.Serializable;
-
+// TID (Transaction ID), customer who made the booking and the seat booked.
 public class BookingHistory implements Serializable{
 
 	private String TID;
@@ -30,7 +30,7 @@ public class BookingHistory implements Serializable{
 		builtString.append("isSeniorCitizen: ").append(customer.isSeniorCitizen()).append("|");
 		builtString.append("Moviedet: ").append(seat.getShowtime().getDetails()).append("|");
 		//Name|Mobile|Email|isSeniorCitizen|Showtime
-		return ("TODO");
+		return builtString.toString();
 	}
 
 }

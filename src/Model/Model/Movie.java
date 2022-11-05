@@ -4,6 +4,8 @@ import Model.Parameters.*;
 import java.io.Serializable;
 import java.util.*;
 
+import Controller.CineplexController;
+
 public class Movie implements Serializable{
 
 	public static int price;
@@ -78,8 +80,7 @@ public class Movie implements Serializable{
 		builtString.append(casts.toString()).append("|");
 		builtString.append("Age Restriction: ").append(getAgeRestriction()).append("|");
 		builtString.append("Movie Status: ").append(getMovieStatus()).append("|");
-		builtString.append("Movie Rating: ").append(//insert get movie rating here
-		 ).append("|");
+		builtString.append("Movie Rating: ").append(CineplexController.getMovieRating(this)).append("|");
 		builtString.append("Movie Sales: ").append(getSales()).append("|");
 		//example: Title|Director|casts|ageRestriction|movieStatus|Rating|Sales
 		//
@@ -96,7 +97,7 @@ public class Movie implements Serializable{
 		}
 
 		Movie movie = (Movie) o;
-		if(title == null){
+		if(movie.title == null){
 			return false;
 		}
 		return true;
