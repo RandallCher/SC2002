@@ -1,6 +1,7 @@
 package View.MovieGoer;
 import Controller.CineplexManager;
-import Model.*;
+import Model.Seat;
+import Model.Holiday;
 import View.View;
 
 import javax.swing.*;

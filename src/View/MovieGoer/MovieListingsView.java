@@ -6,7 +6,9 @@ import View.View;
 import java.util.*;
 import java.util.ArrayList;
 
-import static Controller.CineplexManager.*;
+import static Controller.CineplexControler.*;
+import static Controller.CineplexController.getMovieRating;
+import static Controller.CineplexController.getTop5MovieListing;
 import static Controller.IOController.*;
 public class MovieListingsView extends View {
 
@@ -47,8 +49,17 @@ public class MovieListingsView extends View {
 		else{
 			movieList = getTop5MovieListing();
 		}
-		for(int i = 0; i < movieList.size();i++){
-			System.out.println(i+1 + movieList.get(i).getTitle() + movieList.get(i).getMovieStatus() + getMovieRating(movieList.get(i)));
+
+		if (getSystem().get("movieOrder")){//rating
+			for(int i = 0; i < movieList.size();i++){
+				System.out.println(i+1 + movieList.get(i).getTitle() + movieList.get(i).getMovieStatus() + getMovieRating(movieList.get(i)));
+			}
+		}
+		else {
+				//sales
+			for(int i = 0; i < movieList.size();i++){
+				System.out.println(i+1 + movieList.get(i).getTitle() + movieList.get(i).getMovieStatus() + movieList.get(i).getSales();
+			}
 		}
 		Scanner sc = new Scanner(System.in);
 		int input = sc.nextInt();
@@ -72,10 +83,10 @@ public class MovieListingsView extends View {
 		int input = sc.nextInt();
 		switch (input) {
 			case 1:
-				intent(this, new ShowtimeView(movie));
+				navigateNextView(this, new ShowtimeView(movie));
 				break;
 			case 2:
-				intent(this, new ReviewVeiw(movie));
+				navigateNextView(this, new ReviewView(movie));
 				break;
 			case 3:
 				break;
