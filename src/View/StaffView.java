@@ -5,7 +5,7 @@ import java.util.Scanner;
 import View.staff.*;
 
 // cant find rn
-// import Controller.CineplexController.verification;
+import Controller.CineplexController.*;
 
 public class StaffView extends View {
 
@@ -28,7 +28,7 @@ public class StaffView extends View {
 			this.login();
 		}
 		while (true) {
-			System.out.println("\n------------- STAFF MENU -------------\n"
+			System.out.print("\n------------- STAFF MENU -------------\n"
 					+ "1: Configure settings(ticket price, holidays, top 5 movies)\n"
 					+ "2: Create/Update/Remove movie listing\n"
 					+ "3: Create/Update/Remove cinema shows and showtimes\n"

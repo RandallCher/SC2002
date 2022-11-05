@@ -1,12 +1,10 @@
-package Controller; 
+package Controller;
 
-import Model.Holiday; 
-import Model.Parameters; 
+import Model.Holiday;
+import Model.Parameters.*;
 
 import java.util.*;
-import java.math.*; 
- 
-
+import java.math.*;
 
 public class IOController implements Controller {
 
