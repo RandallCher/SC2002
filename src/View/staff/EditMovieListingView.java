@@ -30,7 +30,9 @@ public class EditMovieListingView extends View {
 			}
 			switch (choice) {
 				case 1:
-					this.displayMovieListings();
+					System.out.print("Display full movie details? (Y/N) ");
+					boolean displayAll = scan.next().toUpperCase().equals("Y");
+					this.displayMovieListings(displayAll);
 					break;
 				case 2:
 					this.addMovieListing();
@@ -50,19 +52,37 @@ public class EditMovieListingView extends View {
 	/**
 	 * This method displays all movie titles and statuses
 	 */
-	protected void displayMovieListings() {
+	protected void displayMovieListings(boolean displayAll) {
 		ArrayList<Movie> movieListing = CineplexController.getMovieListing();
-		for (Movie movie : movieListing) {
-			// IOController.generateSpaces(40 - movie.getTitle().length()) DOESNT WORKK
-			System.out.println(movie.getTitle() + "\t\t" + movie.getMovieStatus().toString());
+		if (displayAll) {
+			for (Movie movie : movieListing) {
+				displayMovieDetails(movie);
+			}
+		} else {
+			for (Movie movie : movieListing) {
+				// IOController.generateSpaces(40 - movie.getTitle().length()) DOESNT WORKK
+				System.out.println(movie.getTitle() + "\t\t" + movie.getMovieStatus().toString());
+			}
 		}
 	}
 
 	/**
-	 * This method displays full movie details for all movies
+	 * This method displays full movie details for a movie
 	 */
-	protected void displayMovieDetails() {
-		// TODO
+	protected void displayMovieDetails(Movie movie) {
+		System.out.print("Title: " + movie.getTitle() + "\n"
+				+ "Movie director: " + movie.getDirector() + "\n"
+				+ "Movie sypnopsis: " + movie.getSypnosis() + "\n"
+				+ "Movie cast: ");
+		ArrayList<String> cast = movie.getCast();
+		int i;
+		for (i = 0; i < cast.size() - 1; i++) {
+			System.out.print(cast.get(i) + ", ");
+		}
+		System.out.println(cast.get(i));
+		System.out.print("Movie status: " + movie.getMovieStatus().toString() + "\n"
+				+ "Movie age restriction: " + movie.getAgeRestriction().toString() + "\n"
+				+ "Movie sales: " + movie.getSales() + "\n\n");
 	}
 
 	private void addMovieListing() {
@@ -99,7 +119,8 @@ public class EditMovieListingView extends View {
 		movie.setSypnosis(sypnopsis);
 		try {
 			CineplexController.addMovieListing(movie);
-			System.out.println("Successfully added new movie: " + movie.getTitle() + ".");
+			System.out.println("Successfully added new movie.");
+			displayMovieDetails(movie);
 		} catch (Exception e) {
 			System.out.println("Failed to add new movie.");
 		}
@@ -169,6 +190,7 @@ public class EditMovieListingView extends View {
 					try {
 						CineplexController.updateMovieListing();
 						System.out.println("Successfully updated movie listing.");
+						displayMovieDetails(movie);
 					} catch (Exception e) {
 						System.out.println("Failed to update movie listing.");
 					} finally {
