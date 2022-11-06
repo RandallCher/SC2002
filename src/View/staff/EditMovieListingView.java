@@ -60,8 +60,8 @@ public class EditMovieListingView extends View {
 			}
 		} else {
 			for (Movie movie : movieListing) {
-				// IOController.generateSpaces(40 - movie.getTitle().length()) DOESNT WORKK
-				System.out.println(movie.getTitle() + "\t\t" + movie.getMovieStatus().toString());
+				System.out.println(movie.getTitle() + IOController.generateSpaces(40 - movie.getTitle().length())
+						+ movie.getMovieStatus().toString());
 			}
 		}
 	}
@@ -135,8 +135,16 @@ public class EditMovieListingView extends View {
 		String oriTitle = scan.nextLine();
 		ArrayList<Movie> movieList = CineplexController.getMovieListing();
 
-		Movie movie;
-		System.out.println("No movie by that title exists.");
+		Movie movie = null;
+		for (Movie aMovie : movieList) {
+			if (oriTitle.toUpperCase().equals(aMovie.getTitle().toUpperCase())) {
+				movie = aMovie;
+			}
+		}
+		if (movie == null) {
+			System.out.println("No movie by that title exists.");
+			return;
+		}
 		boolean isDone = false;
 		while (!isDone) {
 			System.out.print("**** Updating Movie Details ****\n"
@@ -146,7 +154,8 @@ public class EditMovieListingView extends View {
 					+ "4: Update movie cast\n"
 					+ "5: Update movie status\n"
 					+ "6: Update age restriction\n"
-					+ "7: Exit\n\n"
+					+ "7: Remove movie listing\n"
+					+ "8: Exit\n\n"
 					+ "Enter your choice: ");
 			int choice = scan.nextInt();
 			switch (choice) {
@@ -172,12 +181,27 @@ public class EditMovieListingView extends View {
 					System.out.print("Enter updated cast list (separate names with a comma): ");
 					ArrayList<String> cast = new ArrayList<>();
 					movie.setCast(cast);
+					Scanner commaScan = new Scanner(System.in);
+					commaScan.useDelimiter(",");
+					while (scan.hasNext()) {
+						String castMember = commaScan.next().trim();
+						cast.add(castMember);
+					}
+					movie.setCast(cast);
 					System.out.println("Change successful.");
 					break;
 				case 5:
 					System.out.print("Enter movie status ('coming soon', 'now showing' or 'end of showing'): ");
-					MovieStatus movieStatus = IOController.readMovieStatus(scan.nextLine().toUpperCase());
-					movie.setMovieStatus(movieStatus);
+					MovieStatus movieStatus = IOController.readMovieStatus(scan.nextLine());
+					if (movieStatus == null) {
+						System.out.println("Invalid input. Try again.");
+						break;
+					} else if (movieStatus.equals(MovieStatus.END_OF_SHOWING)) {
+						System.out.println("Setting to 'end of showing' will remove the listing.");
+						removeListing(movie);
+					} else {
+						movie.setMovieStatus(movieStatus);
+					}
 					System.out.println("Change successful.");
 					break;
 				case 6:
@@ -187,6 +211,9 @@ public class EditMovieListingView extends View {
 					System.out.println("Change successful.");
 					break;
 				case 7:
+					removeListing(movie);
+					break;
+				case 8:
 					try {
 						CineplexController.updateMovieListing();
 						System.out.println("Successfully updated movie listing.");
@@ -195,7 +222,6 @@ public class EditMovieListingView extends View {
 						System.out.println("Failed to update movie listing.");
 					} finally {
 						isDone = true;
-						break;
 					}
 				default:
 					System.out.println("Invalid input. Try again.");
@@ -209,8 +235,7 @@ public class EditMovieListingView extends View {
 	 * 
 	 * @param movie
 	 */
-	private void removeMovieListing(Movie movie) {
-		// TODO - implement MovieListing.removeListingMenu
+	private void removeListing(Movie movie) {
 		System.out.println("Confirm the removal of " + movie.getTitle() + "? (Y to confirm)");
 		Scanner scan = new Scanner(System.in);
 		if (!scan.next().toUpperCase().equals("Y")) {
@@ -218,8 +243,7 @@ public class EditMovieListingView extends View {
 			return;
 		}
 		try {
-			// TODO cant find methods
-			CineplexController.removeListing(movie);
+			CineplexController.removeMovieListing(movie);
 			CineplexController.removeAllShowtime(movie);
 			System.out.println("Successfully removed movie listing and all show times.");
 		} catch (Exception ex) {

@@ -5,16 +5,16 @@ import java.util.*;
 public class Showtime {
 
 	private Date time;
-	//total cols
+	// total cols
 	private static int COLS = 17;
-	//total rows
+	// total rows
 	private static int ROWS = 9;
 	private Movie movie;
 	private Cinema cinema;
 	private Seat[][] seats;
 
 	public Showtime() {
-		seats = new Seat [ROWS][COLS];
+		seats = new Seat[ROWS][COLS];
 		initializeSeat();
 	}
 
@@ -24,38 +24,50 @@ public class Showtime {
 	 * @param col
 	 */
 	public Seat getSeatAt(int row, int col) {
-		if(col>8){
+		if (col > 8) {
 			col++;
 		}
-		return seats[row-1][col-1];
+		return seats[row - 1][col - 1];
 	}
 
 	private void initializeSeat() {
 		int Row = 0;
 		int Col = 0;
 
-		for( Col=0;Col<2;Col++){
-			for(Row=0;Row<5;Row++){
+		for (Col = 0; Col < 2; Col++) {
+			for (Row = 0; Row < 5; Row++) {
 				seats[Row][Col] = new Seat(Row, Col, this);
 			}
 		}
 
-		for(Col=2;Col<8;Col++){
-			for(Row=0;Row<9;Row++){
+		for (Col = 2; Col < 8; Col++) {
+			for (Row = 0; Row < 9; Row++) {
 				seats[Row][Col] = new Seat(Row, Col, this);
 			}
 		}
-			//aisle
-		for(Col=9;Col<11;Col++){
-			for(Row=1;Row<9;Row++){
+		// aisle
+		for (Col = 9; Col < 11; Col++) {
+			for (Row = 1; Row < 9; Row++) {
 				seats[Row][Col] = new Seat(Row, Col, this);
 			}
-		}	
-		for(Col=11;Col<17;Col++){
-			for(Row=0;Row<9;Row++){
+		}
+		for (Col = 11; Col < 17; Col++) {
+			for (Row = 0; Row < 9; Row++) {
 				seats[Row][Col] = new Seat(Row, Col, this);
 			}
-		}	
+		}
+	}
+
+	public void setTime(Date time) {
+		this.time = time;
+	}
+
+	public void setCinema(Cinema cinema) {
+		this.cinema = cinema;
+	}
+
+	public void setMovie(Movie movie) {
+		this.movie = movie;
 	}
 
 	public String getDetails() {
@@ -65,7 +77,7 @@ public class Showtime {
 		builtString.append("Cinema: ").append(cinema.toString()).append("|");
 		builtString.append("Time: ").append(time.toString()).append("|");
 		return builtString.toString();
-		//Cineplex|Cinema|Time
+		// Cineplex|Cinema|Time
 	}
 
 	public String toString() {
@@ -77,28 +89,28 @@ public class Showtime {
 	 * @param o
 	 */
 	public boolean equals(Object o) {
-		if(getClass() != o.getClass()){
+		if (getClass() != o.getClass()) {
 			return false;
 		}
 
 		Showtime showtime = (Showtime) o;
-		if(movie != showtime.movie){
+		if (movie != showtime.movie) {
 			return false;
 		}
-		if(cinema != showtime.cinema){
+		if (cinema != showtime.cinema) {
 			return false;
 		}
-		if(time != showtime.time){
+		if (time != showtime.time) {
 			return false;
 		}
 		return true;
 	}
 
-    public int hashCode() {
-        int result = movie.hashCode();
-        result = 31 * result + cinema.hashCode();
-        result = 31 * result + time.hashCode();
-        return result;
-    }
+	public int hashCode() {
+		int result = movie.hashCode();
+		result = 31 * result + cinema.hashCode();
+		result = 31 * result + time.hashCode();
+		return result;
+	}
 
 }
