@@ -70,6 +70,18 @@ public class Showtime {
 		this.movie = movie;
 	}
 
+	public Movie getMovie(){
+		return this.movie; 
+	}
+
+	public Cinema getCinema(){
+		return this.cinema; 
+	}
+
+	public Date getTime(){
+		return this.time; 
+	}
+
 	public String getDetails() {
 		StringBuilder builtString = new StringBuilder();
 

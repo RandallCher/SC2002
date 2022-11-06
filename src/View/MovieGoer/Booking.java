@@ -1,14 +1,14 @@
 package View.MovieGoer;
-import Controller.CineplexManager;
-import Model.Seat;
-import Model.Holiday;
+import Controller.CineplexController;
+import Model.*;
+
 import View.View;
 
 import javax.swing.*;
 import java.util.Scanner;
 
 import static Controller.IOController.*;
-import static Controller.CineplexManager.*;
+import static Controller.CineplexController.*;
 
 public class Booking {
 
@@ -51,7 +51,7 @@ public class Booking {
 	}
 
 	private void computeBasePrice() {
-		if(isWeekend(seat.getShowtime().getTime)){
+		if(isWeekend(seat.getShowtime().getTime())){
 			ticketType = "Weekend ";
 			basePrice *= 1.5;
 
@@ -59,7 +59,7 @@ public class Booking {
 		else{
 			ticketType = "Weekday ";
 		}
-		Holiday holiday = getHoliday(seat.getShowtime().getTime());
+		Holiday holiday = getHolidayByDate(seat.getShowtime().getTime());
 		if (holiday != null){
 			double holidayRate = holiday.getRate();
 			basePrice *= holidayRate;

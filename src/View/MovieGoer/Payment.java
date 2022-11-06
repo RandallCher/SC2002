@@ -1,7 +1,7 @@
 package View.MovieGoer;
 
-import Model.Seat;
-import Model.Customer;
+import Controller.CineplexController;
+import Model.*;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.lang.Math;
@@ -80,7 +80,7 @@ public class Payment {
 	private void logBooking() {
 		seat.bookSeat();
 		Movie movie = seat.getShowtime().getMovie();
-		CineplexManager.getMovieListing().get(CineplexController.getMovieListing().indexOf(movie)).incrementSales();
+		CineplexController.getMovieListing().get(CineplexController.getMovieListing().indexOf(movie)).incrementSales();
 		BookingHistory record = new BookingHistory(TID, customer, seat);
 		CineplexController.logBooking(record);
 		CineplexController.updateShowtime();
