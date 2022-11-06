@@ -3,14 +3,14 @@ package View.MovieGoer;
 import Model.BookingHistory;
 import View.View;
 import java.util.ArrayList;
-import Controller.CineplexController.*;
+
 
 import static Controller.CineplexController.getBookingHistory;
 
 public class BookingHistoryView extends View {
 
 	public void start() {
-
+		displayBookingHistory();
 	}
 
 	public void displaySeats() {
@@ -18,7 +18,7 @@ public class BookingHistoryView extends View {
 	}
 
 	public void makeBooking() {
-		navigateNextView(this, new Booking(showtime));
+		;
 	}
 
 	public void displayBookingHistory() {

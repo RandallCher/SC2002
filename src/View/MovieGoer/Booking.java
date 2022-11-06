@@ -1,16 +1,16 @@
 package View.MovieGoer;
-import Controller.CineplexManager;
-import Model.Seat;
-import Model.Holiday;
-import View.View;
+import Model.*;
 
-import javax.swing.*;
+import View.View;
+import View.MovieGoerView;
+import Model.Showtime;
+import java.text.SimpleDateFormat;
 import java.util.Scanner;
 
 import static Controller.IOController.*;
-import static Controller.CineplexManager.*;
+import static Controller.CineplexController.*;
 
-public class Booking {
+public class Booking extends View{
 
 	private String ticketType;
 	private double basePrice;
@@ -21,14 +21,14 @@ public class Booking {
 	 *
 	 * @param seat
 	 */
-	public void BookingSeat(Seat seat) {
+	public Booking(Seat seat) {
 		this.seat = seat;
 		bookingFinished = false;
 		basePrice = seat.getShowtime().getCinema().getBasePrice();
 
 	}
 
-	protected void start() {
+	public void start() {
 		if (!bookingFinished){
 			displayMenu();
 		}
@@ -51,7 +51,7 @@ public class Booking {
 	}
 
 	private void computeBasePrice() {
-		if(isWeekend(seat.getShowtime().getTime)){
+		if(isWeekend(seat.getShowtime().getTime())){
 			ticketType = "Weekend ";
 			basePrice *= 1.5;
 
@@ -59,7 +59,7 @@ public class Booking {
 		else{
 			ticketType = "Weekday ";
 		}
-		Holiday holiday = getHoliday(seat.getShowtime().getTime());
+		Holiday holiday =  getHolidayByDate((seat.getShowtime().getTime()));
 		if (holiday != null){
 			double holidayRate = holiday.getRate();
 			basePrice *= holidayRate;
@@ -72,10 +72,11 @@ public class Booking {
 		Showtime showtime = seat.getShowtime();
 		Movie movie = showtime.getMovie();
 		Cinema cinema = showtime.getCinema();
-
+		SimpleDateFormat simpleDateFormat = new SimpleDateFormat("MM/dd/yyyy");
+		String date = simpleDateFormat.format(showtime.getTime());
 		System.out.println(movie.getTitle());
 		System.out.println(movie.getAgeRestriction());
-		System.out.println("Date" + formatTimeMMddkkmm(showtime.getTime()));
+		System.out.println("Date" + date);
 		System.out.println("Ticket type: " + ticketType);
 		System.out.println("Cinema: " + cinema + " (" + cinema.getCineplex() + ")");
 		System.out.println("Seat: Row " + (seat.getRow()+1) + " Col " + seat.getCol());
@@ -93,7 +94,7 @@ public class Booking {
 		System.out.println("Are you a senior citizen?: Y or N");
 		String input = sc.nextLine();
 		boolean isSeniorCitizen;
-		if (input == 'Y'){
+		if (input == "Y"){
 			isSeniorCitizen = true;
 		}
 		else{
@@ -104,13 +105,11 @@ public class Booking {
 
 		// proceed to payment
 		bookingFinished = true;
-		intent(this, new Payment(customer, seat, basePrice));
+		navigateNextView(this, new Payment(moviegoer, seat, basePrice));
 	}
 
 	protected void destroy() {
-		((MovieListing)(prevView.prevView)).start(
-				CineplexManager.getMovieListing().get(CineplexManager.getMovieListing().indexOf(
-						seat.getShowtime().getMovie())));
+		navigateNextView(this, new MovieGoerView());
 	}
 
 }
