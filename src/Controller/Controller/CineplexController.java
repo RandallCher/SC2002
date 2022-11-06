@@ -6,9 +6,7 @@ import Model.Parameters.MovieStatus;
 
 import java.io.IOException;
 import java.util.*;
-import java.lang.Math;
 
-import Controller.IOController.*;
 
 /**
  * This class contains static method to read data from file and to manipulate
