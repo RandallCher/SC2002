@@ -16,9 +16,18 @@ import Model.Parameters.Cineplex;
 // might remove file (add cinema not necessary)
 public class EditShowtimeView extends View {
 
+	// TODO - remove. added for testing
+	public static void main(String[] args) {
+		EditShowtimeView view = new EditShowtimeView();
+		view.start();
+	}
+
 	public void start() {
 		Scanner scan = new Scanner(System.in);
-		Movie movie = getMovieChoice(scan);
+		// TODO - edit. added for testing
+		Movie movie = new Movie();
+		movie.setTitle("TEST MOVIE");
+		// Movie movie = getMovieChoice(scan);
 		while (true) {
 			System.out.println("Editing showtimes for '" + movie.getTitle() + "'");
 			System.out.print("------------- EDIT SHOWTIME MENU -------------\n"
@@ -42,8 +51,9 @@ public class EditShowtimeView extends View {
 					displayShowtimes(movie);
 					break;
 				case 2:
-					// call CinemaListView method (or navigate to new view) to display cinema list +
-					// codes
+					System.out.println();
+					navigateNextView(this, new CinemaListView());
+					break;
 				case 3:
 					addShowtime(movie);
 					break;
