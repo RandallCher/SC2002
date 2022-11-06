@@ -1,7 +1,10 @@
 package View.staff;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Scanner;
+
+import javax.swing.text.AbstractDocument.Content;
 
 import Controller.*;
 import View.View;
@@ -86,7 +89,8 @@ public class EditMovieListingView extends View {
 	}
 
 	private void addMovieListing() {
-		String title, director, sypnopsis, castMember;
+		String title, director, sypnopsis, castString;
+		String[] castArray;
 		ArrayList<String> cast = new ArrayList<>();
 		MovieStatus movieStatus;
 		AgeRestriction ageRestriction;
@@ -99,17 +103,30 @@ public class EditMovieListingView extends View {
 		System.out.print("Enter movie sypnopsis: ");
 		sypnopsis = scan.nextLine();
 		System.out.print("Enter movie cast (separate names with a comma): ");
-		Scanner commaScan = new Scanner(System.in);
-		commaScan.useDelimiter(",");
-		while (scan.hasNext()) {
-			castMember = commaScan.next().trim();
-			cast.add(castMember);
+		castString = scan.nextLine();
+		castArray = castString.split(",");
+		for (int i = 0; i < castArray.length; i++) {
+			// System.out.println(castArray[i].trim());
+			cast.add(castArray[i].trim());
 		}
-		System.out.print("Enter movie status ('coming soon', 'now showing' or 'end of showing'): ");
-		movieStatus = IOController.readMovieStatus(scan.nextLine().toUpperCase());
-		System.out.print("Enter age restriction (G, PG, PG13, NC16, M18, R21): ");
-		ageRestriction = IOController.readAgeRestriction(scan.nextLine().toUpperCase());
-
+		while (true) {
+			System.out.print("Enter movie status ('coming soon', 'now showing' or 'end of showing'): ");
+			movieStatus = IOController.readMovieStatus(scan.nextLine());
+			if (movieStatus == null) {
+				System.out.println("Invalid input. Try again.");
+				continue;
+			} else
+				break;
+		}
+		while (true) {
+			System.out.print("Enter age restriction (G, PG, PG13, NC16, M18, R21): ");
+			ageRestriction = IOController.readAgeRestriction(scan.nextLine());
+			if (ageRestriction == null) {
+				System.out.println("Invalid input. Try again.");
+				continue;
+			} else
+				break;
+		}
 		Movie movie = new Movie();
 		movie.setAgeRestrictions(ageRestriction);
 		movie.setCast(cast);
@@ -117,11 +134,13 @@ public class EditMovieListingView extends View {
 		movie.setDirector(director);
 		movie.setMovieStatus(movieStatus);
 		movie.setSypnosis(sypnopsis);
+
 		try {
 			CineplexController.addMovieListing(movie);
 			System.out.println("Successfully added new movie.");
 			displayMovieDetails(movie);
-		} catch (Exception e) {
+		} catch (IOException e) {
+			System.out.println(e.getMessage());
 			System.out.println("Failed to add new movie.");
 		}
 	}

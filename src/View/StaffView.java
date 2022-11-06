@@ -66,7 +66,7 @@ public class StaffView extends View {
 		System.out.print("Enter password: ");
 		String password = scan.next();
 
-		// verification
+		// TODO - verification
 		// if (verification(username, password)) {
 		// loggedIn = true;
 		// System.out.println("Login successful.");

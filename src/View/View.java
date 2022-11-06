@@ -10,7 +10,7 @@ public class View {
 	 * This method displays the menu and prompts for the user's choice
 	 */
 	public void start() {
-		System.out.print("------------- MAIN MENU -------------\n"
+		System.out.print("------------- MOBLIMA MAIN MENU -------------\n"
 				+ "1: I am a Movie Goer\n"
 				+ "2: I am a Staff\n"
 				+ "3: Quit application\n\n"
