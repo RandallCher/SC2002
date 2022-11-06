@@ -1,13 +1,21 @@
 package View.MovieGoer;
+import java.io.IOException;
+import java.util.UUID;
 
 import Controller.CineplexController;
 import Model.*;
+import Model.BookingHistory;
+import Model.Customer;
+import Model.Movie;
+import Model.Seat;
+import View.View;
+
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.lang.Math;
 import java.util.Scanner;
 
-public class Payment {
+public class Payment extends View {
 
 	private String TID;
 	private double basePrice;
@@ -15,10 +23,13 @@ public class Payment {
 	private double totalPrice;
 	private Seat seat;
 	private Customer customer;
-
-	protected void start() {
-		// TODO - implement Payment.start
-		throw new UnsupportedOperationException();
+	@Override
+	public void start() {
+		try {
+			displayMenu();
+		} catch (IOException e) {
+			throw new RuntimeException(e);
+		}
 	}
 
 	/**
@@ -26,20 +37,18 @@ public class Payment {
 	 * @param customer
 	 * @param seat
 	 * @param basePrice
-	 * @param GST
+
 	 */
-	private Payment(Customer customer, Seat seat, double basePrice, double GST) {
+	Payment(Customer customer, Seat seat, double basePrice) {
 		this.basePrice = basePrice;
 		this.customer = customer;
 		this.seat = seat;
-		this.GST = GST;
+
 	}
 
 	private void generateTID() {
-		LocalDateTime datetime= LocalDateTime.now() ;
-		DateTimeFormatter format= DateTimeFormatter.ofPattern("yyyyMMddHHmm");
-		String datetimeString = datetime.format(format);
-		TID = seat.getShowtime().getCinema().getCode() + datetimeString;
+
+		TID = UUID.randomUUID().toString();
 	}
 
 	private void computeTotalPrice() {
@@ -51,7 +60,7 @@ public class Payment {
 
 	}
 
-	private void displayMenu() {
+	private void displayMenu() throws IOException {
 		System.out.println("Payment Details");
 		System.out.println("Ticket price: " + basePrice);
 		System.out.println("Grand total: " + totalPrice);
@@ -68,7 +77,7 @@ public class Payment {
 		int choice = sc.nextInt();
 		switch (choice) {
 			case 1:
-				logBooking();
+				addBooking();
 				break;
 			case 2:
 				destroy();
@@ -77,15 +86,20 @@ public class Payment {
 	}
 
 
-	private void logBooking() {
+	private void addBooking() throws IOException {
 		seat.bookSeat();
 		Movie movie = seat.getShowtime().getMovie();
 		CineplexController.getMovieListing().get(CineplexController.getMovieListing().indexOf(movie)).incrementSales();
-		BookingHistory record = new BookingHistory(TID, customer, seat);
-		CineplexController.logBooking(record);
-		CineplexController.updateShowtime();
+		BookingHistory booking = new BookingHistory(TID, customer, seat);
+		CineplexController.updateMovieShowtime();
+		CineplexController.addBooking(booking);
+
 		CineplexController.updateMovieListing();
 		System.out.println("Payment has been confirmed.");
+	}
+
+	protected void destroy() {
+		navigateNextView(this, new Booking(seat));
 	}
 
 

@@ -1,12 +1,12 @@
 package View.MovieGoer;
 
-import Model.Constant;
+import Model.Parameters;
 import Model.Movie;
 import View.View;
 import java.util.*;
 import java.util.ArrayList;
 
-import static Controller.CineplexControler.*;
+import static Controller.CineplexController.*;
 import static Controller.CineplexController.getMovieRating;
 import static Controller.CineplexController.getTop5MovieListing;
 import static Controller.IOController.*;
@@ -27,7 +27,7 @@ public class MovieListingsView extends View {
 		else{
 			System.out.println(foundMovies.size() + "results have been found.");
 			for (int i = 0; i< foundMovies.size(); i++) {
-				System.out.println(i+1 + ". " + movie.getTitle());
+				System.out.println(i+1 + ". " + foundMovies.get(i).getTitle());
 			}
 			int choice = sc.nextInt();
 			displayMovieDetails(foundMovies.get(choice-1));
@@ -56,16 +56,16 @@ public class MovieListingsView extends View {
 			}
 		}
 		else {
-				//sales
+			//sales
 			for(int i = 0; i < movieList.size();i++){
-				System.out.println(i+1 + movieList.get(i).getTitle() + movieList.get(i).getMovieStatus() + movieList.get(i).getSales();
+				System.out.println(i+1 + movieList.get(i).getTitle() + movieList.get(i).getMovieStatus() + movieList.get(i).getSales());
 			}
 		}
 		Scanner sc = new Scanner(System.in);
 		int input = sc.nextInt();
-		Movie movie = movieList.get(choice - 1);
+		Movie movie = movieList.get(input - 1);
 
-		displayMovieDetail(movie);
+		displayMovieDetails(movie);
 
 	}
 

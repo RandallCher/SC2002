@@ -1,18 +1,19 @@
 package View.MovieGoer;
 
-import Controller.CineplexController;
+import Controller.CineplexController.*;
 import Model.Movie;
 import Model.Review;
 import View.View;
+
 
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Scanner;
 
 
-import static Controller.CineplexController.*;
-import static Controller.IOController.*;
-import static Model.Constant.MovieStatus.*;
+import static Controller.CineplexController.addReview;
+import static Controller.CineplexController.getReviewList;
+import static Model.Parameters.MovieStatus.*;
 
 /**
  * This class represents the review view.
@@ -30,11 +31,15 @@ public class ReviewView extends View {
 		this.movie=movie;
 	}
 
-	protected void start() {
-		displayMenu();
+	public void start() {
+		try {
+			displayMenu();
+		} catch (IOException e) {
+			throw new RuntimeException(e);
+		}
 	}
 
-	private void displayMenu() {
+	private void displayMenu() throws IOException {
 		if (movie.getMovieStatus() == COMING_SOON) {
 			System.out.println("Movie is coming soon");
 			destroy();
@@ -47,7 +52,7 @@ public class ReviewView extends View {
 		int choice = sc.nextInt();
 		switch (choice) {
 			case 1:
-				addReview();
+				addNewReview();
 				break;
 			case 2:
 				listReview();
@@ -58,7 +63,7 @@ public class ReviewView extends View {
 		}
 	}
 	//Method for users to add a review to the movie
-	private void addReview() {
+	private void addNewReview() throws IOException {
 		Scanner sc = new Scanner(System.in);
 		System.out.println("Write Your Review:");
 		System.out.println("Please enter your name:");
@@ -69,13 +74,13 @@ public class ReviewView extends View {
 		name = sc.nextLine();
 		String content = sc.nextLine();
 		Review review = new Review(this.movie, rating, content, name);
-		addNewReview(movie,review);
+		addReview(movie,review);
 	}
 
 	//Method to show a list of reviews
 	private void listReview() {
 		System.out.println(movie.getTitle() +" reviews.");
-		ArrayList<Review> reviewList = CineplexController.getReviewList(movie);
+		ArrayList<Review> reviewList = getReviewList(movie);
 		if (reviewList != null){
 			for (int i = 0; i< reviewList.size();i++) {
 				System.out.println("  Date:     " + reviewList.get(i).getDate());
@@ -89,6 +94,6 @@ public class ReviewView extends View {
 	}
 
 	protected void destroy() {
-		((MovieListing)(getPrevView())).start(movie);
+		navigateNextView(this, new MovieListingsView());
 	}
 }
