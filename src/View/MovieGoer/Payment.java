@@ -15,7 +15,7 @@ import java.time.format.DateTimeFormatter;
 import java.lang.Math;
 import java.util.Scanner;
 
-public class Payment extends View {
+public class Payment {
 
 	private String TID;
 	private double basePrice;
@@ -43,7 +43,7 @@ public class Payment extends View {
 		this.basePrice = basePrice;
 		this.customer = customer;
 		this.seat = seat;
-
+		this.GST = GST;
 	}
 
 	private void generateTID() {
