@@ -2,13 +2,14 @@ package View.MovieGoer;
 
 import Controller.IOController;
 import View.View;
-import Model.Model.Movie;
+import Model.Movie;
 import Model.Seat;
 import java.util.Date;
 import java.util.Calendar;
 import java.util.Scanner;
 
 import static Controller.IOController.*;
+
 public class ShowtimeView extends View {
 
 	private Movie movie;
@@ -21,7 +22,7 @@ public class ShowtimeView extends View {
 		this.movie = movie;
 	}
 
-	protected void start() {
+	public void start() {
 		displayMenu();
 	}
 
@@ -49,9 +50,7 @@ public class ShowtimeView extends View {
 				showDate = dayAfter;
 				break;
 		}
-		}
-
-
+	}
 
 	/**
 	 * 
@@ -80,7 +79,6 @@ public class ShowtimeView extends View {
 		}
 	}
 
-
 	/**
 	 * 
 	 * @param showtime
@@ -90,8 +88,8 @@ public class ShowtimeView extends View {
 		Movie movie = showtime.getMovie();
 		System.out.println(movie.getTitle());
 		System.out.println("Weekdays       Weekends");
-		System.out.println("Adults: " + price + "   " + price*1.5);
-		System.out.println("Senior Citizen: " + price*0.75 + "   " + price*1.5*0.75);
+		System.out.println("Adults: " + price + "   " + price * 1.5);
+		System.out.println("Senior Citizen: " + price * 0.75 + "   " + price * 1.5 * 0.75);
 
 	}
 
@@ -105,8 +103,10 @@ public class ShowtimeView extends View {
 		for (int row = 0; row <= 8; row++) {
 			System.out.print(row + 1 + "   ");
 			for (int col = 0; col <= 16; col++) {
-				if (seats[row][col] == null) System.out.print("   ");
-				else System.out.print(seats[row][col]);
+				if (seats[row][col] == null)
+					System.out.print("   ");
+				else
+					System.out.print(seats[row][col]);
 			}
 			System.out.println();
 		}
@@ -120,7 +120,6 @@ public class ShowtimeView extends View {
 	 */
 	private void displayBookSeatMenu(ShowtimeView showtime) {
 
-
 		System.out.println("Enter row number");
 		Scanner sc = new Scanner(System.in);
 		int row = sc.nextInt();
@@ -130,12 +129,10 @@ public class ShowtimeView extends View {
 		if (showtime.getSeatAt(row, col) == null) {
 			System.out.println("No such seat.");
 			displayBookSeatMenu(showtime);
-		}
-		else if (showtime.getSeatAt(row, col).isBooked()) {
+		} else if (showtime.getSeatAt(row, col).isBooked()) {
 			System.out.println("The seat has been booked.");
 			displayBookSeatMenu(showtime);
-		}
-		else {
+		} else {
 			System.out.println(showtime.getMovie().getSales());
 			navigateNextView(this, new Booking(showtime.getSeatAt(row, col)));
 		}
