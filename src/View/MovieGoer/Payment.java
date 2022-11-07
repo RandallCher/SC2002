@@ -8,6 +8,7 @@ import Model.BookingHistory;
 import Model.Customer;
 import Model.Movie;
 import Model.Seat;
+import Model.Parameters.AgeGroup;
 import View.View;
 
 import java.time.LocalDateTime;
@@ -52,7 +53,7 @@ public class Payment {
 	}
 
 	private void computeTotalPrice() {
-		if (customer.isSeniorCitizen()) {
+		if (customer.getAgeGroup()==AgeGroup.SENIOR_CITIZEN||customer.getAgeGroup()==AgeGroup.CHILD) {
 			basePrice *= 0.75;
 		}
 		GST = Math.round(basePrice*0.07);
@@ -67,8 +68,8 @@ public class Payment {
 		System.out.println("Total includes GST of: " + GST);
 
 
-		if (customer.isSeniorCitizen()) {
-			System.out.println("Senior Citizen Discount 25%");
+		if (customer.getAgeGroup()!=AgeGroup.ADULT) {
+			System.out.println("Discount 25%");
 		}
 		System.out.println("1. Confirm your payment");
 		System.out.println("2. Go back");

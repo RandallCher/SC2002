@@ -5,6 +5,9 @@ import java.io.Serializable;
 import java.util.*;
 
 import Controller.CineplexController;
+/**
+ *  This class get details about a movie
+ **/ 
 
 public class Movie implements Serializable{
 

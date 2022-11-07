@@ -5,7 +5,10 @@ import Model.*;
 
 import View.View.*;
 import View.MovieGoerView;
+import View.View;
 import Model.Showtime;
+import Model.Parameters.AgeGroup;
+
 import java.text.SimpleDateFormat;
 import java.util.Scanner;
 
@@ -63,9 +66,9 @@ public class Booking extends View{
 		}
 		Holiday holiday =  getHolidayByDate((seat.getShowtime().getTime()));
 		if (holiday != null){
-			double holidayRate = holiday.getRate();
+			double holidayRate = holiday.getHolidayRate();
 			basePrice *= holidayRate;
-			ticketType = ticketType + holiday.getName();
+			ticketType = ticketType + holiday.getHolidayName();
 
 		}
 	}
@@ -93,17 +96,23 @@ public class Booking extends View{
 		String mobile = sc.nextLine();
 		System.out.println("Enter your Email address:");
 		String email = sc.nextLine();
-		System.out.println("Are you a senior citizen?: Y or N");
-		String input = sc.nextLine();
-		boolean isSeniorCitizen;
-		if (input.toUpperCase() == "Y"){
-			isSeniorCitizen = true;
+		System.out.println("Select your age group: ");
+		System.out.println("1. Child");
+		System.out.println("2. Adult");
+		System.out.println("3. Elderly ");
+		int input = sc.nextInt();
+		AgeGroup ageGroup;
+		switch (input){
+			case 1: ageGroup = AgeGroup.CHILD;
+				break;
+			case 2: ageGroup = AgeGroup.ADULT;
+				break;
+			case 3: ageGroup = AgeGroup.SENIOR_CITIZEN;
+				break;
 		}
-		else{
-			isSeniorCitizen = false;
-		}
+
 		// Create customer object
-		Customer customer = new Customer(name, mobile, email, isSeniorCitizen);
+		Customer customer = new Customer(name, mobile, email, ageGroup);
 
 		// proceed to payment
 		bookingFinished = true;

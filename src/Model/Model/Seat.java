@@ -2,6 +2,10 @@ package Model;
 
 public class Seat {
 
+/**
+ *  This class get details about a customer's booking's seat
+ **/ 
+
 	private int row;
 	private int col;
 	private boolean booked;

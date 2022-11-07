@@ -2,6 +2,10 @@ package Model;
 
 import java.util.*;
 
+/**
+ *  This class get details about a the showtime venue
+ **/ 
+
 public class Showtime {
 
 	private Date time;

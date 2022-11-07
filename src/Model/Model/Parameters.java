@@ -2,6 +2,9 @@ package Model;
 
 
 public class Parameters {
+	/**
+ *  This class is about constant parameters that will never be changed
+ **/ 
 
 
 	public enum Cineplex {
