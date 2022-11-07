@@ -2,9 +2,8 @@ package View.MovieGoer;
 import Controller.CineplexController;
 import Model.*;
 
-import Model.*;
 
-import View.View;
+import View.View.*;
 import View.MovieGoerView;
 import Model.Showtime;
 import java.text.SimpleDateFormat;
@@ -108,11 +107,11 @@ public class Booking extends View{
 
 		// proceed to payment
 		bookingFinished = true;
-		navigateNextView(this, new Payment(moviegoer, seat, basePrice));
+		navigateNextView(this, new Payment(customer, seat, basePrice));
 	}
 
 	protected void destroy() {
-		((MovieListing)(prevView.prevView)).start(
+		((Movie)(prevView.prevView)).start(
 				getMovieListing().get(getMovieListing().indexOf(
 						seat.getShowtime().getMovie())));
 	}

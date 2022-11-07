@@ -5,7 +5,6 @@ import Model.Movie;
 import Model.Review;
 import View.View;
 
-
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Scanner;
@@ -37,6 +36,7 @@ public class ReviewView extends View {
 		} catch (IOException e) {
 			throw new RuntimeException(e);
 		}
+
 	}
 
 	private void displayMenu() throws IOException {

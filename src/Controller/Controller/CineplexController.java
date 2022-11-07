@@ -1,9 +1,11 @@
 package Controller;
+import static Controller.FilePaths.*; 
 
 import Model.*;
 import Model.Parameters.Cineplex;
 import Model.Parameters.MovieStatus;
 
+import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.*;
 
@@ -13,7 +15,7 @@ import java.util.*;
  * data from files.
  */
 
-public class CineplexController extends DataController {
+public final class CineplexController extends DataController {
 
     /** To store data from file */
     private static HashMap<String, String> staffAccount;
@@ -30,18 +32,17 @@ public class CineplexController extends DataController {
     }
 
     /**
-     * This method initializes all the necessary data from the files and store it
+     * This method initializes and read all the necessary data from the files and store it
      * inside the variables.
-     * 
-     * @return true if there is no error an false if there is an error
+     * @return true if there is no error an false if there is an error or if there are no required files
      */
-    public boolean initialize() {
+    public static boolean initialize() {
         try {
-            // these must not have ClassNotFound exception
+            // these will cause IOException Error if it is the first time opening the app and required data do not exist
             readSystem();
             readStaffAccount();
 
-            // these may have ClassNotFound exception
+            // these may have ClassNotFound exception 
             readCinemaList();
             readMovieListing();
             readBookingHistory();
@@ -49,7 +50,11 @@ public class CineplexController extends DataController {
             readHolidayList();
             readMovieShowtime();
 
-        } catch (IOException e) {
+        } catch (FileNotFoundException e){ //error in file handling 
+            return false; 
+            
+        } catch (IOException e) { //error in file handling 
+            System.out.println("There is some error in file integrity."); 
             return false;
 
         } catch (ClassNotFoundException e) {
