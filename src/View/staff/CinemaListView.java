@@ -32,6 +32,7 @@ public class CinemaListView extends View {
 				case 1:
 					System.out.println("case1");
 				case 2:
+					System.out.println(getCinemaList());
 					break;
 				case 3:
 					this.end();
