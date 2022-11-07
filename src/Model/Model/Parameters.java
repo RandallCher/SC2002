@@ -82,5 +82,28 @@ public class Parameters {
 
 
 	}
+	public enum AgeGroup {
+		CHILD("CHILD"),
+		ADULT("ADULT"),
+		SENIOR_CITIZEN("SENIOR_CITIZEN");
+		;
+
+		private String status;
+
+		/**
+		 * 
+		 * @param status
+		 */
+		AgeGroup(String status) {
+			this.status = status;
+		}
+		@Override
+		public String toString(){
+			return this.status;
+		}
+
+
+
+	}
 
 }

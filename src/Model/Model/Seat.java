@@ -6,6 +6,7 @@ public class Seat {
 	private int col;
 	private boolean booked;
 	private Showtime showtime;
+	private ShowtimeCinema showtimeCinema;
 
 	public int getRow() {
 		return this.row;
@@ -27,13 +28,13 @@ public class Seat {
 	 * 
 	 * @param row
 	 * @param col
-	 * @param showtime
+	 * @param showtimeCinema
 	 */
-	public Seat(int row, int col, Showtime showtime) {
+	public Seat(int row, int col, ShowtimeCinema showtimeCinema) {
 
 		this.row = row;
 		this.col = col;
-		this.showtime = showtime;
+		this.showtimeCinema = showtimeCinema;
 		booked = false;
 	}
 

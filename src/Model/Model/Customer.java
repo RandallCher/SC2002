@@ -1,11 +1,18 @@
 package Model;
+
+import Model.Parameters.AgeGroup;
+
 //do serializable
 public class Customer {
 
-	private boolean isSeniorCitizen;
 	private String name;
 	private String mobile;
 	private String email;
+	private AgeGroup ageGroup;
+
+	public void setMovieStatus(AgeGroup ageGroup){
+		this.ageGroup = ageGroup;
+	}
 
 	public String getName() {
 		return this.name;
@@ -18,26 +25,25 @@ public class Customer {
 	public String getEmail() {
 		return this.email;
 	}
+	public AgeGroup getAgeGroup(){
+		return this.ageGroup;
+	}
 
 	/**
 	 * 
 	 * @param name
 	 * @param mobile
 	 * @param email
-	 * @param isSeniorCitizen
+	 * 
 	 */
-	public Customer(String name, String mobile, String email, boolean isSeniorCitizen) {
+	public Customer(String name, String mobile, String email,AgeGroup ageGroup) {
 
 		this.name = name;
 		this.mobile = mobile;
 		this.email = email;
-		this.isSeniorCitizen = isSeniorCitizen;
+		this.ageGroup = ageGroup;
 	}
 
-	public boolean isSeniorCitizen() {
-	
-		return isSeniorCitizen;
-	}
 
 	/**
 	 * 

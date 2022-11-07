@@ -82,7 +82,7 @@ public class Movie implements Serializable{
 		builtString.append("Movie Status: ").append(getMovieStatus()).append("|");
 		builtString.append("Movie Rating: ").append(CineplexController.getMovieRating(this)).append("|");
 		builtString.append("Movie Sales: ").append(getSales()).append("|");
-		//example: Title|Director|casts|ageRestriction|movieStatus|Rating|Sales
+		//example: Title|Director|casts|ageRestriction|movieStatus|Rating|Sales|
 		//
 		return builtString.toString();
 	}
@@ -104,16 +104,5 @@ public class Movie implements Serializable{
 
 	}
 
-    public int hashCode() {
-		int result;
-		if(title != null){
-			result = title.hashCode();
-		}
-		else {
-			result = 0;
-		}
-        result = 31 * result + (director != null ? director.hashCode() : 0);
-        return result;
-    }
 
 }
