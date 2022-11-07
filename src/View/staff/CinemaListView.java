@@ -20,7 +20,7 @@ public class CinemaListView extends View {
 			System.out.print("------------- CINEMA LIST MENU -------------\n"
 					+ "1: View all cinemas\n"
 					+ "2: View cinema list\n"
-					+ "7: Exit\n\n"
+					+ "3: Exit\n\n"
 					+ "Please enter your choice: ");
 			int choice = 0;
 			try {

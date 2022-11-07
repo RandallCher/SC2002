@@ -1,9 +1,11 @@
 package View.MovieGoer;
 import Controller.CineplexController;
+
 import Model.*;
+import Model.Parameters.*; 
 
 
-import View.View.*;
+import View.View;
 import View.MovieGoerView;
 import View.View;
 import Model.Showtime;

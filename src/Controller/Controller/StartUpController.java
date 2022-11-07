@@ -2,14 +2,15 @@ package Controller;
 import static Controller.FilePaths.*; 
 
 import Model.Parameters.*;
-import Model.Movie;  
+import Model.*; 
 import java.io.File; 
 import java.io.IOException;
 import java.util.*; 
 
+
 /**
- * This class will never be called if the required data files already exists. 
  * This class is only called for the first time use of the application (i.e. no data files exist) to set * up default admin account and some default files for ease of use. 
+ * This class will never be called if the required data fileS already exists. 
  */
 
 
@@ -23,6 +24,13 @@ public final class StartUpController extends DataController{
         try{
         CreateDefaultStaffAccount();
         CreateDefaultMovieListing(); 
+        CreateDefaultHolidayList(); 
+        CreateDefaultCinemaList(); 
+        CreateDefaultReviewList(); 
+        CreateDefaultShowtime(); 
+        CreateDefaultBookingHistory(); 
+        CreateDefaultSystem(); 
+    
         }
         catch (IOException e){
             e.printStackTrace(); 
@@ -53,6 +61,7 @@ public final class StartUpController extends DataController{
      * @throws IOException when there are any error in file handling. 
      */
     private static void CreateDefaultMovieListing() throws IOException {
+
         File f = new File(MOVIE_FILENAME);
         f.createNewFile(); 
         ArrayList<Movie> movieListing = new ArrayList<>();
@@ -113,20 +122,21 @@ public final class StartUpController extends DataController{
 
 
         
-        //Movie 2
-        String title3 = "Black Panther: Wakanda Forever";
-        String director3 = "Ryan Coogler";
+        //Movie 3
+        String title3 = "Avatar 2: The Way of Water";
+        String director3 = "James Cameron";
         String synopsis3 = 
-        "Queen Ramonda, Shuri, M'Baku, Okoye and the Dora Milaje fight to protect their nation from intervening world powers in the wake of King T'Challa's death. As the Wakandans strive to embrace their next chapter, the heroes must band together with Nakia and Everett Ross to forge a new path for their beloved kingdom."
+        "Jake Sully and Ney'tiri have formed a family and are doing everything to stay together. However, they must leave their home and explore the regions of Pandora. When an ancient threat resurfaces, Jake must fight a difficult war against the humans."
         ; 
 		MovieStatus movieStatus3 = MovieStatus.COMING_SOON;
 		AgeRestriction ageRestriction3 = AgeRestriction.PG13;
 
         ArrayList<String> cast3 = new ArrayList<>();
-        cast3.add("Michael B. Jordan"); 
-        cast3.add("Letitia Wright"); 
-        cast3.add("Angela Bassett");
-        cast3.add("Tenoch Huerta"); 
+        cast3.add("Sam Worthington"); 
+        cast3.add("Zoe Saldana"); 
+        cast3.add("Kate Winslet");
+        cast3.add("Vin Diesel"); 
+        cast3.add("Michelle Yeoh"); 
 
         Movie movie3 = new Movie();
 		movie3.setAgeRestrictions(ageRestriction3);
@@ -138,6 +148,104 @@ public final class StartUpController extends DataController{
         movieListing.add(movie3); 
 
 
+        
+        //Movie 4
+        String title4 = "Nope";
+        String director4 = "Jordan Peele";
+        String synopsis4 = 
+        "Two siblings running a horse ranch in California discover something wonderful and sinister in the skies above, while the owner of an adjacent theme park tries to profit from the mysterious, otherworldly phenomenon."
+        ; 
+		MovieStatus movieStatus4 = MovieStatus.END_OF_SHOWING;
+		AgeRestriction ageRestriction4 = AgeRestriction.R21;
+
+        ArrayList<String> cast4 = new ArrayList<>();
+        cast4.add("Keke Palmer"); 
+        cast4.add("Daniel Kaluuya"); 
+        cast4.add("Steven Yeun");
+        cast4.add("Brandon Perea"); 
+        
+        Movie movie4 = new Movie();
+		movie4.setAgeRestrictions(ageRestriction4);
+		movie4.setCast(cast4);
+		movie4.setTitle(title4);
+		movie4.setDirector(director4);
+		movie4.setMovieStatus(movieStatus4);
+		movie4.setSypnosis(synopsis4);
+        movieListing.add(movie4); 
+
+
         writeFile(MOVIE_FILENAME,movieListing);
     }
+
+
+
+    /**
+     * This method is to create a file to store holiday list 
+     * @throws IOException when there are any error in file handling. 
+     */
+    private static void CreateDefaultHolidayList() throws IOException {
+        File f = new File(HOLIDAYLIST_FILENAME);
+        f.createNewFile();
+        
+        //TODO ADD HOLIDAYS 
+    }
+
+    /**
+     * This method is to create a file to store cinema list 
+     * @throws IOException when there are any error in file handling. 
+     */
+    private static void CreateDefaultCinemaList() throws IOException{
+        File f = new File(CINEMALIST_FILENAME); 
+        f.createNewFile(); 
+
+        //TODO ADD CINEMAS 
+    }
+
+
+
+    /**
+     * This method is to create a file to store showtimes 
+     * @throws IOException when there are any error in file handling. 
+     */
+    private static void CreateDefaultShowtime() throws IOException{
+        File f = new File(SHOWTIME_FILENAME); 
+        f.createNewFile(); 
+
+        //TODO ADD SHOWTIMES
+    }
+
+
+
+    /**
+     * This method is to create a file to store reviews list 
+     * @throws IOException when there are any error in file handling. 
+     */
+    private static void CreateDefaultReviewList() throws IOException{
+        File f = new File(REVIEWLIST_FILENAME); 
+        f.createNewFile(); 
+
+
+    }
+
+
+
+     /**
+     * This method is to create a file to store booking history 
+     * @throws IOException when there are any error in file handling. 
+     */
+    private static void CreateDefaultBookingHistory() throws IOException{
+        File f = new File(BOOKINGHISTORY_FILENAME); 
+        f.createNewFile(); 
+    }
+
+
+    /**
+     * This method is to create a file to store system settingss
+     * @throws IOException when there are any error in file handling. 
+     */
+    private static void CreateDefaultSystem() throws IOException{
+        File f = new File(SYSTEM_FILENAME); 
+        f.createNewFile(); 
+    }
+
 }

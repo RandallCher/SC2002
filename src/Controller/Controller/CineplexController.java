@@ -53,8 +53,9 @@ public final class CineplexController extends DataController {
 
         } catch (FileNotFoundException e){ 
             //File not found means first time running the application. 
-            //call start up controller and initialize the files
+            //call start up controller and initialize the required files
             PrepareFirstTimeUse(); 
+            initialize(); 
             
 
         } catch (IOException e) { 

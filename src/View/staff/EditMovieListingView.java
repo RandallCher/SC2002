@@ -89,7 +89,7 @@ public class EditMovieListingView extends View {
 	}
 
 	private void addMovieListing() {
-		String title, director, sypnopsis, castString;
+		String title, director, synopsis, castString;
 		String[] castArray;
 		ArrayList<String> cast = new ArrayList<>();
 		MovieStatus movieStatus;
@@ -100,8 +100,8 @@ public class EditMovieListingView extends View {
 		title = scan.nextLine();
 		System.out.print("Enter movie director: ");
 		director = scan.nextLine();
-		System.out.print("Enter movie sypnopsis: ");
-		sypnopsis = scan.nextLine();
+		System.out.print("Enter movie synopsis: ");
+		synopsis = scan.nextLine();
 		System.out.print("Enter movie cast (separate names with a comma): ");
 		castString = scan.nextLine();
 		castArray = castString.split(",");
@@ -133,7 +133,7 @@ public class EditMovieListingView extends View {
 		movie.setTitle(title);
 		movie.setDirector(director);
 		movie.setMovieStatus(movieStatus);
-		movie.setSypnosis(sypnopsis);
+		movie.setSypnosis(synopsis);
 
 		try {
 			CineplexController.addMovieListing(movie);
