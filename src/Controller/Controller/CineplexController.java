@@ -67,13 +67,7 @@ public final class CineplexController extends DataController {
             //if the required data is not in the files. 
             e.printStackTrace();
         }
-
-        //for testing only 
-        try{
-            readStaffAccount();
-        }
-        catch (IOException e){ }
-        catch (ClassNotFoundException e) {}
+      
         return true; 
     }
 
