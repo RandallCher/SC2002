@@ -122,7 +122,7 @@ public class IOController implements Controller {
 
 
 	/**
-	 * This method adds linebreaks for a string when its length exceeds a given value. 
+	 * This method adds linebreaks for a string when its length exceeds a certain given value. 
 	 * @param s input string to be formatted
 	 * @param maxLineLength maximum length a line can be 
 	 * @param lengthOfSpace number of spaces to be added after second line onwards
