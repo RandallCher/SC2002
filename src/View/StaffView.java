@@ -3,8 +3,7 @@ package View;
 import java.util.Scanner;
 
 import View.staff.*;
-
-import Controller.CineplexController.*;
+import Controller.CineplexController;
 
 public class StaffView extends View {
 
@@ -65,18 +64,19 @@ public class StaffView extends View {
 		System.out.print("Enter password: ");
 		String password = scan.next();
 
-		// TODO - verification
-		// if (verification(username, password)) {
-		// loggedIn = true;
-		// System.out.println("Login successful.");
-		// } else {
-		// System.out.println("Login failed. Try again? (Y/N)");
-		// String reLogin = scan.next();
-		// if (!reLogin.toUpperCase().equals("Y")) {
-		// this.end();
-		// }
-		// }
-		this.loggedIn = true;
+		
+		if (CineplexController.verification(username, password)) {
+		 loggedIn = true;
+		 System.out.println("Login successful.");
+		 } else {
+		 System.out.println("Login failed. Try again? (Y/N)");
+		 String reLogin = scan.next();
+		 if (!reLogin.toUpperCase().equals("Y")) {
+		 this.end();
+		 this.loggedIn = false; 
+		 }
+		}
+		
 		return;
 	}
 }

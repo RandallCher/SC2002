@@ -1,5 +1,7 @@
 package Controller;
 import static Controller.FilePaths.*; 
+import static Controller.StartUpController.*; 
+
 
 import Model.*;
 import Model.Parameters.Cineplex;
@@ -33,16 +35,15 @@ public final class CineplexController extends DataController {
 
     /**
      * This method initializes and read all the necessary data from the files and store it
-     * inside the variables.
-     * @return true if there is no error an false if there is an error or if there are no required files
+     * inside the variables if the files exist 
+     * Else if the files do not exist it will create files and initialize required data. 
+     * @return true if there is no error. false otherwise
      */
     public static boolean initialize() {
         try {
-            // these will cause IOException Error if it is the first time opening the app and required data do not exist
-            readSystem();
+            // all these will cause FileNotFound Error if it is the first time opening the app and required data do not exist
             readStaffAccount();
-
-            // these may have ClassNotFound exception 
+            readSystem();
             readCinemaList();
             readMovieListing();
             readBookingHistory();
@@ -50,17 +51,29 @@ public final class CineplexController extends DataController {
             readHolidayList();
             readMovieShowtime();
 
-        } catch (FileNotFoundException e){ //error in file handling 
-            return false; 
+        } catch (FileNotFoundException e){ 
+            //File not found means first time running the application. 
+            //call start up controller and initialize the files
+            PrepareFirstTimeUse(); 
             
-        } catch (IOException e) { //error in file handling 
-            System.out.println("There is some error in file integrity."); 
-            return false;
 
-        } catch (ClassNotFoundException e) {
-            return true;
+        } catch (IOException e) { 
+            //error in file handling
+            e.printStackTrace(); 
+            return false; 
+
+        } catch (ClassNotFoundException e) { 
+            //if the required data is not in the files. 
+            e.printStackTrace();
         }
-        return true;
+
+        //for testing only 
+        try{
+            readStaffAccount();
+        }
+        catch (IOException e){ }
+        catch (ClassNotFoundException e) {}
+        return true; 
     }
 
     /**
@@ -216,6 +229,9 @@ public final class CineplexController extends DataController {
         writeFile(CINEMALIST_FILENAME, cinemaList);
     }
 
+
+
+
     /**
      * This method is to overwrite review list file.
      * 
@@ -261,8 +277,21 @@ public final class CineplexController extends DataController {
         writeFile(SHOWTIME_FILENAME, movieShowtime);
     }
 
+
+
+     /**
+     * This method is to update staffAccount file.
+     * 
+     * @throws IOException when the file address is invalid
+     */
+    public static void updateStaffAccount() throws IOException {
+        writeFile(STAFF_FILENAME, system);
+    }
+
+
+
     /**
-     * This method is to overwrite system file.
+     * This method is to update system file.
      * 
      * @throws IOException when the file address is invalid
      */
@@ -440,6 +469,20 @@ public final class CineplexController extends DataController {
     public static void addMovieListing(Movie movie) throws IOException {
         movieListing.add(movie);
         updateMovieListing();
+    }
+
+
+
+    /**
+     * This method is to register new Staff Account to the database and update local files.
+     * 
+     * @param userName userName of the staff 
+     * @param password password 
+     * @throws IOException when the file address is invalid
+     */
+    public static void addStaffAccount(String userName, String password) throws IOException{
+        staffAccount.put(userName, password); 
+        updateStaffAccount();
     }
 
     /**

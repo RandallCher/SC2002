@@ -2,7 +2,7 @@ package Controller;
 
 
 /**
- *  This class is to store the file paths to store data. 
+ *  This class is to store the constant file paths to store data. 
  **/ 
 public class FilePaths {
     private FilePaths(){} //supress instantiation 
