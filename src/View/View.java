@@ -46,9 +46,9 @@ public class View {
 	 * @param cur
 	 * @param movieListingsView
 	 */
-	protected void navigateNextView(View cur, MovieListingsView movieListingsView) {
-		movieListingsView.prevView = cur;
-		movieListingsView.start();
+	protected void navigateNextView(View cur, View next) {
+		next.prevView = cur;
+		next.start();
 	}
 
 	/**
