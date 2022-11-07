@@ -1,7 +1,6 @@
 package Controller;
 import static Controller.CineplexController.*; 
 
-import Model.Holiday;
 import Model.Parameters.*;
 
 import java.util.*;

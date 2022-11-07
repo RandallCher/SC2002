@@ -33,11 +33,11 @@ public class CineplexController extends DataController {
      * This method initializes all the necessary data from the files and store it
      * inside the variables.
      * 
-     * @return true if there is no error an false if there is an error
+     * @return true if there is no error an false if there is an error or if there are no required files
      */
-    public boolean initialize() {
+    public static boolean initialize() {
         try {
-            // these must not have ClassNotFound exception
+            // these may have IOException Error if it is the first time opening the app and required data do not exist
             readSystem();
             readStaffAccount();
 

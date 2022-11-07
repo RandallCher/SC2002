@@ -10,14 +10,14 @@ import java.io.*;
 public abstract class DataController implements Controller{
 
 		/** Addresses of the files */
-		protected static final String MOVIE_FILENAME = "./data/movieListing.dat";
-		protected static final String STAFF_FILENAME= "./data/staffAccount.dat";
-		protected static final String CINEMALIST_FILENAME= "./data/cinemaList.dat";
-		protected static final String REVIEWLIST_FILENAME= "./data/reviewList.dat";
-		protected static final String SHOWTIME_FILENAME= "./data/showtime.dat";
-		protected static final String BOOKINGHISTORY_FILENAME= "./data/bookingHistory.dat";
-		protected static final String HOLIDAYLIST_FILENAME= "./data/holidayList.dat";
-		protected static final String SYSTEM_FILENAME= "./data/system.dat";
+		protected static final String MOVIE_FILENAME = "./res/data/movieListing.dat";
+		protected static final String STAFF_FILENAME= "./res/data/staffAccount.dat";
+		protected static final String CINEMALIST_FILENAME= "./res/data/cinemaList.dat";
+		protected static final String REVIEWLIST_FILENAME= "./res/data/reviewList.dat";
+		protected static final String SHOWTIME_FILENAME= "./res/data/showtime.dat";
+		protected static final String BOOKINGHISTORY_FILENAME= "./res/data/bookingHistory.dat";
+		protected static final String HOLIDAYLIST_FILENAME= "./res/data/holidayList.dat";
+		protected static final String SYSTEM_FILENAME= "./res/data/system.dat";
 
 		/**
 		 * This method reads a serializble object from a given file name.
@@ -44,6 +44,9 @@ public abstract class DataController implements Controller{
 
 		}
 
+
+
+		
 	/**
 	 * This method writes a serializble object into a given file. 
 	 * @param fileName the file address to write the data into
