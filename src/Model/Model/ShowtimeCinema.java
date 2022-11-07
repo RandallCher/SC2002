@@ -2,6 +2,9 @@ package Model;
 
 import Model.Showtime.initializeSeat;
 
+/**
+ *  This class sets up the cinema, i.e. implements the cinema seats in Showtime.java
+ **/ 
 
 public class ShowtimeCinema implements initializeSeat{
     private Seat[][] seats;

@@ -3,6 +3,9 @@ package Model;
 import java.io.Serializable;
 
 import Model.Parameters.Cineplex;
+/**
+ *  This class is details about a Cinema's pricing strategy
+ **/ 
 
 public class Cinema implements Serializable {
 

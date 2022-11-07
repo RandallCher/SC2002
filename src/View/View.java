@@ -2,6 +2,9 @@ package View;
 
 import java.util.Scanner;
 
+import View.MovieGoer.Booking;
+import View.MovieGoer.MovieListingsView;
+
 public class View {
 
 	public View prevView;
@@ -41,11 +44,11 @@ public class View {
 	 * This method navigates the user from one View to the next
 	 * 
 	 * @param cur
-	 * @param next
+	 * @param movieListingsView
 	 */
-	protected void navigateNextView(View cur, View next) {
-		next.prevView = cur;
-		next.start();
+	protected void navigateNextView(View cur, MovieListingsView movieListingsView) {
+		movieListingsView.prevView = cur;
+		movieListingsView.start();
 	}
 
 	/**

@@ -2,6 +2,10 @@ package Model;
 
 import Model.Parameters.AgeGroup;
 
+/**
+ *  This class get details about a customer's booking
+ **/ 
+
 //do serializable
 public class Customer {
 

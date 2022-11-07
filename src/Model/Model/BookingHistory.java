@@ -2,6 +2,9 @@ package Model;
 
 import java.io.Serializable;
 // TID (Transaction ID), customer who made the booking and the seat booked.
+/**
+ *  This class get details about a customer's booking (it includes moviedetails)
+ **/ 
 public class BookingHistory implements Serializable{
 
 	private String TID;
