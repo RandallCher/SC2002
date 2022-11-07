@@ -197,7 +197,28 @@ public final class StartUpController extends DataController{
     private static void CreateDefaultCinemaList() throws IOException{
         File f = new File(CINEMALIST_FILENAME); 
         f.createNewFile(); 
+        ArrayList<Cinema> cinemaListing = new ArrayList<>();
 
+       //Cinema 1
+        boolean isplatinum1 = "True";
+        boolean is3D1 = "True";
+        String code1 = "CIN"
+        double baseprice1 = 2.0;
+        Cineplex cineplex1 = Cineplex.CINELEISURE_ORCHARD; 
+        
+        //Cinema 2
+        boolean isplatinum1 = "True";
+        boolean is3D1 = "True";
+        String code1 = "CAU"
+        double baseprice1 = 2.0;
+        Cineplex cineplex2 = Cineplex.CAUSEWAY_POINT; 
+
+        //Cinema 3
+        boolean isplatinum1 = "True";
+        boolean is3D1 = "True";
+        String code1 = "AMK"
+        double baseprice1 = 2.0;
+        Cineplex cineplex3 = Cineplex.AMK_HUB; 
         //TODO ADD CINEMAS 
     }
 
