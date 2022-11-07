@@ -1,6 +1,8 @@
 package View;
 
 import java.util.Scanner;
+import CineplexController;
+import View.MovieGoer;
 
 // import where ever all the functions are
 
@@ -26,8 +28,10 @@ public class MovieGoerView extends View {
             }
             switch (choice) {
                 case 1:
+                    searchMovie();
                     break;
                 case 2:
+                    displayMovieDetails();
                     break;
                 case 3:
                     break;
@@ -36,6 +40,7 @@ public class MovieGoerView extends View {
                 case 5:
                     break;
                 case 6:
+                    getTop5MovieListing();
                     break;
                 case 7:
                     this.end();
