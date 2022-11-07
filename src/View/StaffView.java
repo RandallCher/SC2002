@@ -4,7 +4,6 @@ import java.util.Scanner;
 
 import View.staff.*;
 
-// cant find rn
 import Controller.CineplexController.*;
 
 public class StaffView extends View {

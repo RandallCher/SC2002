@@ -1,21 +1,21 @@
 import Controller.CineplexController;
+import static Controller.StartUpController.*;
 import View.View;
 
 public class App {
 
     protected void start() {
-        // this doesn't work, don't know why. Always fails with or without files, empty
-        // or not
+       
+        //first check whether this is the first time using the App (i.e. dat files do not exist)
         boolean initialized = CineplexController.initialize();
         if (!initialized) {
-            System.out.println("Error: failed to read data, please check file integrity.");
-            System.out.println("Application terminating...");
-            return;
+            //call the start up class to set up default admin account and data for first time use
+            PrepareFirstTimeUse(); 
         }
 
         // call the main UI
-        View mainUI = new View();
-        mainUI.start();
+        //View mainUI = new View();
+        //mainUI.start();
     }
 
     public static void main(String[] args) {

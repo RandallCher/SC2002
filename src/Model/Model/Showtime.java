@@ -82,6 +82,10 @@ public class Showtime {
 		return this.time; 
 	}
 
+	public Seat[][] getSeats(){
+		return this.seats; 
+	}
+
 	public String getDetails() {
 		StringBuilder builtString = new StringBuilder();
 
