@@ -5,19 +5,14 @@ import java.util.*;
 public class Showtime {
 
 	private Date time;
-	// total cols
-	private static int COLS = 17;
-	// total rows
-	private static int ROWS = 9;
+
 	private Movie movie;
 	private Cinema cinema;
 	private Seat[][] seats;
 
-	public Showtime() {
-		seats = new Seat[ROWS][COLS];
-		initializeSeat();
+	interface initializeSeat{
+		public void CinemaSeating();
 	}
-
 	/**
 	 * 
 	 * @param row
@@ -28,34 +23,6 @@ public class Showtime {
 			col++;
 		}
 		return seats[row - 1][col - 1];
-	}
-
-	private void initializeSeat() {
-		int Row = 0;
-		int Col = 0;
-
-		for (Col = 0; Col < 2; Col++) {
-			for (Row = 0; Row < 5; Row++) {
-				seats[Row][Col] = new Seat(Row, Col, this);
-			}
-		}
-
-		for (Col = 2; Col < 8; Col++) {
-			for (Row = 0; Row < 9; Row++) {
-				seats[Row][Col] = new Seat(Row, Col, this);
-			}
-		}
-		// aisle
-		for (Col = 9; Col < 11; Col++) {
-			for (Row = 1; Row < 9; Row++) {
-				seats[Row][Col] = new Seat(Row, Col, this);
-			}
-		}
-		for (Col = 11; Col < 17; Col++) {
-			for (Row = 0; Row < 9; Row++) {
-				seats[Row][Col] = new Seat(Row, Col, this);
-			}
-		}
 	}
 
 	public void setTime(Date time) {
@@ -117,12 +84,4 @@ public class Showtime {
 		}
 		return true;
 	}
-
-	public int hashCode() {
-		int result = movie.hashCode();
-		result = 31 * result + cinema.hashCode();
-		result = 31 * result + time.hashCode();
-		return result;
-	}
-
 }

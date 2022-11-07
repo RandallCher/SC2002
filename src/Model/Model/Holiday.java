@@ -14,19 +14,19 @@ public class Holiday {
 	// Calendar calendar = Calendar.getInstance();
 	private double rate;
 
-	public String getName() {
+	public String getHolidayName() {
 		return this.name;
 	}
 
-	public Date getDate() {
+	public Date getHolidayDate() {
 		// XXXYYYYMMDDhhmm
-		// int uear = calendar.get(Calendar.YEAR);
+		// int year = calendar.get(Calendar.YEAR);
 		// int month = calendar.get(Calendar.MONTH);
 		// int day = calendar.get(Calendar.DAY_OF_MONTH);
 		return this.date;
 	}
 
-	public double getRate() {
+	public double getHolidayRate() {
 		return this.rate;
 	}
 
@@ -51,7 +51,8 @@ public class Holiday {
 	}
 
 	public String toString() {
-		return ("Name: " + name + "Date: " + date);
+		return ("Name: " + name + "|"+"Date: " + date + "|");
+		//example: Name|Date|
 	}
 
 }

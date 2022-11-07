@@ -27,7 +27,7 @@ public class BookingHistory implements Serializable{
 		builtString.append("Name: ").append(customer.getName()).append("|");
 		builtString.append("Mobile: ").append(customer.getMobile()).append("|");
 		builtString.append("Email: ").append(customer.getEmail()).append("|");
-		builtString.append("isSeniorCitizen: ").append(customer.isSeniorCitizen()).append("|");
+		builtString.append("AgeGroup : ").append(customer.getAgeGroup()).append("|");
 		builtString.append("Moviedet: ").append(seat.getShowtime().getDetails()).append("|");
 		builtString.append("SeatRow: ").append(seat.getRow()).append("|");
 		builtString.append("SeatCol: ").append(seat.getCol()).append("|");
