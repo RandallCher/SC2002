@@ -20,6 +20,7 @@ public class Movie implements Serializable{
 	private AgeRestriction ageRestriction;
 	private MovieStatus movieStatus;
 
+	//set functions
 	public Movie() {
 		this.sales = 0;
 	}
