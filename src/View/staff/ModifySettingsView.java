@@ -64,14 +64,16 @@ public class ModifySettingsView extends View {
 
 		boolean isRatingRanked = CineplexController.getSystem().get("movieOrder");
 		if (isRatingRanked) {
-			System.out.print("Top Five movies are currently ranked by ratings.\nChange to ranking by sales? (Y/N) ");
+			System.out.print(
+					"Top Five movies are currently ranked by ratings.\nChange to ranking by sales? (Y to confirm) ");
 		} else {
-			System.out.print("Top Five movies are currently ranked by sales.\nChange to ranking by ratings? (Y/N) ");
+			System.out.print(
+					"Top Five movies are currently ranked by sales.\nChange to ranking by ratings? (Y to confirm) ");
 		}
 
 		String choice = scan.next().toUpperCase();
 		if (!choice.equals("Y")) {
-			System.out.println("No changes made. Exiting...\n");
+			System.out.println("No changes made.\n");
 			return;
 		}
 
@@ -129,7 +131,7 @@ public class ModifySettingsView extends View {
 
 		Cinema cinema = CineplexController.getCinemaByCode(cineCode);
 		if (cinema == null) {
-			System.out.println("Invalid cinema code. Returning to menu...\n");
+			System.out.println("Invalid cinema code.\n");
 			return;
 		}
 		System.out.println("The current base ticket price for cinema " + cineCode + " is " + cinema.getBasePrice());

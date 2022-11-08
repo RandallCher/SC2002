@@ -13,11 +13,14 @@ import Model.Parameters.AgeRestriction;
 import Model.Parameters.Cineplex;
 import Model.Parameters.MovieStatus;
 
+/**
+ * This class represents the View for staff to edit movie listings
+ */
 public class EditMovieListingView extends View {
 
 	public void start() {
 		while (true) {
-			System.out.print("------------- EDIT MOVIE LISTING MENU -------------\n"
+			System.out.print("\n------------- EDIT MOVIE LISTING MENU -------------\n"
 					+ "1: List all current movies\n"
 					+ "2: Add new movie\n"
 					+ "3: Modify existing movie's details\n"
@@ -57,6 +60,7 @@ public class EditMovieListingView extends View {
 	 */
 	protected void displayMovieListings(boolean displayAll) {
 		ArrayList<Movie> movieListing = CineplexController.getMovieListing();
+		System.out.println("\n**** All Movie Listings ****");
 		if (displayAll) {
 			for (Movie movie : movieListing) {
 				displayMovieDetails(movie);
@@ -88,6 +92,9 @@ public class EditMovieListingView extends View {
 				+ "Movie sales: " + movie.getSales() + "\n\n");
 	}
 
+	/**
+	 * This method creates a new movie listing
+	 */
 	private void addMovieListing() {
 		String title, director, synopsis, castString;
 		String[] castArray;
@@ -146,7 +153,7 @@ public class EditMovieListingView extends View {
 	}
 
 	/**
-	 * This method updates a movie listing
+	 * This method updates a movie listing's details
 	 */
 	private void updateMovieDetail() {
 		System.out.print("Enter title of movie to be updated: ");
@@ -161,7 +168,7 @@ public class EditMovieListingView extends View {
 			}
 		}
 		if (movie == null) {
-			System.out.println("No movie by that title exists.");
+			System.out.println("No movie by that title exists.\n");
 			return;
 		}
 		boolean isDone = false;
