@@ -1,14 +1,14 @@
 package View.MovieGoer;
-import Controller.CineplexController;
 
 import Model.*;
-import Model.Parameters.*; 
-
-
-import View.View;
-import View.MovieGoerView;
-import View.View;
+import Model.Cinema;
+import Model.Customer;
+import Model.Holiday;
+import Model.Movie;
+import Model.Seat;
 import Model.Showtime;
+import View.View;
+
 import Model.Parameters.AgeGroup;
 
 import java.text.SimpleDateFormat;
@@ -24,9 +24,8 @@ public class Booking extends View{
 	private boolean bookingFinished;
 	private Seat seat;
 
-	/**
-	 *
-	 * @param seat
+	/** Creates a Booking class to help with booking the movie
+	 * @param seat 	the seat that has been selected
 	 */
 	public Booking(Seat seat) {
 		this.seat = seat;
@@ -34,14 +33,18 @@ public class Booking extends View{
 		basePrice = seat.getShowtime().getCinema().getBasePrice();
 
 	}
-
+	/** Method displays the menu if booking is not finished
+	 *
+	 */
 	public void start() {
 		if (!bookingFinished){
 			displayMenu();
 		}
 		destroy();
 	}
-
+	/** Method displays the menu to facilitate booking
+	 *
+	 */
 	private void displayMenu() {
 		System.out.println("Here are your booking details");
 		printBookingDetail();
@@ -56,7 +59,9 @@ public class Booking extends View{
 				break;
 		}
 	}
-
+	/** Method helps compute price depending on weekday/weekend and holiday
+	 *
+	 */
 	private void computeBasePrice() {
 		if(isWeekend(seat.getShowtime().getTime())){
 			ticketType = "Weekend ";
@@ -74,7 +79,9 @@ public class Booking extends View{
 
 		}
 	}
-
+	/** Method displays the details of the movie booking
+	 *
+	 */
 	private void printBookingDetail() {
 		Showtime showtime = seat.getShowtime();
 		Movie movie = showtime.getMovie();
@@ -89,7 +96,9 @@ public class Booking extends View{
 		System.out.println("Seat: Row " + (seat.getRow()+1) + " Col " + seat.getCol());
 		System.out.println("Ticket price (excluding GST): " + Math.round(basePrice));
 	}
-
+	/** Method asks for customers information
+	 *
+	 */
 	private void promptCustomerInformation() {
 		Scanner sc = new Scanner(System.in);
 		System.out.println("Enter your name:");
@@ -103,7 +112,7 @@ public class Booking extends View{
 		System.out.println("2. Adult");
 		System.out.println("3. Elderly ");
 		int input = sc.nextInt();
-		AgeGroup ageGroup;
+		AgeGroup ageGroup = null;
 		switch (input){
 			case 1: ageGroup = AgeGroup.CHILD;
 				break;
@@ -113,18 +122,18 @@ public class Booking extends View{
 				break;
 		}
 
-		// Create customer object
-		Customer customer = new Customer(name, mobile, email, ageGroup);
 
-		// proceed to payment
+		Customer moviegoer = new Customer(name, mobile, email, ageGroup);
+
+
 		bookingFinished = true;
-		navigateNextView(this, new Payment(customer, seat, basePrice));
+		navigateNextView(this, new Payment(moviegoer, seat, basePrice));
 	}
-
+	/** Gets last view before current view
+	 *
+	 */
 	protected void destroy() {
-		((Movie)(prevView.prevView)).start(
-				getMovieListing().get(getMovieListing().indexOf(
-						seat.getShowtime().getMovie())));
+		getPrevView();
 	}
 
 }

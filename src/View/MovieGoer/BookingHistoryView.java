@@ -3,24 +3,24 @@ package View.MovieGoer;
 import Model.BookingHistory;
 import View.View;
 import java.util.ArrayList;
+import java.util.Scanner;
 
 
 import static Controller.CineplexController.getBookingHistory;
-
+/**
+ *	Create class to help with displaying booking history
+ */
 public class BookingHistoryView extends View {
-
+	/**
+	 *	Method displays the booking history menu
+	 */
 	public void start() {
 		displayBookingHistory();
 	}
 
-	public void displaySeats() {
-
-	}
-
-	public void makeBooking() {
-		;
-	}
-
+	/**
+	 *	Method displays booking history
+	 */
 	public void displayBookingHistory() {
 		System.out.println("Booking history");
 		ArrayList<BookingHistory> bookingHistory = getBookingHistory();
@@ -35,7 +35,10 @@ public class BookingHistoryView extends View {
 
 
 		}
-
+		System.out.println("Press 1 to go back");
+		System.out.println("1. Go Back");
+		Scanner sc = new Scanner(System.in);
+		String input = sc.nextLine();
 		getPrevView();
 	}
 

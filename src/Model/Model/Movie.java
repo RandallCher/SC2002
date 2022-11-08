@@ -20,6 +20,7 @@ public class Movie implements Serializable{
 	private AgeRestriction ageRestriction;
 	private MovieStatus movieStatus;
 
+	//set functions
 	public Movie() {
 		this.sales = 0;
 	}
@@ -85,7 +86,7 @@ public class Movie implements Serializable{
 		builtString.append("Movie Status: ").append(getMovieStatus()).append("|");
 		builtString.append("Movie Rating: ").append(CineplexController.getMovieRating(this)).append("|");
 		builtString.append("Movie Sales: ").append(getSales()).append("|");
-		//example: Title|Director|casts|ageRestriction|movieStatus|Rating|Sales|
+		//example: Title|Director|cast1,cast2,cast3|ageRestriction|movieStatus|Rating|Sales|
 		//
 		return builtString.toString();
 	}

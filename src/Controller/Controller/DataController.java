@@ -15,7 +15,7 @@ public abstract class DataController implements Controller{
 		 * @param fileName the file address to be read
 		 * @return serializable object read from the file. null if file or class cannot be found
 		 * @throws FileNotFoundException if the file cannot be found
-	 	 * @throws IOException if there are erors in file handling 
+	 	 * @throws IOException if there are errors in file handling 
 		 * @throws ClassNotFoundException if the class is not found. 
 		 */
 		public static Object readFile(String fileName) throws FileNotFoundException, IOException, ClassNotFoundException {
