@@ -4,7 +4,11 @@ import java.util.Scanner;
 
 import View.staff.*;
 import Controller.CineplexController;
+import Controller.IOController;
 
+/**
+ * This is the main staff view
+ */
 public class StaffView extends View {
 
 	private boolean loggedIn;
@@ -21,7 +25,6 @@ public class StaffView extends View {
 	 * the staff member wants to do
 	 */
 	public void start() {
-		System.out.println("\nStaff Login");
 		while (!loggedIn) {
 			this.login();
 		}
@@ -33,7 +36,7 @@ public class StaffView extends View {
 					+ "4: Exit\n\n"
 					+ "Enter your choice: ");
 			Scanner scan = new Scanner(System.in);
-			int choice = scan.nextInt();
+			int choice = IOController.readUserChoice(4, 1);
 			switch (choice) {
 				case 1:
 					navigateNextView(this, new ModifySettingsView());
@@ -58,25 +61,24 @@ public class StaffView extends View {
 	 */
 	public void login() {
 		// Get user input
+		System.out.println("**** Staff Login ****");
 		Scanner scan = new Scanner(System.in);
 		System.out.print("Enter username: ");
 		String username = scan.next();
 		System.out.print("Enter password: ");
 		String password = scan.next();
 
-		
 		if (CineplexController.verification(username, password)) {
-		 loggedIn = true;
-		 System.out.println("Login successful.");
-		 } else {
-		 System.out.println("Login failed. Try again? (Y/N)");
-		 String reLogin = scan.next();
-		 if (!reLogin.toUpperCase().equals("Y")) {
-		 this.end();
-		 this.loggedIn = false; 
-		 }
+			loggedIn = true;
+			System.out.println("Login successful.");
+		} else {
+			System.out.println("Login failed. Try again? (Y/N)");
+			String reLogin = scan.next();
+			if (!reLogin.toUpperCase().equals("Y")) {
+				this.end();
+				this.loggedIn = false;
+			}
 		}
-		
 		return;
 	}
 }

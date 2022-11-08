@@ -1,13 +1,13 @@
 package View;
 
 import java.util.Scanner;
-import Controller.CineplexController;
-import View.MovieGoer.BookingHistoryView;
-import View.MovieGoer.MovieListingsView;
-import View.MovieGoer.ReviewView;
 
-// import where ever all the functions are
+import View.MovieGoer.*;
 
+
+/**
+ * This is the main movie goer view.
+ */
 public class MovieGoerView extends View {
     public void start() {
         while (true) {
