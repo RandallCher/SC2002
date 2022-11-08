@@ -50,6 +50,7 @@ public final class CineplexController extends DataController {
             readReviewList();
             readHolidayList();
             readMovieShowtime();
+            System.out.println("All files exist"); 
 
         } catch (FileNotFoundException e){ 
             //File not found means first time running the application. 
@@ -127,12 +128,16 @@ public final class CineplexController extends DataController {
      */
     @SuppressWarnings("unchecked")
     private static void readReviewList() throws IOException, ClassNotFoundException {
-        if (readFile(REVIEWLIST_FILENAME) == null)
-            reviewList = new HashMap<>();
-        else
-            reviewList = (HashMap<Movie, ArrayList<Review>>) readFile(REVIEWLIST_FILENAME);
+        if (readFile(REVIEWLIST_FILENAME) == null) reviewList = new HashMap<>();
+
+        else reviewList = (HashMap<Movie, ArrayList<Review>>) readFile(REVIEWLIST_FILENAME);
+        
     }
 
+
+
+
+    
     /**
      * This method is to read holiday list and store it inside
      * {@code HashMap<String, Holiday>}.
@@ -357,10 +362,15 @@ public final class CineplexController extends DataController {
      * This method is to get the review list by movie.
      * 
      * @param movie the movie to get review
-     * @return the review list {@code ArrayList<Review>}
+     * @return the review list {@code ArrayList<Review>} or null if the movie does not have any reviews 
      */
     public static ArrayList<Review> getReviewList(Movie movie) {
-        return reviewList.get(movie);
+        for (Movie cur: reviewList.keySet()){
+            ArrayList<Review> reviews = reviewList.get(cur); 
+            if (cur.equals(movie)) return reviews; 
+        }
+        
+        return null;
     }
 
     /**
@@ -526,9 +536,12 @@ public final class CineplexController extends DataController {
      * @throws IOException when the file address is invalid
      */
     public static void addReview(Movie movie, Review review) throws IOException {
-        if (reviewList.get(movie) == null)
+        if (reviewList.get(movie) == null) //first review of the movie
             reviewList.put(movie, new ArrayList<>());
-        reviewList.get(movie).add(review);
+        //reviewList.get(movie).add(review);
+        ArrayList<Review> temp = reviewList.get(movie); //temp array to store updated review list
+        temp.add(review); //add the new review
+        reviewList.put(movie, temp); 
         updateReviewList();
     }
 
