@@ -17,7 +17,7 @@ public class Cinema implements Serializable {
 
 	/**
 	 * 
-	 * @param cineplex
+	 * @param cineplex 
 	 * @param isPlatinum
 	 * @param is3D
 	 * @param code

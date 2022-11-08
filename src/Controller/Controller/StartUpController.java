@@ -218,11 +218,11 @@ public final class StartUpController extends DataController{
         double baseprice2 = 2.0;
         Cineplex cineplex2 = Cineplex.CAUSEWAY_POINT; 
         
-	Cinema cinema2 = new Cinema(cineplex2, isplatinum2, is3D2, code2, baseprice2);
+	    Cinema cinema2 = new Cinema(cineplex2, isplatinum2, is3D2, code2, baseprice2);
         cinemaListing.add(cinema2);    
         
 	    
-	//Cinema 3
+	    //Cinema 3
         boolean isplatinum3 = true;
         boolean is3D3 = true;
         String code3 = "AMK"; 
@@ -231,6 +231,8 @@ public final class StartUpController extends DataController{
 	    Cinema cinema3 = new Cinema(cineplex3, isplatinum3, is3D3, code3, baseprice3);
         cinemaListing.add(cinema3);    
         //TODO ADD CINEMAS 
+
+        
     }
 
 
@@ -255,8 +257,6 @@ public final class StartUpController extends DataController{
     private static void CreateDefaultReviewList() throws IOException{
         File f = new File(REVIEWLIST_FILENAME); 
         f.createNewFile(); 
-
-
     }
 
 
