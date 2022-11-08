@@ -46,6 +46,8 @@ public class CinemaListView extends View {
 		}
 	}
 
+	
+
 	/**
 	 * This method displays all cineplexes
 	 * 

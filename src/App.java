@@ -11,8 +11,7 @@ public class App {
 
         // first check whether this is the first time using the App (i.e. dat files do
         // not exist)
-        boolean initialized = CineplexController.initialize();
-
+        CineplexController.initialize();
         // call the main UI
         new View().start();
     }

@@ -79,7 +79,7 @@ public class ReviewView extends View {
 		System.out.println("Please enter your review:");
 		name = sc.nextLine();
 		String content = sc.nextLine();
-		Review review = new Review(this.movie, rating, content, name);
+		Review review = new Review(this.movie, name, rating, content);
 		addReview(movie,review);
 	}
 
@@ -87,7 +87,10 @@ public class ReviewView extends View {
 	 *	Method is to display a list of reviews of the movie
 	 */
 	private void listReview() {
+
+		
 		System.out.println(movie.getTitle() +" reviews.");
+
 		ArrayList<Review> reviewList = getReviewList(movie);
 		if (reviewList != null){
 			for (int i = 0; i< reviewList.size();i++) {
@@ -96,9 +99,13 @@ public class ReviewView extends View {
 				System.out.println("  Rating:   " + reviewList.get(i).getRating());
 				System.out.println("  Comments: " + reviewList.get(i).getContent());
 				System.out.println();
-				i++;
 			}
+		} 
+		
+		else {
+				System.out.println("This movie does not have any reviews yet."); 
 		}
+		
 	}
 	/**
 	 *	Gets last view before current view
