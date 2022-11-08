@@ -4,7 +4,6 @@ import java.util.Scanner;
 
 import View.MovieGoer.*;
 
-
 /**
  * This is the main movie goer view.
  */
@@ -12,7 +11,7 @@ public class MovieGoerView extends View {
     public void start() {
         while (true) {
             System.out.print("------------- MOVIE GOER MENU -------------\n"
-                    + "1: Search/List movie\n"
+                    + "1: Search movie\n"
                     + "2: List movies\n"
                     + "3: List top 5 ranking movies\n"
                     + "4: View booking history\n"
@@ -42,7 +41,7 @@ public class MovieGoerView extends View {
                     movielistings.displayMovieListings(true);
                     break;
                 case 4:
-                    navigateNextView(this , new BookingHistoryView());
+                    navigateNextView(this, new BookingHistoryView());
                     break;
                 case 5:
                     this.end();
