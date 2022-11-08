@@ -52,6 +52,16 @@ public class ModifySettingsView extends View {
 		System.out.println("**** Configuring Top Five Movies ****");
 		// System.out.println("");
 		Scanner scan = new Scanner(System.in);
+		// force write the first time
+		if (CineplexController.getSystem().get("movieOrder") == null) {
+			CineplexController.getSystem().put("movieOrder", true);
+		}
+		try {
+			CineplexController.updateSystem();
+		} catch (Exception e) {
+			System.out.println("update failed.");
+		}
+
 		boolean isRatingRanked = CineplexController.getSystem().get("movieOrder");
 		if (isRatingRanked) {
 			System.out.print("Top Five movies are currently ranked by ratings.\nChange to ranking by sales? (Y/N) ");
