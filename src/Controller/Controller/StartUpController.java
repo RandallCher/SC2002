@@ -198,7 +198,9 @@ public final class StartUpController extends DataController{
         File f = new File(CINEMALIST_FILENAME); 
         f.createNewFile(); 
 
-        //TODO ADD CINEMAS 
+        HashMap<Cineplex, ArrayList<Cinema>> cinemaList = new HashMap<>();
+        
+
     }
 
 
