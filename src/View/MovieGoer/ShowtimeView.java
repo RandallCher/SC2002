@@ -20,8 +20,8 @@ public class ShowtimeView extends View {
 	private Movie movie;
 
 	/**
-	 *
-	 * @param movie
+	 *	The class is to help display showtimes of a movie
+	 * @param movie	the movie selected
 	 */
 	public ShowtimeView(Movie movie) {
 		this.movie = movie;
@@ -30,7 +30,9 @@ public class ShowtimeView extends View {
 	public void start() {
 		displayMenu();
 	}
-
+	/**
+	 *	Method is to display the dates and showtime of the movie
+	 */
 	private void displayMenu() {
 		Calendar calendar = Calendar.getInstance();
 		Date today = calendar.getTime();
@@ -96,8 +98,8 @@ public class ShowtimeView extends View {
 
 
 	/**
-	 *
-	 * @param showtime
+	 *	Method is to help with booking a seat for the selected showtime and movie
+	 * @param showtime	the showtime of the movie
 	 */
 	private void displayShowtimeDetailMenu(Showtime showtime) {
 		System.out.println(showtime.toString());
@@ -120,8 +122,8 @@ public class ShowtimeView extends View {
 
 
 	/**
-	 *
-	 * @param showtime
+	 *	Method is to display costs of the movie depending on age
+	 * @param showtime	selected showtime of the movie
 	 */
 	private void displayPrice(Showtime showtime) {
 		double price = showtime.getCinema().getBasePrice();
@@ -129,13 +131,13 @@ public class ShowtimeView extends View {
 		System.out.println(movie.getTitle());
 		System.out.println("Weekdays       Weekends");
 		System.out.println("Adults: " + price + "   " + price*1.5);
-		System.out.println("Senior Citizen: " + price*0.75 + "   " + price*1.5*0.75);
+		System.out.println("Senior Citizen/Child: " + price*0.75 + "   " + price*1.5*0.75);
 
 	}
 
 	/**
-	 *
-	 * @param seats
+	 *	Method is to display the seats available for booking
+	 * @param seats	the seats for the movie
 	 */
 	private void displaySeat(Seat[][] seats) {
 		System.out.println("                    -------Screen------");
@@ -162,8 +164,8 @@ public class ShowtimeView extends View {
 	}
 
 	/**
-	 *
-	 * @param showtime
+	 *	Method is for booking of seats
+	 * @param showtime	selected showtime of movie
 	 */
 	private void displayBookSeatMenu(Showtime showtime) {
 
@@ -187,7 +189,9 @@ public class ShowtimeView extends View {
 			navigateNextView(this, new Booking(showtime.getSeatAt(row, column)));
 		}
 	}
-
+	/**
+	 *	Gets last view before current view
+	 */
 	protected void destroy() {
 		getPrevView();
 	}

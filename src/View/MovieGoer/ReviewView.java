@@ -22,14 +22,16 @@ public class ReviewView extends View {
 	private Movie movie;
 
 	/**
-	 *
-	 * @param movie
+	 *	Class is to help with reviews of the movie
+	 * @param movie	the movie selected
 	 */
 	public ReviewView(Movie movie)
 	{
 		this.movie=movie;
 	}
-
+	/**
+	 *	Displays the review menu
+	 */
 	public void start() {
 		try {
 			displayMenu();
@@ -38,7 +40,9 @@ public class ReviewView extends View {
 		}
 
 	}
-
+	/**
+	 *	Method is to show the review menu
+	 */
 	private void displayMenu() throws IOException {
 		if (movie.getMovieStatus() == COMING_SOON) {
 			System.out.println("Movie is coming soon");
@@ -62,7 +66,9 @@ public class ReviewView extends View {
 				break;
 		}
 	}
-	//Method for users to add a review to the movie
+	/**
+	 *	The method is for users to add a review to the movie
+	 */
 	private void addNewReview() throws IOException {
 		Scanner sc = new Scanner(System.in);
 		System.out.println("Write Your Review:");
@@ -77,7 +83,9 @@ public class ReviewView extends View {
 		addReview(movie,review);
 	}
 
-	//Method to show a list of reviews
+	/**
+	 *	Method is to display a list of reviews of the movie
+	 */
 	private void listReview() {
 		System.out.println(movie.getTitle() +" reviews.");
 		ArrayList<Review> reviewList = getReviewList(movie);
@@ -92,8 +100,10 @@ public class ReviewView extends View {
 			}
 		}
 	}
-
+	/**
+	 *	Gets last view before current view
+	 */
 	protected void destroy() {
-		navigateNextView(this, new MovieListingsView());
+		getPrevView();
 	}
 }

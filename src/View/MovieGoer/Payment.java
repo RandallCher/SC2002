@@ -16,7 +16,7 @@ import java.time.format.DateTimeFormatter;
 import java.lang.Math;
 import java.util.Scanner;
 
-public class Payment {
+public class Payment extends View{
 
 	private String TID;
 	private double basePrice;
@@ -34,10 +34,10 @@ public class Payment {
 	}
 
 	/**
-	 *
-	 * @param customer
-	 * @param seat
-	 * @param basePrice
+	 *	Create class to help with payment for movie
+	 * @param customer	the moviegoer
+	 * @param seat	seat selected
+	 * @param basePrice	baseprice of the movie selected
 
 	 */
 	Payment(Customer customer, Seat seat, double basePrice) {
@@ -46,12 +46,16 @@ public class Payment {
 		this.seat = seat;
 		this.GST = GST;
 	}
-
+	/**
+	 *	Method generates a transaction ID
+	 */
 	private void generateTID() {
 
 		TID = UUID.randomUUID().toString();
 	}
-
+	/**
+	 *	Method generates total price on movie based on age of the moviegoer
+	 */
 	private void computeTotalPrice() {
 		if (customer.getAgeGroup()==AgeGroup.SENIOR_CITIZEN||customer.getAgeGroup()==AgeGroup.CHILD) {
 			basePrice *= 0.75;
@@ -60,7 +64,9 @@ public class Payment {
 		totalPrice = Math.round(basePrice + GST);
 
 	}
-
+	/**
+	 *	Displays the menu for payment details
+	 */
 	private void displayMenu() throws IOException {
 		System.out.println("Payment Details");
 		System.out.println("Ticket price: " + basePrice);
@@ -86,7 +92,9 @@ public class Payment {
 		}
 	}
 
-
+	/**
+	 *	Records down booking details of moviegoer
+	 */
 	private void addBooking() throws IOException {
 		seat.bookSeat();
 		Movie movie = seat.getShowtime().getMovie();
@@ -98,9 +106,11 @@ public class Payment {
 		CineplexController.updateMovieListing();
 		System.out.println("Payment has been confirmed.");
 	}
-
+	/**
+	 *	Gets last view before current view
+	 */
 	protected void destroy() {
-		navigateNextView(this, new Booking(seat));
+		getPrevView();
 	}
 
 
