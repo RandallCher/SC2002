@@ -67,8 +67,15 @@ public class Cinema implements Serializable {
 		if (o == null) {
 			return false;
 		}
+		if(getClass()!= o.getClass()){
+			return false;
+		}
+		Cinema cinema = (Cinema) o;
+		if(!code.equals(cinema.code)){
+			return false;
+		}
 
-		return false;
+		return true;
 	}
 
 	public int hashCode() {
