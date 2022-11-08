@@ -1,9 +1,10 @@
 package Model;
 
 import java.io.Serializable;
-// TID (Transaction ID), customer who made the booking and the seat booked.
+//  This class basically contains the booking history with all the details like :-
+//  TID (Transaction ID), customer who made the booking and the seat booked.
 /**
- *  This class get details about a customer's booking (it includes moviedetails)
+ *  
  **/ 
 public class BookingHistory implements Serializable{
 
@@ -12,10 +13,10 @@ public class BookingHistory implements Serializable{
 	private Seat seat;
 
 	/**
-	 * 
-	 * @param TID 
-	 * @param customer 
-	 * @param seat
+	 * @code BookingHistory :- Constructor to initialize the following details
+	 * @param TID (Transaction ID)
+	 * @param customer (person making the booking)
+	 * @param seat (Seat details)
 	 */
 	public BookingHistory(String TID, Customer customer, Seat seat) {
 		this.TID = TID;
