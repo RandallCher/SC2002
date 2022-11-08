@@ -22,6 +22,8 @@ public class BookingHistory implements Serializable{
 		this.customer = customer;
 		this.seat = seat;
 	}
+
+	//might not use 
 	@Override 
 	public String toString() {
 		StringBuilder builtString = new StringBuilder();
