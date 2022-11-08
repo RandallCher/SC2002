@@ -1,8 +1,10 @@
 package View;
 
 import java.util.Scanner;
-import CineplexController;
-import View.MovieGoer;
+import Controller.CineplexController;
+import View.MovieGoer.BookingHistoryView;
+import View.MovieGoer.MovieListingsView;
+import View.MovieGoer.ReviewView;
 
 // import where ever all the functions are
 
@@ -11,40 +13,41 @@ public class MovieGoerView extends View {
         while (true) {
             System.out.print("------------- MOVIE GOER MENU -------------\n"
                     + "1: Search/List movie\n"
-                    + "2: View movie details\n"
-                    + "3: Check seat availability and selection of seat/s.\n"
-                    + "4: Book and purchase ticket\n"
-                    + "5: View booking history\n"
-                    + "6: List Top 5 movie rankings\n"
-                    + "7: Exit\n\n"
+                    + "2: List movies\n"
+                    + "3: List top 5 ranking movies\n"
+                    + "4: View booking history\n"
+                    + "5: Exit\n\n"
                     + "Enter your choice: ");
             Scanner scan = new Scanner(System.in);
             int choice;
             try {
                 choice = scan.nextInt();
+
             } catch (Exception e) {
                 System.out.println("Invalid input. Try again.");
                 break;
             }
             switch (choice) {
                 case 1:
-                    searchMovie();
+                    MovieListingsView movielistings = new MovieListingsView();
+                    movielistings.searchMovie();
+
                     break;
                 case 2:
-                    displayMovieDetails();
+                    movielistings = new MovieListingsView();
+                    movielistings.displayMovieListings(false);
                     break;
                 case 3:
+                    movielistings = new MovieListingsView();
+                    movielistings.displayMovieListings(true);
                     break;
                 case 4:
+                    navigateNextView(this , new BookingHistoryView());
                     break;
                 case 5:
-                    break;
-                case 6:
-                    getTop5MovieListing();
-                    break;
-                case 7:
                     this.end();
                     break;
+
                 default:
                     System.out.println("Invalid input. Try again.");
             }
