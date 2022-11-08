@@ -280,7 +280,7 @@ public final class CineplexController extends DataController {
      * @throws IOException when the file address is invalid
      */
     public static void updateStaffAccount() throws IOException {
-        writeFile(STAFF_FILENAME, system);
+        writeFile(STAFF_FILENAME, staffAccount);
     }
 
 

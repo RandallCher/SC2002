@@ -222,7 +222,7 @@ public final class StartUpController extends DataController{
         cinemaListing.add(cinema2);    
         
 	    
-	//Cinema 3
+	    //Cinema 3
         boolean isplatinum3 = true;
         boolean is3D3 = true;
         String code3 = "AMK"; 
@@ -231,6 +231,8 @@ public final class StartUpController extends DataController{
 	    Cinema cinema3 = new Cinema(cineplex3, isplatinum3, is3D3, code3, baseprice3);
         cinemaListing.add(cinema3);    
         //TODO ADD CINEMAS 
+
+        
     }
 
 
