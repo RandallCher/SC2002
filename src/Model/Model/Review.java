@@ -47,7 +47,7 @@ public class Review implements Serializable{
 	 * @param content
 	 * @param name
 	 */
-	public Review(Movie movie, int rating, String content, String name) {
+	public Review(Movie movie, String name, int rating, String content) {
 		if(rating > maxRating) this.rating = maxRating;
         else if (rating < minRating) this.rating = minRating;
         this.rating = rating;

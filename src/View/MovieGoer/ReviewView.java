@@ -79,7 +79,7 @@ public class ReviewView extends View {
 		System.out.println("Please enter your review:");
 		name = sc.nextLine();
 		String content = sc.nextLine();
-		Review review = new Review(this.movie, rating, content, name);
+		Review review = new Review(this.movie, name, rating, content);
 		addReview(movie,review);
 	}
 
@@ -90,7 +90,7 @@ public class ReviewView extends View {
 
 		
 		System.out.println(movie.getTitle() +" reviews.");
-		
+
 		ArrayList<Review> reviewList = getReviewList(movie);
 		if (reviewList != null){
 			for (int i = 0; i< reviewList.size();i++) {

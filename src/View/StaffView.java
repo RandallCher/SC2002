@@ -78,7 +78,7 @@ public class StaffView extends View {
 			loggedIn = true;
 			System.out.println("Login successful.");
 		} else {
-			System.out.print("Login failed. Try again? (Y/N)");
+			System.out.println("Login failed. Try again? (Y/N)");
 			String reLogin = scan.next();
 			if (!reLogin.toUpperCase().equals("Y")) {
 				this.end();
