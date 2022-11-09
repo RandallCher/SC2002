@@ -55,6 +55,7 @@ public class MovieListingsView extends View {
 			movieList = getMovieListing();
 
 		} else {
+			System.out.println("Getting top 5 movies"); 
 			movieList = getTop5MovieListing();
 		}
 		// If no movies go back

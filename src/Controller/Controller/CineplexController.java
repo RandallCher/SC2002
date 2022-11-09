@@ -368,10 +368,7 @@ public final class CineplexController extends DataController {
         if (reviewList == null) return null; 
         for (Movie cur: reviewList.keySet()){
             ArrayList<Review> reviews = reviewList.get(cur); 
-            if (cur.equals(movie)) 
-            {   System.out.println(cur.getTitle()); 
-                System.out.println(movie.getTitle()); 
-                return reviews;} 
+            if (cur.equals(movie)) return reviews; 
         }
         return null; 
     }

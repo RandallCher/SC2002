@@ -36,6 +36,7 @@ public class Movie implements Serializable{
 	public void setCast(ArrayList<String> cast){
 		this.cast = cast;
 	}
+
 	public void incrementSales() {
 		this.sales ++;
 	}

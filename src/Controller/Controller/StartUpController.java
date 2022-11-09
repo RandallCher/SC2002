@@ -83,6 +83,7 @@ public final class StartUpController extends DataController{
         cast1.add("Pierce Brosnan"); 
         cast1.add("Noah Centineo");
         cast1.add("Sarah Shahi"); 
+        int sales1 = 10; 
 
         Movie movie1 = new Movie();
 		movie1.setAgeRestrictions(ageRestriction1);
@@ -191,7 +192,7 @@ public final class StartUpController extends DataController{
     }
 
     /**
-     * This method is to create a file to store cinema list 
+     * This method is to create a file to store cinema list for each cineplex and fill it with some  cinemas 
      * @throws IOException when there are any error in file handling. 
      */
     private static void CreateDefaultCinemaList() throws IOException{
@@ -199,40 +200,77 @@ public final class StartUpController extends DataController{
         f.createNewFile(); 
 
         HashMap<Cineplex, ArrayList<Cinema>> cinemaList = new HashMap<>();
-        ArrayList<Cinema> cinemaListing = new ArrayList<>();
 
-       //Cinema 1
+
+        //FOR CINEPLEX CINELEISURE_ORCHARD
+        ArrayList<Cinema> cinemaListing1 = new ArrayList<>();
+
+       //Cinema 1 
+        Cineplex cineplex1 = Cineplex.CINELEISURE_ORCHARD; 
         boolean isplatinum1 = true;
         boolean is3D1 = true;
-        String code1 = "CIN"; 
+        String code1 = "CIN1"; 
         double baseprice1 = 2.0;
-        Cineplex cineplex1 = Cineplex.CINELEISURE_ORCHARD;
 	    Cinema cinema1 = new Cinema(cineplex1, isplatinum1, is3D1, code1, baseprice1);
-        cinemaListing.add(cinema1);
+        cinemaListing1.add(cinema1);
         
 	    
         //Cinema 2
-        boolean isplatinum2 = true;
+        boolean isplatinum2 = false;
         boolean is3D2 = true;
-        String code2 = "CAU"; 
-        double baseprice2 = 2.0;
-        Cineplex cineplex2 = Cineplex.CAUSEWAY_POINT; 
-        
-	    Cinema cinema2 = new Cinema(cineplex2, isplatinum2, is3D2, code2, baseprice2);
-        cinemaListing.add(cinema2);    
+        String code2 = "CIN2"; 
+        double baseprice2 = 2.0;        
+	    Cinema cinema2 = new Cinema(cineplex1, isplatinum2, is3D2, code2, baseprice2);
+        cinemaListing1.add(cinema2);    
         
 	    
 	    //Cinema 3
         boolean isplatinum3 = true;
-        boolean is3D3 = true;
-        String code3 = "AMK"; 
+        boolean is3D3 = false;
+        String code3 = "CIN3"; 
         double baseprice3 = 2.0;
-        Cineplex cineplex3 = Cineplex.AMK_HUB; 
-	    Cinema cinema3 = new Cinema(cineplex3, isplatinum3, is3D3, code3, baseprice3);
-        cinemaListing.add(cinema3);    
-        //TODO ADD CINEMAS 
+	    Cinema cinema3 = new Cinema(cineplex1, isplatinum3, is3D3, code3, baseprice3);
+        cinemaListing1.add(cinema3);    
+        
+        cinemaList.put(cineplex1, cinemaListing1); 
 
         
+         //FOR CINEPLEX CAUSEWAY_POINT
+        ArrayList<Cinema> cinemaListing2 = new ArrayList<>();
+
+       //Cinema 1 
+        Cineplex cineplex2 = Cineplex.CAUSEWAY_POINT; 
+        isplatinum1 = true;
+        is3D1 = true;
+        code1 = "CAU1"; 
+        baseprice1 = 2.0;
+	    cinema1 = new Cinema(cineplex1, isplatinum1, is3D1, code1, baseprice1);
+        cinemaListing2.add(cinema1);
+        
+	    
+        //Cinema 2
+        isplatinum2 = false;
+        is3D2 = true;
+        code2 = "CAU2"; 
+        baseprice2 = 2.0;        
+	    cinema2 = new Cinema(cineplex1, isplatinum2, is3D2, code2, baseprice2);
+        cinemaListing1.add(cinema2);    
+        
+	    
+	    //Cinema 3
+        isplatinum3 = true;
+        is3D3 = false;
+        code3 = "CAU3"; 
+        baseprice3 = 2.0;
+	    cinema3 = new Cinema(cineplex1, isplatinum3, is3D3, code3, baseprice3);
+        cinemaListing1.add(cinema3);    
+        
+        cinemaList.put(cineplex2, cinemaListing2); 
+
+        // TO DO ADD FOR REMAINING CINEPLEXES. EACH CINEPLEX MUST HAVE AT LEAST 3 CINEMAS
+
+
+        writeFile(CINEMALIST_FILENAME,cinemaList); 
     }
 
 
@@ -278,6 +316,14 @@ public final class StartUpController extends DataController{
     private static void CreateDefaultSystem() throws IOException{
         File f = new File(SYSTEM_FILENAME); 
         f.createNewFile(); 
+
+        //default is orded top 5 movings by rating
+        HashMap <String,Boolean> defaultSystem = new HashMap<>(); 
+        boolean isRatingRanked = true; 
+        String order = "movieOrder"; 
+        defaultSystem.put(order, isRatingRanked); 
+
+        writeFile(SYSTEM_FILENAME, defaultSystem); 
     }
 
 }
