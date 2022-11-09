@@ -76,8 +76,8 @@ public class ReviewView extends View {
 		String name = sc.nextLine();
 		System.out.println("Please enter your rating between 1 and 5:");
 		int rating = sc.nextInt();
+		sc.nextLine(); //flush out the space character
 		System.out.println("Please enter your review:");
-		name = sc.nextLine();
 		String content = sc.nextLine();
 		Review review = new Review(this.movie, name, rating, content);
 		addReview(movie,review);
