@@ -345,7 +345,12 @@ public final class CineplexController extends DataController {
      * @return the showtime of the movie
      */
     public static ArrayList<Showtime> getMovieShowtime(Movie movie) {
-        return movieShowtime.get(movie);
+        if (movieShowtime == null) return null; 
+        for (Movie cur: movieShowtime.keySet()){
+            ArrayList<Showtime> showtimes = movieShowtime.get(movie); 
+            if (cur.equals(movie)) return showtimes; 
+        }
+        return null;
     }
 
     /**
