@@ -90,10 +90,10 @@ public class Showtime {
 		}
 		if (!cinema.equals(showtime.cinema)) {
 			return false;
-		}
+		} 	
 		if (!time.equals(showtime.time)){
 			return false;
 		}
-		return IOController.formatDateMMddkkmm(time).equals(formatTimeMMddkkmm(showtime.time));
+		return IOController.formatDateMMddkkmm(time).equals(IOController.formatDateMMddkkmm(showtime.time));
 	}
 }
