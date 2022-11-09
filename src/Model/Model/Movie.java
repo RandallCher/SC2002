@@ -101,9 +101,19 @@ public class Movie implements Serializable{
 		}
 
 		Movie movie = (Movie) o;
-		if(movie.title == null){
+		if(this.title == null){
 			return false;
 		}
+		if(!title.equals(movie.title)){
+			return false;
+		}
+		//if(this.director == null){
+		//	return false;
+		//}
+		//if(!director.equals(movie.director)){
+		//	return false;
+		//}
+
 		return true;
 
 	}

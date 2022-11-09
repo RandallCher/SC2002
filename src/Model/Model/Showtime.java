@@ -2,6 +2,9 @@ package Model;
 
 import java.util.*;
 
+import Controller.IOController;
+import Controller.IOController.*;
+
 /**
  *  This class get details about a the showtime venue
  **/ 
@@ -81,15 +84,16 @@ public class Showtime {
 		}
 
 		Showtime showtime = (Showtime) o;
-		if (movie != showtime.movie) {
+
+		if (!movie.equals(showtime.movie)) {
 			return false;
 		}
-		if (cinema != showtime.cinema) {
+		if (!cinema.equals(showtime.cinema)) {
 			return false;
 		}
-		if (time != showtime.time) {
+		if (!time.equals(showtime.time)){
 			return false;
 		}
-		return true;
+		return IOController.formatDateMMddkkmm(time).equals(formatTimeMMddkkmm(showtime.time));
 	}
 }
