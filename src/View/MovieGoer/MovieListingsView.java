@@ -50,13 +50,20 @@ public class MovieListingsView extends View {
 
 	public void displayMovieListings(boolean topFive) {
 		ArrayList<Movie> movieList;
+		Scanner sc = new Scanner(System.in);
 		if (topFive == false) {
 			movieList = getMovieListing();
 
 		} else {
 			movieList = getTop5MovieListing();
 		}
-
+		// If no movies go back
+		if(movieList.size() == 0){
+			System.out.println("No movies. ");
+			System.out.println("1. Go Back");
+			sc.nextLine();
+			start();
+		}
 		if (!topFive || CineplexController.getSystem().get("movieOrder")) {// rating
 			for (int i = 0; i < movieList.size(); i++) {
 				System.out.printf("%-1s %-40s %-15s [%-2s]\n", i + 1, movieList.get(i).getTitle(),
@@ -71,8 +78,12 @@ public class MovieListingsView extends View {
 
 			}
 		}
-		Scanner sc = new Scanner(System.in);
+		System.out.println((movieList.size()+1)  +". Go Back");
 		int input = sc.nextInt();
+		//Option to go Back
+		if( input > movieList.size()){
+			start();
+		}
 		Movie movie = movieList.get(input - 1);
 
 		displayMovieDetails(movie);
