@@ -2,6 +2,7 @@ package View.MovieGoer;
 
 import Controller.CineplexController;
 import Model.Parameters;
+import Model.Parameters.MovieStatus;
 import Model.Movie;
 import View.View;
 
@@ -71,8 +72,10 @@ public class MovieListingsView extends View {
 		}
 		if (!topFive || CineplexController.getSystem().get("movieOrder")) {// rating
 			for (int i = 0; i < movieList.size(); i++) {
-				System.out.printf("%-1s %-40s %-15s [%-2s]\n", i + 1, movieList.get(i).getTitle(),
+				if(movieList.get(i).getMovieStatus()!= MovieStatus.END_OF_SHOWING){
+					System.out.printf("%-1s %-40s %-15s [%-2s]\n", i + 1, movieList.get(i).getTitle(),
 						movieList.get(i).getMovieStatus(), getMovieRating(movieList.get(i)));
+				}
 
 			}
 		} else {
