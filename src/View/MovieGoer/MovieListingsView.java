@@ -21,6 +21,10 @@ public class MovieListingsView extends View {
 	/**
 	 * Method searches movie based on user input and displays result
 	 */
+	protected void start(Movie movie) {
+        displayMovieDetails(movie);
+    }
+
 	public void searchMovie() {
 		Scanner sc = new Scanner(System.in);
 		System.out.println("Enter Movie Title: ");
@@ -101,7 +105,7 @@ public class MovieListingsView extends View {
 		System.out.println("Movie details");
 		System.out.println("1. Display showtime");
 		System.out.println("2. View or write reviews");
-		System.out.println("3. Go back");
+		System.out.println("3. Restart from main menu");
 		Scanner sc = new Scanner(System.in);
 		int input = sc.nextInt();
 		switch (input) {
