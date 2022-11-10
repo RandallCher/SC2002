@@ -41,7 +41,8 @@ public class ShowtimeView extends View {
 		calendar.add(Calendar.DAY_OF_YEAR, 1);
 		Date dayAfter = calendar.getTime();
 		Date showDate = null;
-		SimpleDateFormat simpleDateFormat = new SimpleDateFormat("MM/dd/yyyy");
+		
+		SimpleDateFormat simpleDateFormat = new SimpleDateFormat("dd/MM/yyyy");
 		String todayStr = simpleDateFormat.format(today).toString();
 		String tomorrowStr = simpleDateFormat.format(tomorrow).toString();
 		String afterStr = simpleDateFormat.format(dayAfter).toString();
@@ -49,6 +50,7 @@ public class ShowtimeView extends View {
 		System.out.println("1. " + todayStr);
 		System.out.println("2. " + tomorrowStr);
 		System.out.println("3. " + afterStr);
+		System.out.println("4. Go back");
 		Scanner sc = new Scanner(System.in);
 		int input = sc.nextInt();
 		switch (input) {
@@ -61,6 +63,8 @@ public class ShowtimeView extends View {
 			case 3:
 				showDate = dayAfter;
 				break;
+			case 4:
+				end();;
 		}
 		ArrayList<Showtime> showList = new ArrayList<>();
 		if (getMovieShowtime(movie) != null) {
