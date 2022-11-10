@@ -12,6 +12,9 @@ public class App {
         // first check whether this is the first time using the App (i.e. dat files do
         // not exist)
         CineplexController.initialize();
+
+
+        //normal run 
         // call the main UI
         new View().start();
     }

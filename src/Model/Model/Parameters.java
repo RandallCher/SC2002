@@ -21,8 +21,7 @@ public class Parameters {
 		private String cineplex;
 
 		/**
-		 * 
-		 * @param cineplex
+		 * @param cineplex name of the cineplex 
 		 */
 		private Cineplex(String cineplex) {
 			this.cineplex = cineplex;

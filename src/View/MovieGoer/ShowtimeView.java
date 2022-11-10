@@ -14,7 +14,7 @@ import java.util.Calendar;
 import java.util.Scanner;
 
 import static Controller.CineplexController.getMovieShowtime;
-import static Controller.IOController.*;
+import static Controller.InputController.*;
 public class ShowtimeView extends View {
 
 	private Movie movie;

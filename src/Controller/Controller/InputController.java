@@ -3,8 +3,6 @@ package Controller;
 import Model.Parameters.*;
 
 import java.util.*;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
 
 import java.math.RoundingMode;
 import java.math.BigDecimal;
@@ -12,7 +10,8 @@ import java.math.BigDecimal;
 import java.text.SimpleDateFormat;
 import java.text.ParseException;
 
-public class IOController implements Controller {
+/**This class contains useful utility functions to validate user inputs for data formatting*/
+public class InputController implements Controller {
 
 	/**
 	 * This method is to read an user choice from std input and upper and lower
@@ -28,12 +27,12 @@ public class IOController implements Controller {
 		try {
 			input = sc.nextInt();
 		} catch (InputMismatchException ex) {
-			System.out.println("Invalid input. Please try again! ");
+			System.out.println("Invalid input. Please enter your choice again!");
 			return readUserChoice(upper, lower);
 		}
 
 		if (input < lower || input > upper) {
-			System.out.println("Invalid iput. Please try again!");
+			System.out.println("Invalid input. Please enter your choice again!");
 			return readUserChoice(upper, lower);
 		} else
 			return input;
@@ -51,7 +50,7 @@ public class IOController implements Controller {
 			System.out.println(s);
 
 		Scanner sc = new Scanner(System.in);
-		return sc.nextLine();
+		return sc.nextLine().strip();
 	}
 
 	/**
@@ -78,48 +77,8 @@ public class IOController implements Controller {
 		return input;
 	}
 
-	/**
-	 * This method generates multiple spaces of a given size
-	 * 
-	 * @param size number of spaces to generate
-	 * @return the spaces generated
-	 */
-	public static String generateSpaces(int size) {
-		StringBuilder s = new StringBuilder();
-		for (int i = 0; i < size; i++)
-			s.append(" ");
-		return s.toString();
-	}
+	
 
-
-	/**
-	 * This method adds linebreaks for a string when its length exceeds a certain
-	 * given value.
-	 * 
-	 * @param s             input string to be formatted
-	 * @param maxLineLength maximum length a line can be
-	 * @param lengthOfSpace number of spaces to be added after second line onwards
-	 * @return formatted string
-	 */
-	public static String addLinebreaks(String s, int maxLineLength, int lengthOfSpace) {
-		StringTokenizer token = new StringTokenizer(s, " ");
-		StringBuilder str = new StringBuilder(s.length());
-		int lineLength = 0;
-
-		while (token.hasMoreTokens()) {
-			String word = token.nextToken();
-
-			if (lineLength + word.length() > maxLineLength) { // exceeds max length
-				str.append("\n");
-				for (int i = 0; i < lengthOfSpace; i++)
-					str.append(" ");
-				lineLength = 0;
-			}
-			str.append(word).append(" ");
-			lineLength += word.length();
-		}
-		return str.toString();
-	}
 
 	/**
 	 * This method maps the string ageRestriction to respective enum AgeRestriction
@@ -194,19 +153,19 @@ public class IOController implements Controller {
 	 * @param message the message(s) to be shown to the user
 	 * @return {@code Date} after formatting
 	 */
-	public static Date readDateMMdd(String... message) {
-		SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd");
+	public static Date readDateddMMyyyy(String... message) {
+		Date date;
 		try {
 			String input = readString(message);
-			input = new SimpleDateFormat("yyyy").format(new Date()) + "-" + input; // set year as current year
-			Date date = simpleDateFormat.parse(input);
+			date = new SimpleDateFormat("dd/MM/yyyy").parse(input);
 			return date;
 		} catch (ParseException ex) {
 			System.out.println("Wrong format. Try again.");
-			return readDateMMdd(message);
+			return readDateddMMyyyy(message);
 		}
 	}
 
+	
 	/**
 	 * This method is to ask user for confirmation from std input
 	 * 
@@ -223,40 +182,7 @@ public class IOController implements Controller {
 			return false;
 	}
 
-	/**
-	 * This method prints menu items to std output.
-	 * 
-	 * @param menuItems the menu items to be printed
-	 */
-	public static void printMenu(String... menuItems) {
-		for (String s : menuItems)
-			System.out.println(s);
-	}
-
-	/**
-	 * This method prints specified header to std output
-	 * 
-	 * @param header the header message to be printed
-	 */
-	public static void printHeader(String header) {
-		int length = 65;
-		for (int i = 0; i < length; i++)
-			System.out.print("-");
-		System.out.println();
-
-		int indent = (length - header.length()) / 2;
-		for (int i = 0; i < indent; i++)
-			System.out.print(" ");
-		System.out.print(header);
-		for (int i = 0; i < indent; i++)
-			System.out.print(" ");
-		System.out.println();
-
-		for (int i = 0; i < length; i++)
-			System.out.print("-");
-		System.out.println();
-
-	}
+	
 
 	/**
 	 * This method formats a date to string with format mm dd, kk:mm
@@ -304,7 +230,7 @@ public class IOController implements Controller {
 	}
 
 	/**
-	 * This method rounds a double value to a specified decimal place
+	 * This utility method rounds a double value to a specified decimal place for formatting purposes 
 	 * 
 	 * @param number value to be rounded
 	 * @param places number of decimal places in the result
@@ -317,5 +243,18 @@ public class IOController implements Controller {
 		n = n.setScale(places, RoundingMode.HALF_UP);
 		return n.doubleValue();
 	}
+
+
+
+	/**
+     * This utility method is to generate multiple spaces with given size for formatting purposes.
+     * @param size the number of spaces to be generated
+     * @return the spaces generated
+     */
+    public static String generateSpaces(int size) {
+        StringBuilder stringBuilder = new StringBuilder();
+        for (int i = 0; i < size; i++) stringBuilder.append(" ");
+        return stringBuilder.toString();
+    }
 
 }

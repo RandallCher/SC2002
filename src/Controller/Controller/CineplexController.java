@@ -426,7 +426,7 @@ public final class CineplexController extends DataController {
             for (Review review : reviewList)
                 sum += review.getRating();
             avgRating = sum / reviewList.size();
-            return IOController.round(avgRating, 2);
+            return InputController.round(avgRating, 2);
         }
     }
 
@@ -438,7 +438,7 @@ public final class CineplexController extends DataController {
      */
     public static Holiday getHolidayByDate(Date time) {
         HashMap<String, Holiday> holidayList = getHolidayList();
-        return holidayList.get(IOController.formatDateMMdd(time));
+        return holidayList.get(InputController.formatDateMMdd(time));
     }
 
     /**

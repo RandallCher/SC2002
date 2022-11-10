@@ -3,8 +3,9 @@ package View;
 import java.util.Scanner;
 
 import View.staff.*;
+
+import Controller.InputController;
 import Controller.CineplexController;
-import Controller.IOController;
 
 /**
  * This is the main staff view
@@ -25,8 +26,6 @@ public class StaffView extends View {
 	 * the staff member wants to do
 	 */
 	public void start() {
-		// TODO remove this true
-		// loggedIn = true;
 		while (!loggedIn) {
 			this.login();
 		}
@@ -35,11 +34,10 @@ public class StaffView extends View {
 					+ "1: Configure settings(ticket price, holidays, top 5 movies)\n"
 					+ "2: Create/Update/Remove movie listing\n"
 					+ "3: Create/Update/Remove cinema shows and showtimes\n"
-					+ "4: Create new staff account\n"
-					+ "5: Exit\n\n"
+					+ "4: Create a new staff account\n"
+					+ "5: Back to previous page\n\n"
 					+ "Enter your choice: ");
-			Scanner scan = new Scanner(System.in);
-			int choice = IOController.readUserChoice(5, 1);
+			int choice = InputController.readUserChoice(5, 1);
 			switch (choice) {
 				case 1:
 					navigateNextView(this, new ModifySettingsView());
@@ -51,7 +49,7 @@ public class StaffView extends View {
 					navigateNextView(this, new EditShowtimeView());
 					break;
 				case 4:
-					createNewStaff(scan);
+					createNewStaff();
 					break;
 				case 5:
 					this.end();
@@ -68,41 +66,48 @@ public class StaffView extends View {
 	public void login() {
 		// Get user input
 		System.out.println("**** Staff Login ****");
-		Scanner scan = new Scanner(System.in);
-		System.out.print("Enter username: ");
-		String username = scan.next();
-		System.out.print("Enter password: ");
-		String password = scan.next();
+
+		String username = InputController.readString("Enter username: ");
+		String password = InputController.readString("Enter password: ");
 
 		if (CineplexController.verification(username, password)) {
 			loggedIn = true;
 			System.out.println("Login successful.");
 		} else {
-			System.out.println("Login failed. Try again? (Y/N)");
-			String reLogin = scan.next();
-			if (!reLogin.toUpperCase().equals("Y")) {
+			boolean reLogin = InputController.confirmation("Login failed. Try again? (Y/N)");
+			if (!reLogin) {
 				this.end();
-				this.loggedIn = false;
 			}
 		}
 		return;
 	}
 
 	/**
-	 * This method creates a new staff account that can be used to login
-	 * 
-	 * @param scan
+	 * This method creates a new staff account that will be registered in the database
 	 */
-	public void createNewStaff(Scanner scan) {
-		System.out.print("Enter new staff account username: ");
-		String username = scan.nextLine();
-		System.out.print("Enter new staff account password: ");
-		String password = scan.nextLine();
+	public void createNewStaff() {
+		String username, password, rePassword; 
+		while (true){
+			username = InputController.readString("Enter new staff account username: ");
+			password = InputController.readString("Enter new staff account password: ");
+			rePassword = InputController.readString("Please re-enter the password again: "); 
+
+			if (password.equals(rePassword)) break; 
+			else{
+				System.out.println("The passwords do not match!"); 
+				boolean reTry = InputController.confirmation("Failed to add new staff account. Try again? (Y/N)"); 
+				if (!reTry) return; 
+				else System.out.println(); 
+		}
+
+		}
+
 		try {
 			CineplexController.addStaffAccount(username, password);
 			System.out.println("Succesfully added new staff account.");
 		} catch (Exception e) {
-			System.out.println("Failed to add new staff account.");
+			e.printStackTrace();
 		}
+	
 	}
 }

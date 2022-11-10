@@ -1,9 +1,6 @@
 package View;
 
-import java.util.Scanner;
-
-import View.MovieGoer.Booking;
-import View.MovieGoer.MovieListingsView;
+import static Controller.InputController.readUserChoice; 
 
 public class View {
 
@@ -18,8 +15,8 @@ public class View {
 				+ "2: I am a Staff\n"
 				+ "3: Quit application\n\n"
 				+ "Please enter your choice: ");
-		Scanner scan = new Scanner(System.in);
-		int choice = scan.nextInt();
+
+		int choice = readUserChoice(3,1); 
 		if (choice == 1) {
 			navigateNextView(this, new MovieGoerView());
 		} else if (choice == 2) {

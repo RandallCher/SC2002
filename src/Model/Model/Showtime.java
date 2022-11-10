@@ -2,7 +2,7 @@ package Model;
 
 import java.util.*;
 
-import Controller.IOController;
+import Controller.InputController;
 
 /**
  *  This class get details about a the showtime venue
@@ -93,6 +93,6 @@ public class Showtime implements SerializableModel {
 		if (!time.equals(showtime.time)){
 			return false;
 		}
-		return IOController.formatDateMMddkkmm(time).equals(IOController.formatDateMMddkkmm(showtime.time));
+		return InputController.formatDateMMddkkmm(time).equals(InputController.formatDateMMddkkmm(showtime.time));
 	}
 }

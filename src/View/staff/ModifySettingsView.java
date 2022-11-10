@@ -3,7 +3,6 @@ package View.staff;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.HashMap;
-import java.util.Scanner;
 
 import View.*;
 import Controller.*;
@@ -19,13 +18,8 @@ public class ModifySettingsView extends View {
 					+ "3: Configure top five movies\n"
 					+ "4: Exit\n\n"
 					+ "Enter your choice: ");
-			Scanner scan = new Scanner(System.in);
-			int choice = 0;
-			try {
-				choice = scan.nextInt();
-			} catch (Exception e) {
-				System.out.println("Invalid input. Try again.");
-			}
+			int choice = InputController.readUserChoice(4,1);
+			
 			switch (choice) {
 				case 1:
 					this.configureTicketPrice();
@@ -36,11 +30,8 @@ public class ModifySettingsView extends View {
 				case 3:
 					this.configureTopFiveMovies();
 					break;
-				case 4:
-					this.end();
-					break;
 				default:
-					System.out.println("Invalid input. Try again.");
+					this.end();
 			}
 		}
 	}
@@ -50,17 +41,19 @@ public class ModifySettingsView extends View {
 	 */
 	protected void configureTopFiveMovies() {
 		System.out.println("**** Configuring Top Five Movies ****");
-		// System.out.println("");
-		Scanner scan = new Scanner(System.in);
-		// force write the first time
+	
+
+		// if file exists but empty file default value for movieOrder will be true
 		if (CineplexController.getSystem().get("movieOrder") == null) {
 			CineplexController.getSystem().put("movieOrder", true);
-		}
-		try {
+			try {
 			CineplexController.updateSystem();
-		} catch (Exception e) {
-			System.out.println("update failed.");
+			} catch (Exception e) {
+			e.printStackTrace(); 
 		}
+		}
+
+		
 
 		boolean isRatingRanked = CineplexController.getSystem().get("movieOrder");
 		if (isRatingRanked) {
@@ -71,8 +64,8 @@ public class ModifySettingsView extends View {
 					"Top Five movies are currently ranked by sales.\nChange to ranking by ratings? (Y to confirm) ");
 		}
 
-		String choice = scan.next().toUpperCase();
-		if (!choice.equals("Y")) {
+		boolean choice = InputController.confirmation();
+		if (!choice) {
 			System.out.println("No changes made.\n");
 			return;
 		}
@@ -98,8 +91,7 @@ public class ModifySettingsView extends View {
 					+ "3: Remove a holiday\n"
 					+ "4: Exit\n\n"
 					+ "Enter your choice: ");
-			Scanner scan = new Scanner(System.in);
-			int choice = IOController.readUserChoice(4, 1);
+			int choice = InputController.readUserChoice(4, 1);
 			switch (choice) {
 				case 1:
 					this.displayHolidays();
@@ -110,11 +102,9 @@ public class ModifySettingsView extends View {
 				case 3:
 					this.removeHoliday();
 					break;
-				case 4:
+
+				default: 
 					this.end();
-					break;
-				default:
-					System.out.println("Invalid input. Try again.");
 			}
 		}
 	}
@@ -125,10 +115,9 @@ public class ModifySettingsView extends View {
 	protected void configureTicketPrice() {
 		// this DOES NOT WORK yet bc there is no data
 		System.out.println("**** Configuring Ticket Price ****");
-		System.out.print("Enter cinema code: ");
-		Scanner scan = new Scanner(System.in);
-		String cineCode = scan.nextLine();
+	
 
+		String cineCode = InputController.readString("Enter cinema code: ");
 		Cinema cinema = CineplexController.getCinemaByCode(cineCode);
 		if (cinema == null) {
 			System.out.println("Invalid cinema code.\n");
@@ -136,8 +125,7 @@ public class ModifySettingsView extends View {
 		}
 		System.out.println("The current base ticket price for cinema " + cineCode + " is " + cinema.getBasePrice());
 
-		System.out.print("Enter new base ticket price: ");
-		double newPrice = scan.nextDouble();
+		double newPrice = InputController.readDouble("Enter new base ticket price: ");
 		cinema.setBasePrice(newPrice);
 		try {
 			CineplexController.updateCinemaList();
@@ -154,7 +142,7 @@ public class ModifySettingsView extends View {
 	protected void displayHolidays() {
 		HashMap<String, Holiday> holidaysList = CineplexController.getHolidayList();
 		if (holidaysList.isEmpty()) {
-			System.out.println("There are no holidays.\n");
+			System.out.println("No holidays are registered in the system yet.\n");
 			return;
 		}
 		System.out.println("\n**** Holiday List ****");
@@ -170,21 +158,11 @@ public class ModifySettingsView extends View {
 	 * This method adds a holiday to the system
 	 */
 	protected void addHoliday() {
-		Scanner scan = new Scanner(System.in);
-		System.out.print("Enter new holiday date in format 'dd/MM/yyyy': ");
-		String dateInputString = scan.nextLine();
-		System.out.print("Enter holiday name: ");
-		String name = scan.nextLine();
+		Date date = InputController.readDateddMMyyyy("Enter new holiday date in format 'dd/MM/yyyy': ");
 
-		Date date;
-		String dateString;
-		try {
-			date = new SimpleDateFormat("dd/MM/yyyy").parse(dateInputString);
-			dateString = new SimpleDateFormat().format(date);
-		} catch (Exception e) {
-			System.out.println("Invalid input.");
-			return;
-		}
+		String name = InputController.readString("Enter holiday name: ");
+
+		String dateString = new SimpleDateFormat().format(date);
 		Holiday holiday = new Holiday(name, date);
 
 		try {
@@ -203,18 +181,9 @@ public class ModifySettingsView extends View {
 		this.displayHolidays();
 		HashMap<String, Holiday> holidaysList = CineplexController.getHolidayList();
 
-		System.out.print("\nEnter holiday dates to remove in format 'dd/MM/yyyy': ");
-		Scanner scan = new Scanner(System.in);
-		String dateInputString = scan.nextLine();
-		Date date;
-		String dateString;
-		try {
-			date = new SimpleDateFormat("dd/MM/yyyy").parse(dateInputString);
-			dateString = new SimpleDateFormat().format(date);
-		} catch (Exception e) {
-			System.out.println("Invalid input. Could not remove date.\n");
-			return;
-		}
+		
+		Date date = InputController.readDateddMMyyyy("Enter holiday dates to remove in format 'dd/MM/yyyy': ");
+		String dateString = new SimpleDateFormat().format(date);
 		holidaysList.remove(dateString);
 		try {
 			CineplexController.updateHolidayList();

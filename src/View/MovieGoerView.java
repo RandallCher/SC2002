@@ -1,7 +1,6 @@
 package View;
 
-import java.util.Scanner;
-
+import static Controller.InputController.readUserChoice; 
 import View.MovieGoer.*;
 
 /**
@@ -15,22 +14,15 @@ public class MovieGoerView extends View {
                     + "2: List movies\n"
                     + "3: List top 5 ranking movies\n"
                     + "4: View booking history\n"
-                    + "5: Exit\n\n"
+                    + "5: Back to previous page\n\n"
                     + "Enter your choice: ");
-            Scanner scan = new Scanner(System.in);
-            int choice;
-            try {
-                choice = scan.nextInt();
-
-            } catch (Exception e) {
-                System.out.println("Invalid input. Try again.");
-                break;
-            }
+ 
+            int choice = readUserChoice(5, 1);
+    
             switch (choice) {
                 case 1:
                     MovieListingsView movielistings = new MovieListingsView();
                     movielistings.searchMovie();
-
                     break;
                 case 2:
                     movielistings = new MovieListingsView();
@@ -43,12 +35,10 @@ public class MovieGoerView extends View {
                 case 4:
                     navigateNextView(this, new BookingHistoryView());
                     break;
-                case 5:
+                default:
                     this.end();
                     break;
 
-                default:
-                    System.out.println("Invalid input. Try again.");
             }
         }
     }
