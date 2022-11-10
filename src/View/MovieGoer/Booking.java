@@ -12,7 +12,7 @@ import Model.Parameters.AgeGroup;
 import java.text.SimpleDateFormat;
 import java.util.Scanner;
 
-import static Controller.IOController.*;
+import static Controller.InputController.*;
 import static Controller.CineplexController.*;
 
 public class Booking extends View{

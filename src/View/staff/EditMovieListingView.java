@@ -67,7 +67,7 @@ public class EditMovieListingView extends View {
 			}
 		} else {
 			for (Movie movie : movieListing) {
-				System.out.println(movie.getTitle() + IOController.generateSpaces(40 - movie.getTitle().length())
+				System.out.println(movie.getTitle() + InputController.generateSpaces(40 - movie.getTitle().length())
 						+ movie.getMovieStatus().toString());
 			}
 		}
@@ -118,7 +118,7 @@ public class EditMovieListingView extends View {
 		}
 		while (true) {
 			System.out.print("Enter movie status ('coming soon', 'now showing' or 'end of showing'): ");
-			movieStatus = IOController.readMovieStatus(scan.nextLine());
+			movieStatus = InputController.readMovieStatus(scan.nextLine());
 			if (movieStatus == null) {
 				System.out.println("Invalid input. Try again.");
 				continue;
@@ -127,7 +127,7 @@ public class EditMovieListingView extends View {
 		}
 		while (true) {
 			System.out.print("Enter age restriction (G, PG, PG13, NC16, M18, R21): ");
-			ageRestriction = IOController.readAgeRestriction(scan.nextLine());
+			ageRestriction = InputController.readAgeRestriction(scan.nextLine());
 			if (ageRestriction == null) {
 				System.out.println("Invalid input. Try again.");
 				continue;
@@ -218,7 +218,7 @@ public class EditMovieListingView extends View {
 					break;
 				case 5:
 					System.out.print("Enter movie status ('coming soon', 'now showing' or 'end of showing'): ");
-					MovieStatus movieStatus = IOController.readMovieStatus(scan.nextLine());
+					MovieStatus movieStatus = InputController.readMovieStatus(scan.nextLine());
 					if (movieStatus == null) {
 						System.out.println("Invalid input. Try again.");
 						break;
@@ -232,7 +232,7 @@ public class EditMovieListingView extends View {
 					break;
 				case 6:
 					System.out.print("Enter age restriction (G, PG, PG13, NC16, M18, R21): ");
-					AgeRestriction ageRestriction = IOController.readAgeRestriction(scan.nextLine().toUpperCase());
+					AgeRestriction ageRestriction = InputController.readAgeRestriction(scan.nextLine().toUpperCase());
 					movie.setAgeRestrictions(ageRestriction);
 					System.out.println("Change successful.");
 					break;

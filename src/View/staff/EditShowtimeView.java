@@ -8,7 +8,7 @@ import java.util.Date;
 import java.util.Scanner;
 
 import Controller.CineplexController;
-import Controller.IOController;
+import Controller.InputController;
 import Model.Cinema;
 import Model.Movie;
 import Model.Showtime;
@@ -52,7 +52,7 @@ public class EditShowtimeView extends View {
 					+ "7: Exit\n\n"
 					+ "Please enter your choice: ");
 			int choice;
-			choice = IOController.readUserChoice(7, 1);
+			choice = InputController.readUserChoice(7, 1);
 			switch (choice) {
 				case 1:
 					displayShowtimes(movie);
@@ -134,7 +134,7 @@ public class EditShowtimeView extends View {
 			System.out.println("Invalid cinema code.");
 			return;
 		}
-		Date time = IOController.readDateMMddkkmm("Enter time in format 'MM-dd HH:mm': ");
+		Date time = InputController.readDateMMddkkmm("Enter time in format 'MM-dd HH:mm': ");
 
 		Showtime newShowtime = new Showtime();
 		newShowtime.setMovie(movie);
@@ -215,7 +215,7 @@ public class EditShowtimeView extends View {
 			}
 			switch (choice) {
 				case 1:
-					Date time = IOController.readDateMMddkkmm("Enter time in format 'MM-dd HH:mm': ");
+					Date time = InputController.readDateMMddkkmm("Enter time in format 'MM-dd HH:mm': ");
 					showtime.setTime(time);
 					System.out.println("Change successful.");
 					break;

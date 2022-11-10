@@ -6,7 +6,7 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 import Controller.CineplexController;
-import Controller.IOController;
+import Controller.InputController;
 import Model.Cinema;
 import Model.Movie;
 import Model.Showtime;
@@ -28,7 +28,7 @@ public class CinemaListView extends View {
 					+ "3: Add a cinema\n"
 					+ "4: Exit\n\n"
 					+ "Please enter your choice: ");
-			int choice = IOController.readUserChoice(4, 1);
+			int choice = InputController.readUserChoice(4, 1);
 			switch (choice) {
 				case 1:
 					displayCineplexList(scan);
@@ -73,7 +73,7 @@ public class CinemaListView extends View {
 		// Get cineplex
 		displayCineplexList(scan);
 		System.out.print("Enter cineplex id to view cinemas: ");
-		int cineplexID = IOController.readUserChoice(Cineplex.values().length, 1);
+		int cineplexID = InputController.readUserChoice(Cineplex.values().length, 1);
 		Cineplex cineplex = Cineplex.values()[cineplexID - 1];
 
 		// Display cinemas in cineplex
@@ -98,7 +98,7 @@ public class CinemaListView extends View {
 		displayCineplexList(scan);
 
 		System.out.print("Enter index of cineplex to add cinema: ");
-		int index = IOController.readUserChoice(Cineplex.values().length, 1);
+		int index = InputController.readUserChoice(Cineplex.values().length, 1);
 		Cineplex cineplex = Cineplex.values()[index];
 
 		System.out.print("Enter cinema code of new cinema: ");
@@ -129,7 +129,7 @@ public class CinemaListView extends View {
 		}
 
 		System.out.print("Enter base ticket price for this cinema: ");
-		double basePrice = IOController.readDouble();
+		double basePrice = InputController.readDouble();
 
 		try {
 			CineplexController.addCinema(new Cinema(cineplex, isPlat, is3D, code, basePrice));
