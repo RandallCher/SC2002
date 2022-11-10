@@ -1,14 +1,12 @@
 package View.MovieGoer;
-
+import Controller.CineplexController;
 import Model.*;
-import Model.Cinema;
-import Model.Customer;
-import Model.Holiday;
-import Model.Movie;
-import Model.Seat;
-import Model.Showtime;
-import View.View;
 
+
+import View.View.*;
+import View.MovieGoerView;
+import View.View;
+import Model.Showtime;
 import Model.Parameters.AgeGroup;
 
 import java.text.SimpleDateFormat;
@@ -33,7 +31,7 @@ public class Booking extends View{
 		basePrice = seat.getShowtime().getCinema().getBasePrice();
 
 	}
-	/** Method displays the menu if booking is not finished
+/** Method displays the menu if booking is not finished
 	 *
 	 */
 	public void start() {
@@ -59,7 +57,7 @@ public class Booking extends View{
 				break;
 		}
 	}
-	/** Method helps compute price depending on weekday/weekend and holiday
+/** Method helps compute price depending on weekday/weekend and holiday
 	 *
 	 */
 	private void computeBasePrice() {
@@ -79,7 +77,7 @@ public class Booking extends View{
 
 		}
 	}
-	/** Method displays the details of the movie booking
+/** Method displays the details of the movie booking
 	 *
 	 */
 	private void printBookingDetail() {
@@ -100,6 +98,7 @@ public class Booking extends View{
 	 *
 	 */
 	private void promptCustomerInformation() {
+		AgeGroup ageGroup = AgeGroup.ADULT;
 		Scanner sc = new Scanner(System.in);
 		System.out.println("Enter your name:");
 		String name = sc.nextLine();
@@ -112,7 +111,6 @@ public class Booking extends View{
 		System.out.println("2. Adult");
 		System.out.println("3. Elderly ");
 		int input = sc.nextInt();
-		AgeGroup ageGroup = null;
 		switch (input){
 			case 1: ageGroup = AgeGroup.CHILD;
 				break;
@@ -122,18 +120,18 @@ public class Booking extends View{
 				break;
 		}
 
+		// Create customer object
+		Customer customer = new Customer(name, mobile, email, ageGroup);
 
-		Customer moviegoer = new Customer(name, mobile, email, ageGroup);
-
-
+		// proceed to payment
 		bookingFinished = true;
-		navigateNextView(this, new Payment(moviegoer, seat, basePrice));
+		navigateNextView(this, new Payment(customer, seat, basePrice));
 	}
-	/** Gets last view before current view
-	 *
-	 */
+
 	protected void destroy() {
-		getPrevView();
+		((MovieListingsView)(prevView.prevView)).start(
+				getMovieListing().get(getMovieListing().indexOf(
+						seat.getShowtime().getMovie())));
 	}
 
 }
