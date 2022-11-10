@@ -1,7 +1,5 @@
 package Model;
 
-import java.io.Serializable;
-import java.util.Calendar;
 import java.util.Date;
 //import java.util.GregorianCalendar;
 //import java.util.Locale;
@@ -11,7 +9,7 @@ import java.util.Date;
  *  This class get details about Holidays, particulatly holiday rates
  **/ 
 
-public class Holiday implements Serializable{
+public class Holiday implements SerializableModel{
 
 	private String name;
 	private Date date;

@@ -1,15 +1,14 @@
 package Model;
 //do serializable
 import Model.Parameters.*;
-import java.io.Serializable;
 import java.util.*;
-
 import Controller.CineplexController;
+
+
 /**
  *  This class get details about a movie
  **/ 
-
-public class Movie implements Serializable{
+public class Movie implements SerializableModel{
 
 	public static int price;
 	private String title;

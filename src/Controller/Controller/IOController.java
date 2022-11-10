@@ -91,32 +91,6 @@ public class IOController implements Controller {
 		return s.toString();
 	}
 
-	/**
-	 * This method reads an email address from an input
-	 * 
-	 * @param message message(s) to be shown to the user.
-	 * @return the input from std input with email format
-	 */
-	public static String readEmail(String... message) {
-		// TODO - check if this method is necessary, delete if no
-
-		for (String s : message)
-			System.out.println(s);
-		Scanner sc = new Scanner(System.in);
-		String input = sc.nextLine();
-
-		// REGEX pattern for email
-		Pattern Email = Pattern.compile(
-				"^[_A-Za-z0-9-\\+]+(\\.[_A-Za-z0-9-]+)*@" +
-						"[A-Za-z0-9-]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{2,})$");
-		Matcher matcher = Email.matcher(input);
-		if (matcher.matches())
-			return input;
-		else {
-			System.out.println("Email address is not valid. Please try again");
-			return readEmail(message);
-		}
-	}
 
 	/**
 	 * This method adds linebreaks for a string when its length exceeds a certain

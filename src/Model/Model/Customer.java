@@ -7,7 +7,7 @@ import Model.Parameters.AgeGroup;
  **/ 
 
 //do serializable
-public class Customer {
+public class Customer implements SerializableModel {
 
 	private String name;
 	private String mobile;

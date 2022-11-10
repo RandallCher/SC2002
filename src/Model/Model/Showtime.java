@@ -3,13 +3,12 @@ package Model;
 import java.util.*;
 
 import Controller.IOController;
-import Controller.IOController.*;
 
 /**
  *  This class get details about a the showtime venue
  **/ 
 
-public class Showtime {
+public class Showtime implements SerializableModel {
 
 	private Date time;
 

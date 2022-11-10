@@ -1,11 +1,10 @@
 package Model;
-import java.io.Serializable;
 import java.util.*;
 
 /**
  *  This class allows to write in reviews and retrieve reviews
  **/ 
-public class Review implements Serializable{
+public class Review implements SerializableModel{
 
 	private Date date;
 	private int rating;
