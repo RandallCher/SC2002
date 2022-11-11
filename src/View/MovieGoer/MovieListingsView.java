@@ -75,13 +75,9 @@ public class MovieListingsView extends View {
 		if (!topFive || CineplexController.getSystem().get("movieOrder")) {// rating
 
 			for (int i = 0; i < movieList.size(); i++) {
-				if(movieList.get(i).getMovieStatus()!= MovieStatus.END_OF_SHOWING){
-					System.out.printf("%-1s. %-40s %-15s [%-2s]\n", i + 1 - back, movieList.get(i).getTitle(),
+					System.out.printf("%-1s. %-40s %-15s [%-2s]\n", i + 1 , movieList.get(i).getTitle(),
 							movieList.get(i).getMovieStatus(), getMovieRating(movieList.get(i)));
-				}
-				else{
-					back++;
-				}
+
 
 			}
 		} else {
@@ -98,7 +94,7 @@ public class MovieListingsView extends View {
 		if( input > movieList.size()){
 			navigateNextView(this, new MovieGoerView());
 		}
-		Movie movie = movieList.get(input - 1);
+		Movie movie = movieList.get(input -1);
 
 		displayMovieDetails(movie);
 
@@ -112,7 +108,7 @@ public class MovieListingsView extends View {
 	 */
 
 	public void displayMovieDetails(Movie movie) {
-		System.out.println("Movie details");
+		System.out.println("Movie details for: "+movie.getTitle());
 		System.out.println("1. Display showtime");
 		System.out.println("2. View or write reviews");
 		System.out.println("3. Restart from main menu");
