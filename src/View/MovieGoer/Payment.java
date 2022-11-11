@@ -13,7 +13,6 @@ import View.View;
 
 
 import java.lang.Math;
-import java.util.Scanner;
 
 public class Payment extends View{
 
