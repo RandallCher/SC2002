@@ -11,7 +11,7 @@ import Model.Cinema;
 import Model.Parameters.Cineplex;
 
 /**
- * This
+ * This class shows the information about the cineplex and its cinemas.
  */
 public class EditCinemaListView extends View {
 
@@ -90,7 +90,7 @@ public class EditCinemaListView extends View {
 	/**
 	 * This method allows staff to add a new cinema.
 	 * 
-	 * @param scan
+	 * @param scan is the scanner
 	 */
 	public void addCinema(Scanner scan) {
 		displayCineplexList(scan);
