@@ -2,15 +2,12 @@ package View.staff;
 
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Scanner;
 
-import javax.swing.text.AbstractDocument.Content;
 
 import Controller.*;
 import View.View;
 import Model.*;
 import Model.Parameters.AgeRestriction;
-import Model.Parameters.Cineplex;
 import Model.Parameters.MovieStatus;
 
 /**
@@ -24,20 +21,13 @@ public class EditMovieListingView extends View {
 					+ "1: List all current movies\n"
 					+ "2: Add new movie\n"
 					+ "3: Modify existing movie's details\n"
-					+ "4: Exit\n\n"
+					+ "4: Back to previous page\n\n"
 					+ "Enter your choice: ");
-			Scanner scan = new Scanner(System.in);
-			int choice = 0;
-			try {
-				choice = scan.nextInt();
-			} catch (Exception e) {
-				System.out.println("Invalid input. Try again.\n");
-				continue;
-			}
+			int choice = InputController.readUserChoice(4, 1);
+			
 			switch (choice) {
 				case 1:
-					System.out.print("Display full movie details? (Y/N) ");
-					boolean displayAll = scan.next().toUpperCase().equals("Y");
+					boolean displayAll =InputController.confirmation("Display full movie details? (Y/N) ");
 					this.displayMovieListings(displayAll);
 					break;
 				case 2:
@@ -46,11 +36,8 @@ public class EditMovieListingView extends View {
 				case 3:
 					this.updateMovieDetail();
 					break;
-				case 4:
+				default: 
 					this.end();
-					break;
-				default:
-					System.out.println("Invalid input. Try again.\n");
 			}
 		}
 	}
@@ -82,11 +69,12 @@ public class EditMovieListingView extends View {
 				+ "Movie sypnopsis: " + movie.getSypnosis() + "\n"
 				+ "Movie cast: ");
 		ArrayList<String> cast = movie.getCast();
-		int i;
+		int i; 
 		for (i = 0; i < cast.size() - 1; i++) {
 			System.out.print(cast.get(i) + ", ");
 		}
 		System.out.println(cast.get(i));
+
 		System.out.print("Movie status: " + movie.getMovieStatus().toString() + "\n"
 				+ "Movie age restriction: " + movie.getAgeRestriction().toString() + "\n"
 				+ "Movie sales: " + movie.getSales() + "\n\n");
@@ -96,44 +84,36 @@ public class EditMovieListingView extends View {
 	 * This method creates a new movie listing
 	 */
 	private void addMovieListing() {
-		String title, director, synopsis, castString;
+		String title, director, synopsis, castString, movieStatusString, ageRestrictionString;
 		String[] castArray;
 		ArrayList<String> cast = new ArrayList<>();
 		MovieStatus movieStatus;
 		AgeRestriction ageRestriction;
-		Scanner scan = new Scanner(System.in);
 
-		System.out.print("Enter new movie title: ");
-		title = scan.nextLine();
-		System.out.print("Enter movie director: ");
-		director = scan.nextLine();
-		System.out.print("Enter movie synopsis: ");
-		synopsis = scan.nextLine();
-		System.out.print("Enter movie cast (separate names with a comma): ");
-		castString = scan.nextLine();
+		title = InputController.readString("Enter new movie title: ");
+		director = InputController.readString("Enter movie director: ");
+		synopsis = InputController.readString("Enter movie synopsis: ");
+		castString = InputController.readString("Enter movie cast (separate names with a comma): ");
 		castArray = castString.split(",");
 		for (int i = 0; i < castArray.length; i++) {
-			// System.out.println(castArray[i].trim());
-			cast.add(castArray[i].trim());
+			cast.add(castArray[i].strip());
 		}
 		while (true) {
-			System.out.print("Enter movie status ('coming soon', 'now showing' or 'end of showing'): ");
-			movieStatus = InputController.readMovieStatus(scan.nextLine());
+			movieStatusString = InputController.readString("Enter movie status ('coming soon', 'now showing' or 'end of showing'): "); 
+			movieStatus = InputController.readMovieStatus(movieStatusString);
 			if (movieStatus == null) {
 				System.out.println("Invalid input. Try again.");
-				continue;
-			} else
-				break;
+			} else break;
 		}
+
 		while (true) {
-			System.out.print("Enter age restriction (G, PG, PG13, NC16, M18, R21): ");
-			ageRestriction = InputController.readAgeRestriction(scan.nextLine());
+			ageRestrictionString = InputController.readString("Enter age restriction (G, PG, PG13, NC16, M18, R21): "); 
+			ageRestriction = InputController.readAgeRestriction(ageRestrictionString);
 			if (ageRestriction == null) {
 				System.out.println("Invalid input. Try again.");
-				continue;
-			} else
-				break;
+			} else break;
 		}
+		
 		Movie movie = new Movie();
 		movie.setAgeRestrictions(ageRestriction);
 		movie.setCast(cast);
@@ -147,30 +127,25 @@ public class EditMovieListingView extends View {
 			System.out.println("Successfully added new movie.");
 			displayMovieDetails(movie);
 		} catch (IOException e) {
-			System.out.println(e.getMessage());
 			System.out.println("Failed to add new movie.");
+			System.out.println(e.getMessage());
 		}
 	}
+
 
 	/**
 	 * This method updates a movie listing's details
 	 */
 	private void updateMovieDetail() {
-		System.out.print("Enter title of movie to be updated: ");
-		Scanner scan = new Scanner(System.in);
-		String oriTitle = scan.nextLine();
-		ArrayList<Movie> movieList = CineplexController.getMovieListing();
+		String oriTitle = InputController.readString("Enter title of movie to be updated: ");
+		ArrayList<Movie> movieList = CineplexController.getMovieByTitle(oriTitle);
 
-		Movie movie = null;
-		for (Movie aMovie : movieList) {
-			if (oriTitle.toUpperCase().equals(aMovie.getTitle().toUpperCase())) {
-				movie = aMovie;
-			}
-		}
-		if (movie == null) {
+		if (movieList.isEmpty()){
 			System.out.println("No movie by that title exists.\n");
 			return;
 		}
+		
+		Movie movie = movieList.get(0); 
 		boolean isDone = false;
 		while (!isDone) {
 			System.out.print("**** Updating Movie Details ****\n"
@@ -181,65 +156,64 @@ public class EditMovieListingView extends View {
 					+ "5: Update movie status\n"
 					+ "6: Update age restriction\n"
 					+ "7: Remove movie listing\n"
-					+ "8: Exit\n\n"
+					+ "8: Go back\n\n"
 					+ "Enter your choice: ");
-			int choice = scan.nextInt();
+			int choice = InputController.readUserChoice(8, 1);
 			switch (choice) {
 				case 1:
-					System.out.print("Enter updated movie title: ");
-					String newTitle = scan.nextLine();
+					String newTitle = InputController.readString("Enter updated movie title: "); 
 					movie.setTitle(newTitle);
 					System.out.println("Change successful.");
 					break;
 				case 2:
-					System.out.print("Enter updated movie director: ");
-					String director = scan.nextLine();
+					String director = InputController.readString("Enter updated movie director: ");
 					movie.setDirector(director);
 					System.out.println("Change successful.");
 					break;
 				case 3:
-					System.out.print("Enter updated movie sypnopsis: ");
-					String sypnopsis = scan.nextLine();
+					String sypnopsis = InputController.readString("Enter updated movie sypnopsis: ");
 					movie.setSypnosis(sypnopsis);
 					System.out.println("Change successful.");
 					break;
 				case 4:
-					System.out.print("Enter updated cast list (separate names with a comma): ");
 					ArrayList<String> cast = new ArrayList<>();
-					movie.setCast(cast);
-					Scanner commaScan = new Scanner(System.in);
-					commaScan.useDelimiter(",");
-					while (scan.hasNext()) {
-						String castMember = commaScan.next().trim();
-						cast.add(castMember);
+					String castString = InputController.readString("Enter movie cast (separate names with a comma): ");
+					String[] castArray = castString.split(",");
+					for (int i = 0; i < castArray.length; i++) {
+						cast.add(castArray[i].strip());
 					}
 					movie.setCast(cast);
 					System.out.println("Change successful.");
 					break;
+
 				case 5:
-					System.out.print("Enter movie status ('coming soon', 'now showing' or 'end of showing'): ");
-					MovieStatus movieStatus = InputController.readMovieStatus(scan.nextLine());
-					if (movieStatus == null) {
-						System.out.println("Invalid input. Try again.");
-						break;
-					} else if (movieStatus.equals(MovieStatus.END_OF_SHOWING)) {
-						System.out.println("Setting to 'end of showing' will remove the listing.");
-						removeListing(movie);
-					} else {
-						movie.setMovieStatus(movieStatus);
+					MovieStatus movieStatus; 
+					while (true) {
+						String movieStatusString = InputController.readString("Enter movie status ('coming soon', 'now showing' or 'end of showing'): "); 
+						movieStatus = InputController.readMovieStatus(movieStatusString);
+						if (movieStatus == null) {
+							System.out.println("Invalid input. Try again.");
+						} else break;
 					}
+					movie.setMovieStatus(movieStatus);
 					System.out.println("Change successful.");
 					break;
 				case 6:
-					System.out.print("Enter age restriction (G, PG, PG13, NC16, M18, R21): ");
-					AgeRestriction ageRestriction = InputController.readAgeRestriction(scan.nextLine().toUpperCase());
+					AgeRestriction ageRestriction; 
+					while (true) {
+						String ageRestrictionString = InputController.readString("Enter age restriction (G, PG, PG13, NC16, M18, R21): "); 
+						ageRestriction = InputController.readAgeRestriction(ageRestrictionString);
+						if (ageRestriction == null) {
+							System.out.println("Invalid input. Try again.");
+						} else break;
+					}
 					movie.setAgeRestrictions(ageRestriction);
 					System.out.println("Change successful.");
 					break;
 				case 7:
 					removeListing(movie);
 					break;
-				case 8:
+				default:
 					try {
 						CineplexController.updateMovieListing();
 						System.out.println("Successfully updated movie listing.");
@@ -249,8 +223,6 @@ public class EditMovieListingView extends View {
 					} finally {
 						isDone = true;
 					}
-				default:
-					System.out.println("Invalid input. Try again.");
 			}
 		}
 		return;
@@ -263,8 +235,8 @@ public class EditMovieListingView extends View {
 	 */
 	private void removeListing(Movie movie) {
 		System.out.println("Confirm the removal of " + movie.getTitle() + "? (Y to confirm)");
-		Scanner scan = new Scanner(System.in);
-		if (!scan.next().toUpperCase().equals("Y")) {
+		boolean confirmation = InputController.confirmation("Confirm the removal of " + movie.getTitle() + "? (Y to confirm)");
+		if (!confirmation) {
 			System.out.println("Listing is not removed.");
 			return;
 		}

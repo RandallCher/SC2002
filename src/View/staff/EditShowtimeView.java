@@ -1,18 +1,15 @@
 package View.staff;
 
 import View.View;
-import View.MovieGoer.MovieListingsView;
 
 import java.util.ArrayList;
 import java.util.Date;
-import java.util.Scanner;
 
 import Controller.CineplexController;
 import Controller.InputController;
 import Model.Cinema;
 import Model.Movie;
 import Model.Showtime;
-import Model.Parameters.Cineplex;
 
 /**
  * This class represents the View for editing the showtimes for a movie
@@ -20,122 +17,112 @@ import Model.Parameters.Cineplex;
 public class EditShowtimeView extends View {
 
 	public void start() {
+
 		// get movie choice
-		Scanner scan = new Scanner(System.in);
-		Movie movie = getMovieChoice(scan);
+		Movie movie = getMovieChoice();
 		while (movie == null) {
-			System.out.print("No movie by that title exists. Try again? (Y to confirm) ");
-			if (scan.nextLine().toUpperCase().equals("Y")) {
-				System.out.print("Need a list of all movie listings? (Y/N) ");
-				String needList = scan.nextLine().toUpperCase();
-				if (needList.equals("Y")) {
+			boolean reTry = InputController.confirmation("No movie by that title exists. Try again? (Y to confirm) ");
+
+			if (reTry) {
+				boolean showList = InputController.confirmation("Need a list of all movie listings? (Y/N) "); 
+				if (showList) {
 					EditMovieListingView listingsView = new EditMovieListingView();
 					listingsView.displayMovieListings(false);
 					System.out.println();
-				} else if (!needList.equals("N"))
-					System.out.println("Invalid input. Try again.");
-				movie = getMovieChoice(scan);
+				} 
+				movie = getMovieChoice();
+
 			} else
 				this.end();
 		}
 
 		// Showtime menu
 		while (true) {
-			System.out.println("Editing showtimes for '" + movie.getTitle() + "'");
+			System.out.println("\nEditing showtimes for '" + movie.getTitle() + "'");
 			System.out.print("------------- EDIT SHOWTIME MENU -------------\n"
 					+ "1: View all showtimes\n"
-					+ "2: View/modify cinema list\n"
-					+ "3: Add a showtime\n"
-					+ "4: Remove a showtime\n"
-					+ "5: Modify a showtime\n"
-					+ "6: Change movie\n"
-					+ "7: Exit\n\n"
+					+ "2: Add a showtime\n"
+					+ "3: Remove a showtime\n"
+					+ "4: Modify a showtime\n"
+					+ "5: Change movie\n"
+					+ "6: Back to previous page\n\n"
 					+ "Please enter your choice: ");
 			int choice;
-			choice = InputController.readUserChoice(7, 1);
+			choice = InputController.readUserChoice(6, 1);
 			switch (choice) {
 				case 1:
 					displayShowtimes(movie);
-					break;
+					break; 
 				case 2:
-					System.out.println();
-					navigateNextView(this, new CinemaListView());
-					break;
-				case 3:
 					addShowtime(movie);
 					break;
-				case 4:
+				case 3:
 					removeShowtime(movie);
 					break;
-				case 5:
+				case 4:
 					modifyShowtime(movie);
 					break;
-				case 6:
-					getMovieChoice(scan);
+				case 5:
+				//to test this part 
+					this.start();
 					break;
-				case 7:
+				default:
 					this.end();
-					break;
 			}
 		}
 	}
 
 	/**
-	 * This method reads user input for a movie choice
+	 * This method reads user input for movie choice in order to update showtimes. 
 	 * 
-	 * @param scan
-	 * @return movie chosen
+	 * @return movie c
 	 */
-	private Movie getMovieChoice(Scanner scan) {
-		System.out.print("Enter movie title to view/modify showtimes: ");
-		String movieTitle = scan.nextLine();
-		ArrayList<Movie> movieList = CineplexController.getMovieListing();
+	private Movie getMovieChoice() {
+		String movieTitle = InputController.readString("Enter movie title to view/modify showtimes: ");
+		ArrayList<Movie> movieList =CineplexController.getMovieByTitle(movieTitle);
 
-		Movie movie = null;
-		for (Movie aMovie : movieList) {
-			if (movieTitle.toUpperCase().equals(aMovie.getTitle().toUpperCase())) {
-				movie = aMovie;
-				return movie;
-			}
-		}
-		return movie;
+		if (movieList == null) {
+			return null;
+		} 
+		return movieList.get(0); //return the first movie with the input name
 	}
 
 	/**
 	 * This method displays all showtimes for a given movie in a given cinema.
 	 * 
-	 * @param movie
+	 * @param movie movie to display show time for
+	 * @returns {@code ArrayList<Showtime>} array of showtimes
 	 */
-	private void displayShowtimes(Movie movie) {
+	private ArrayList<Showtime> displayShowtimes(Movie movie) {
 		System.out.println("**** Showtimes for " + movie.getTitle().trim() + " ****");
 		ArrayList<Showtime> showtimeList = CineplexController.getMovieShowtime(movie);
-		if (showtimeList.isEmpty()) {
+		if (showtimeList == null) {
 			System.out.println("There are no existing showtimes.");
-			return;
+			return null; 
 		}
 		for (int i = 1; i <= showtimeList.size(); i++) {
-			System.out.println(i + ": " + showtimeList.get(i).getDetails());
+			System.out.println(i + ": " + showtimeList.get(i-1).getDetails());
 		}
-		return;
+		return showtimeList;
 	}
+
 
 	/**
 	 * This method adds a new showtime.
 	 * 
-	 * @param movie
+	 * @param movie the movie to add showtime for
 	 */
 	private void addShowtime(Movie movie) {
-		Scanner scan = new Scanner(System.in);
 		System.out.println("**** Adding Showtime ****");
-		System.out.print("Enter cinema code: ");
-		String code = scan.nextLine();
+
+		String code = InputController.readString("Enter cinema code: ");
 		Cinema cinema = CineplexController.getCinemaByCode(code);
 		if (cinema == null) {
 			System.out.println("Invalid cinema code.");
 			return;
 		}
-		Date time = InputController.readDateMMddkkmm("Enter time in format 'MM-dd HH:mm': ");
 
+		Date time = InputController.readDateMMddkkmm("Enter time in format 'MM-dd HH:mm': ");
 		Showtime newShowtime = new Showtime();
 		newShowtime.setMovie(movie);
 		newShowtime.setTime(time);
@@ -148,27 +135,27 @@ public class EditShowtimeView extends View {
 		}
 	}
 
+
+
 	/**
 	 * This method removes a showtime.
 	 * 
-	 * @param movie
+	 * @param movie the movie to remove showtime for 
 	 */
 	private void removeShowtime(Movie movie) {
-		// TODO - implement removeShowtime
-		Scanner scan = new Scanner(System.in);
-		ArrayList<Showtime> showtimeList = CineplexController.getMovieShowtime(movie);
-		displayShowtimes(movie);
-		System.out.print("Enter index of showtime to delete: ");
-		int index;
-		try {
-			index = scan.nextInt();
-		} catch (Exception e) {
-			System.out.println("Invalid input.");
-			return;
-		}
+		System.out.println("**** Removing Showtime ****");
+
+		ArrayList<Showtime> showtimeList = displayShowtimes(movie);;
+		
+		if (showtimeList == null) return; //do nothing and return to caller if showtimes for movie do not exist
+
+		System.out.print("Enter index of a showtime to delete: ");
+		int index = InputController.readUserChoice(showtimeList.size(),1);
+		
+
 		Showtime showtime = showtimeList.get(index - 1);
-		System.out.print("Are you sure you want to delete showtime: " + showtime.getDetails() + "? (Y to confirm) ");
-		if (scan.next().equals("Y")) {
+		boolean confirm = InputController.confirmation("Are you sure you want to delete showtime: " + showtime.getDetails() + "? (Y to confirm) "); 
+		if (confirm) {
 			try {
 				CineplexController.removeShowtime(showtime);
 				System.out.println("Successfully removed showtime.");
@@ -182,37 +169,27 @@ public class EditShowtimeView extends View {
 	/**
 	 * This method modifies an existing showtime.
 	 * 
-	 * @param movie
+	 * @param movie the movie to modify the showtime for 
 	 */
 	private void modifyShowtime(Movie movie) {
-		Scanner scan = new Scanner(System.in);
-		ArrayList<Showtime> showtimeList = CineplexController.getMovieShowtime(movie);
+		System.out.println("**** Modifying showtime ****"); 
 
-		System.out.println("**** Modifying showtime ****");
-		displayShowtimes(movie);
+		ArrayList<Showtime> showtimeList = displayShowtimes(movie);
+		if (showtimeList == null) return; //do nothing and return to caller if showtimes for movie do not exist
+
 		System.out.print("Enter index of showtime to modify: ");
-		int index;
-		try {
-			index = scan.nextInt();
-		} catch (Exception e) {
-			System.out.println("Invalid input.");
-			return;
-		}
+		int index = InputController.readUserChoice(showtimeList.size(),1);
+		
 		Showtime showtime = showtimeList.get(index - 1);
 		boolean isDone = false;
 		while (!isDone) {
 			System.out.print("What would you like to modify?\n"
 					+ "1: Time of showtime\n"
-					+ "2: Cinema\n"
-					+ "3: Quit\n\n"
+					+ "2: Cinema of showtime\n"
+					+ "3: Go back\n\n"
 					+ "Enter your choice: ");
-			int choice;
-			try {
-				choice = scan.nextInt();
-			} catch (Exception e) {
-				System.out.println("Invalid input.");
-				return;
-			}
+			int choice = InputController.readUserChoice(3,1);
+			
 			switch (choice) {
 				case 1:
 					Date time = InputController.readDateMMddkkmm("Enter time in format 'MM-dd HH:mm': ");
@@ -220,16 +197,17 @@ public class EditShowtimeView extends View {
 					System.out.println("Change successful.");
 					break;
 				case 2:
-					System.out.print("Enter cinema code: ");
-					String code = scan.nextLine();
+					String code = InputController.readString("Enter cinema code: ");
 					Cinema cinema = CineplexController.getCinemaByCode(code);
 					if (cinema == null) {
 						System.out.println("Invalid cinema code.");
 					}
+					else {
 					showtime.setCinema(cinema);
 					System.out.println("Change successful.");
+					}
 					break;
-				case 3:
+				default:
 					isDone = true;
 					try {
 						CineplexController.updateMovieShowtime();
@@ -237,9 +215,7 @@ public class EditShowtimeView extends View {
 					} catch (Exception e) {
 						System.out.println("Failed to modify showtime.");
 					}
-					break;
-				default:
-					System.out.println("Invalid input. Try again.");
+	
 			}
 		}
 	}

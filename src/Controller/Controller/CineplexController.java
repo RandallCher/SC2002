@@ -382,7 +382,7 @@ public final class CineplexController extends DataController {
      * This method is to get the search result by matching the movie title.
      * 
      * @param title the movie title to be searched
-     * @return the movie list {@code ArrayList<Movie>}
+     * @return the list of movies {@code ArrayList<Movie>} whose title contains the searched input.  
      */
     public static ArrayList<Movie> getMovieByTitle(String title) {
         ArrayList<Movie> searchResult = new ArrayList<>();
@@ -390,7 +390,7 @@ public final class CineplexController extends DataController {
             if (movie.getTitle().toUpperCase().contains(title.toUpperCase()))
                 searchResult.add(movie);
         }
-        return searchResult;
+        return (searchResult.isEmpty() ? null : searchResult);
     }
 
     /**
