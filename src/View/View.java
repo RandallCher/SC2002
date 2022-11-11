@@ -40,8 +40,8 @@ public class View {
 	/**
 	 * This method navigates the user from one View to the next
 	 * 
-	 * @param cur
-	 * @param movieListingsView
+	 * @param cur : this passes the current view the user is on.
+	 * @param movieListingsView : this passes the next view we want to navigate to.
 	 */
 	protected void navigateNextView(View cur, View next) {
 		next.prevView = cur;
