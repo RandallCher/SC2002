@@ -31,7 +31,7 @@ public class MovieListingsView extends View {
 		String lowerCaseTitle = movieTitle.toLowerCase();
 		ArrayList<Movie> foundMovies = getMovieByTitle(lowerCaseTitle);
 
-		if (foundMovies.isEmpty()) {
+		if (foundMovies == null) {
 			System.out.println("No such movie found!");
 			return;
 		} else {
