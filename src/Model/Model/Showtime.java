@@ -5,7 +5,7 @@ import java.util.*;
 import Controller.InputController;
 
 /**
- *  This class get details about a the showtime venue
+ *  This class implements details about the showtime venue
  **/ 
 
 public class Showtime implements SerializableModel {

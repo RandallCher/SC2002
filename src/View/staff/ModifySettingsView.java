@@ -8,6 +8,10 @@ import View.*;
 import Controller.*;
 import Model.*;
 
+
+/**
+ * This class represents the view for modifying the system settings 
+ */
 public class ModifySettingsView extends View {
 
 	public void start() {
