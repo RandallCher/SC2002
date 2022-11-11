@@ -43,7 +43,8 @@ public class Payment extends View{
 		this.basePrice = basePrice;
 		this.customer = customer;
 		this.seat = seat;
-		this.GST = GST;
+		generateTID();
+		computeTotalPrice();
 	}
 
 
