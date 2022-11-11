@@ -11,8 +11,7 @@ import Model.Seat;
 import Model.Parameters.AgeGroup;
 import View.View;
 
-import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
+
 import java.lang.Math;
 import java.util.Scanner;
 
@@ -46,6 +45,9 @@ public class Payment extends View{
 		this.seat = seat;
 		this.GST = GST;
 	}
+
+
+
 	/**
 	 *	Method generates a transaction ID
 	 */
@@ -53,6 +55,8 @@ public class Payment extends View{
 
 		TID = UUID.randomUUID().toString();
 	}
+
+
 	/**
 	 *	Method generates total price on movie based on age of the moviegoer
 	 */
@@ -64,6 +68,8 @@ public class Payment extends View{
 		totalPrice = Math.round(basePrice + GST);
 
 	}
+
+
 	/**
 	 *	Displays the menu for payment details
 	 */
@@ -80,8 +86,7 @@ public class Payment extends View{
 		System.out.println("1. Confirm your payment");
 		System.out.println("2. Go back");
 
-		Scanner sc = new Scanner(System.in);
-		int input = readUserChoice(1,2);
+		int input = readUserChoice(2,1);
 		switch (input) {
 			case 1:
 				addBooking();

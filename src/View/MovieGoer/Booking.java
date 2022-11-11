@@ -111,7 +111,7 @@ public class Booking extends View{
 		System.out.println("1. Child");
 		System.out.println("2. Adult");
 		System.out.println("3. Elderly ");
-		int input = readUserChoice(1,3);
+		int input = readUserChoice(3,1);
 		switch (input){
 			case 1: ageGroup = AgeGroup.CHILD;
 				break;

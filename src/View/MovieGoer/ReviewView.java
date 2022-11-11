@@ -1,13 +1,11 @@
 package View.MovieGoer;
 
-import Controller.CineplexController.*;
 import Model.Movie;
 import Model.Review;
 import View.View;
 
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Scanner;
 
 import static Controller.InputController.*;
 import static Controller.CineplexController.addReview;
@@ -48,12 +46,11 @@ public class ReviewView extends View {
 			System.out.println("----Movie is coming soon----");
 			destroy();
 		}
-		Scanner sc = new Scanner(System.in);
 		System.out.println("1. Write a review");
 		System.out.println("2. View all reviews");
 		System.out.println("3. Go back")
 		;
-		int input = readUserChoice(1,3);
+		int input = readUserChoice(3,1);
 		switch (input) {
 			case 1:
 				addNewReview();
@@ -70,11 +67,10 @@ public class ReviewView extends View {
 	 *	The method is for users to add a review to the movie
 	 */
 	private void addNewReview() throws IOException {
-		Scanner sc = new Scanner(System.in);
 		System.out.println("Write Your Review:");
 		String name = readString("Please enter your name:");
 		System.out.println("Please enter your rating between 1 and 5:");
-		int rating = readUserChoice(1,5);
+		int rating = readUserChoice(5,1);
 		String content = readString("Please enter your review:");
 		Review review = new Review(this.movie, name, rating, content);
 		addReview(movie,review);

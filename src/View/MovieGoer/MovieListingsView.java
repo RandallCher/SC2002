@@ -87,7 +87,7 @@ public class MovieListingsView extends View {
 			}
 		}
 		System.out.println((movieList.size()+1-back)  +". Go Back");
-		int input = readUserChoice(1,movieList.size());
+		int input = readUserChoice(movieList.size(),1);
 		//Option to go Back
 		if( input > movieList.size()){
 			navigateNextView(this, new MovieGoerView());
@@ -111,7 +111,7 @@ public class MovieListingsView extends View {
 		System.out.println("2. View or write reviews");
 		System.out.println("3. Restart from main menu");
 
-		int input = readUserChoice(1,3);
+		int input = readUserChoice(3,1);
 		switch (input) {
 			case 1:
 				if(movie.getMovieStatus()==MovieStatus.END_OF_SHOWING||movie.getMovieStatus()==MovieStatus.COMING_SOON){
