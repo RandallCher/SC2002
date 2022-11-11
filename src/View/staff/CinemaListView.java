@@ -99,7 +99,7 @@ public class CinemaListView extends View {
 
 		System.out.print("Enter index of cineplex to add cinema: ");
 		int index = InputController.readUserChoice(Cineplex.values().length, 1);
-		Cineplex cineplex = Cineplex.values()[index];
+		Cineplex cineplex = Cineplex.values()[index-1];
 
 		System.out.print("Enter cinema code of new cinema: ");
 		String code = scan.nextLine();
