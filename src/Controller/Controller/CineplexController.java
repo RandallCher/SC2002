@@ -390,9 +390,7 @@ public final class CineplexController extends DataController {
         for (Movie movie : movieListing) {
             if (movie.getTitle().toUpperCase().contains(title.toUpperCase()))
                 searchResult.add(movie);
-            else
-                nothing.add(movie);
-                nothing.clear();
+ 
         }
         return (searchResult.isEmpty() ? nothing : searchResult);
     }
