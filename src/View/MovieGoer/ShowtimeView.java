@@ -150,9 +150,9 @@ public class ShowtimeView extends View {
 	private void displaySeat(Seat[][] seats) {
 		System.out.println("                    -------Screen------");
 		System.out.println("     1  2  3  4  5  6  7  8     9 10 11 12 13 14 15 16");
-		for (int row = 0; row <= 8; row++) {
+		for (int row = 8; row >=0; row--) {
 			System.out.print(row + 1 + "   ");
-			for (int column = 0; column <= 16; column++) {
+			for (int column = 0; column >=16; column++) {
 				if (seats[row][column] == null){
 					System.out.print("   ");
 				}

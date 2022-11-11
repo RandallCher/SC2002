@@ -16,9 +16,45 @@ public class Showtime implements SerializableModel {
 	private Cinema cinema;
 	private Seat[][] seats;
 
-	interface initializeSeat{
-		public void CinemaSeating();
+    // total cols
+	private static int COLS = 17;
+	// total rows
+	private static int ROWS = 9;
+
+	public Showtime() {
+        
+		seats = new Seat[ROWS][COLS];
+		CinemaSeating();
 	}
+
+	public void CinemaSeating() {
+		int Col = 0;
+		int Row = 0;
+
+		for (Col = 0; Col < 2; Col++) {
+			for (Row = 0; Row < 5; Row++) {
+				seats[Row][Col] = new Seat(Row, Col, this);
+			}
+		}
+
+		for (Col = 2; Col < 8; Col++) {
+			for (Row = 0; Row < 9; Row++) {
+				seats[Row][Col] = new Seat(Row, Col, this);
+			}
+		}
+		// aisle
+		for (Col = 9; Col < 11; Col++) {
+			for (Row = 1; Row < 9; Row++) {
+				seats[Row][Col] = new Seat(Row, Col, this);
+			}
+		}
+		for (Col = 11; Col < 17; Col++) {
+			for (Row = 0; Row < 9; Row++) {
+				seats[Row][Col] = new Seat(Row, Col, this);
+			}
+		}
+	}
+	
 	/**
 	 * 
 	 * @param row
