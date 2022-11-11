@@ -9,7 +9,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Scanner;
 
-
+import static Controller.InputController.*;
 import static Controller.CineplexController.addReview;
 import static Controller.CineplexController.getReviewList;
 import static Model.Parameters.MovieStatus.*;
@@ -53,8 +53,8 @@ public class ReviewView extends View {
 		System.out.println("2. View all reviews");
 		System.out.println("3. Go back")
 		;
-		int choice = sc.nextInt();
-		switch (choice) {
+		int input = readUserChoice(1,3);
+		switch (input) {
 			case 1:
 				addNewReview();
 				break;
@@ -72,13 +72,10 @@ public class ReviewView extends View {
 	private void addNewReview() throws IOException {
 		Scanner sc = new Scanner(System.in);
 		System.out.println("Write Your Review:");
-		System.out.println("Please enter your name:");
-		String name = sc.nextLine();
+		String name = readString("Please enter your name:");
 		System.out.println("Please enter your rating between 1 and 5:");
-		int rating = sc.nextInt();
-		sc.nextLine(); //flush out the space character
-		System.out.println("Please enter your review:");
-		String content = sc.nextLine();
+		int rating = readUserChoice(1,5);
+		String content = readString("Please enter your review:");
 		Review review = new Review(this.movie, name, rating, content);
 		addReview(movie,review);
 	}
@@ -88,7 +85,7 @@ public class ReviewView extends View {
 	 */
 	private void listReview() {
 
-		
+
 		System.out.println(movie.getTitle() +" reviews.");
 
 		ArrayList<Review> reviewList = getReviewList(movie);
@@ -100,12 +97,12 @@ public class ReviewView extends View {
 				System.out.println("  Comments: " + reviewList.get(i).getContent());
 				System.out.println();
 			}
-		} 
-		
-		else {
-				System.out.println("This movie does not have any reviews yet."); 
 		}
-		
+
+		else {
+			System.out.println("This movie does not have any reviews yet.");
+		}
+
 	}
 	/**
 	 *	Gets last view before current view

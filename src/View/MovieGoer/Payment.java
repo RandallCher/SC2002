@@ -3,7 +3,7 @@ import java.io.IOException;
 import java.util.UUID;
 
 import Controller.CineplexController;
-import Model.*;
+import static Controller.InputController.*;
 import Model.BookingHistory;
 import Model.Customer;
 import Model.Movie;
@@ -81,8 +81,8 @@ public class Payment extends View{
 		System.out.println("2. Go back");
 
 		Scanner sc = new Scanner(System.in);
-		int choice = sc.nextInt();
-		switch (choice) {
+		int input = readUserChoice(1,2);
+		switch (input) {
 			case 1:
 				addBooking();
 				break;
