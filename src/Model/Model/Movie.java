@@ -26,7 +26,6 @@ public class Movie implements SerializableModel{
 	public void setTitle(String title){
 		this.title = title;
 	}
-
 	public void setDirector(String director){
 		this.director = director;
 	}

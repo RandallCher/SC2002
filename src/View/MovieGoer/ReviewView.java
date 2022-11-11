@@ -45,7 +45,7 @@ public class ReviewView extends View {
 	 */
 	private void displayMenu() throws IOException {
 		if (movie.getMovieStatus() == COMING_SOON) {
-			System.out.println("----Movie is coming soon----");
+			System.out.println("Movie is coming soon");
 			destroy();
 		}
 		Scanner sc = new Scanner(System.in);
