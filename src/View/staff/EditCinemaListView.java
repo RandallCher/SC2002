@@ -11,7 +11,7 @@ import Model.Cinema;
 import Model.Parameters.Cineplex;
 
 /**
- * This class 
+ * This class shows the information about the cineplex and its cinemas.
  */
 public class EditCinemaListView extends View {
 

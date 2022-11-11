@@ -33,7 +33,7 @@ public class MovieListingsView extends View {
 		String lowerCaseTitle = movieTitle.toLowerCase();
 		ArrayList<Movie> foundMovies = getMovieByTitle(lowerCaseTitle);
 
-		if (foundMovies.size() == 0) {
+		if (foundMovies == null) {
 			System.out.println("No such movie found!");
 			return;
 		} else {
@@ -116,8 +116,14 @@ public class MovieListingsView extends View {
 		int input = sc.nextInt();
 		switch (input) {
 			case 1:
-				navigateNextView(this, new ShowtimeView(movie));
-				break;
+				if(movie.getMovieStatus()==MovieStatus.END_OF_SHOWING||movie.getMovieStatus()==MovieStatus.COMING_SOON){
+					System.out.println("----Movie is not currently showing----");
+					System.out.println("Restarting from MOVIE GOER MENU");
+					break;
+				}else{
+					navigateNextView(this, new ShowtimeView(movie));
+					break;
+				}
 			case 2:
 				navigateNextView(this, new ReviewView(movie));
 				break;

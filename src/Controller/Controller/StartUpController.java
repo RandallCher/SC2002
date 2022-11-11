@@ -5,7 +5,9 @@ import Model.Parameters.*;
 import Model.*; 
 import java.io.File; 
 import java.io.IOException;
-import java.util.*; 
+import java.util.*;
+import java.util.spi.CalendarDataProvider; 
+import java.util.Calendar;
 
 
 /**
@@ -187,8 +189,18 @@ public final class StartUpController extends DataController{
     private static void CreateDefaultHolidayList() throws IOException {
         File f = new File(HOLIDAYLIST_FILENAME);
         f.createNewFile();
-        
         //TODO ADD HOLIDAYS 
+        ArrayList<Holiday> holidaysList = new ArrayList<>();
+
+         //Holiday
+         
+        // String holidayName1 = ("Christmas");
+        // Date date = InputController.readDateddMMyyyy("Enter Holiday Date in dd/MM/yyyy: ");
+        // Holiday holiday1 = new Holiday(holidayName1, date);
+         //holidaysList.add(holiday1);
+
+        // writeFile(HOLIDAYLIST_FILENAME,holidaysList);
+ 
     }
 
     /**

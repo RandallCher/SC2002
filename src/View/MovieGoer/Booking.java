@@ -1,5 +1,6 @@
 package View.MovieGoer;
 import Controller.CineplexController;
+import Controller.InputController;
 import Model.*;
 
 
