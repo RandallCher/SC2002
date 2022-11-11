@@ -50,7 +50,7 @@ public class Booking extends View{
 		printBookingDetail();
 		System.out.println("1. Press 1 to enter your information");
 		System.out.println("2. Press 2 to go back");
-		int input = readUserChoice(1,2);
+		int input = readUserChoice(2,1);
 		switch (input){
 			case 1: promptCustomerInformation();
 				break;
@@ -95,6 +95,8 @@ public class Booking extends View{
 		System.out.println("Seat: Row " + (seat.getRow()+1) + " Col " + seat.getCol());
 		System.out.println("Ticket price (excluding GST): " + Math.round(basePrice));
 	}
+
+
 	/** Method asks for customers information
 	 *
 	 */
@@ -132,5 +134,4 @@ public class Booking extends View{
 				getMovieListing().get(getMovieListing().indexOf(
 						seat.getShowtime().getMovie())));
 	}
-
-}}
+}

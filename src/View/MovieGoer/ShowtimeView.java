@@ -114,11 +114,9 @@ public class ShowtimeView extends View {
 		System.out.println(showtime.toString());
 		displaySeat(showtime.getSeats());
 		System.out.println("1. Select seat");
-		System.out.println("2. Go back");
-		int input = readUserChoice(2,1);
 		System.out.println("2. Show Prices");
 		System.out.println("3. Go back");
-		int input = readUserChoice(1,3);
+		int input = readUserChoice(3,1);
 		switch (input) {
 			case 1:
 				displaySeat(showtime.getSeats());
@@ -183,10 +181,9 @@ public class ShowtimeView extends View {
 
 
 		System.out.println("Enter row number");
-		Scanner sc = new Scanner(System.in);
-		int row = sc.nextInt();
+		int row = readUserChoice(9,1);
 		System.out.println("Enter column number");
-		int column = sc.nextInt();
+		int column = readUserChoice(16,1);
 
 		if (showtime.getSeatAt(row, column).isBooked()) {
 			System.out.println("Seat is unavailable");
