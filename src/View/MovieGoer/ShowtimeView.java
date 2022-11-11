@@ -1,22 +1,28 @@
 package View.MovieGoer;
 
-
 import Model.Movie;
 import Model.Seat;
 import Model.Showtime;
 import View.View;
-import Model.*;
 import java.text.SimpleDateFormat;
 
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.Calendar;
+import java.util.Scanner; 
 
+import static Controller.InputController.readUserChoice; 
+import static Controller.InputController.isEqualDate; 
 import static Controller.CineplexController.getMovieShowtime;
-import static Controller.InputController.*;
+
+
+/**
+ * This class represents the view for movie showtimes 
+ */
 public class ShowtimeView extends View {
 
 	private Movie movie;
+
 
 	/**
 	 *	The class is to help display showtimes of a movie
@@ -39,8 +45,8 @@ public class ShowtimeView extends View {
 		Date tomorrow = calendar.getTime();
 		calendar.add(Calendar.DAY_OF_YEAR, 1);
 		Date dayAfter = calendar.getTime();
-		Date showDate = null;
-
+		Date chosenDate = null;
+		
 		SimpleDateFormat simpleDateFormat = new SimpleDateFormat("dd/MM/yyyy");
 		String todayStr = simpleDateFormat.format(today).toString();
 		String tomorrowStr = simpleDateFormat.format(tomorrow).toString();
@@ -50,27 +56,28 @@ public class ShowtimeView extends View {
 		System.out.println("2. " + tomorrowStr);
 		System.out.println("3. " + afterStr);
 		System.out.println("4. Go back");
-		int input = readUserChoice(1,3);
-		switch (input) {
+
+		int choice = readUserChoice(4, 1);
+		switch (choice) {
 			case 1:
-				showDate = today;
+				chosenDate = today;
 				break;
 			case 2:
-				showDate = tomorrow;
+				chosenDate = tomorrow;
 				break;
 			case 3:
-				showDate = dayAfter;
+				chosenDate = dayAfter;
 				break;
-			case 4:
-				end();;
+			default:
+				this.end();
 		}
+
 		ArrayList<Showtime> showList = new ArrayList<>();
-		if (getMovieShowtime(movie) != null) {
-			for(int i = 0; i<getMovieShowtime(movie).size();i++){
-				if (showDate.compareTo(getMovieShowtime(movie).get(i).getTime()) != 0){
-					showList.add(getMovieShowtime(movie).get(i));
-
-
+		ArrayList<Showtime> allShowtimes = getMovieShowtime(movie); 
+		if (allShowtimes != null) {
+			for(Showtime curShowtime: allShowtimes){
+				if (isEqualDate(curShowtime.getTime(), chosenDate)){
+					showList.add(curShowtime);
 				}
 			}
 		}
@@ -88,10 +95,10 @@ public class ShowtimeView extends View {
 			for(int i = 0; i<showList.size();i++){
 				System.out.println(i+1 + showList.get(i).toString());
 			}
-			
+			choice = readUserChoice(showList.size(), 1); 
 		}
 
-		Showtime showtime = showList.get(input - 1);
+		Showtime showtime = showList.get(choice - 1);
 		displayShowtimeDetailMenu(showtime);
 
 
@@ -100,13 +107,15 @@ public class ShowtimeView extends View {
 
 
 	/**
-	 *	Method is to help with booking a seat for the selected showtime and movie
+	 *	This method is to help with booking of a seat for the selected showtime and movie
 	 * @param showtime	the showtime of the movie
 	 */
 	private void displayShowtimeDetailMenu(Showtime showtime) {
 		System.out.println(showtime.toString());
 		displaySeat(showtime.getSeats());
 		System.out.println("1. Select seat");
+		System.out.println("2. Go back");
+		int input = readUserChoice(2,1);
 		System.out.println("2. Show Prices");
 		System.out.println("3. Go back");
 		int input = readUserChoice(1,3);
@@ -164,8 +173,6 @@ public class ShowtimeView extends View {
 			System.out.println();
 		}
 		System.out.println();
-		readString("Press ENTER to continue:");
-
 	}
 
 	/**
