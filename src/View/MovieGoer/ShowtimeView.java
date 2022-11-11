@@ -11,7 +11,6 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.Calendar;
-import java.util.Scanner;
 
 import static Controller.CineplexController.getMovieShowtime;
 import static Controller.InputController.*;
@@ -51,7 +50,6 @@ public class ShowtimeView extends View {
 		System.out.println("2. " + tomorrowStr);
 		System.out.println("3. " + afterStr);
 		System.out.println("4. Go back");
-		Scanner sc = new Scanner(System.in);
 		int input = readUserChoice(1,3);
 		switch (input) {
 			case 1:
@@ -87,10 +85,10 @@ public class ShowtimeView extends View {
 		}
 		else{
 			System.out.println("Please choose a timeslot");
-			input = sc.nextInt();
 			for(int i = 0; i<showList.size();i++){
 				System.out.println(i+1 + showList.get(i).toString());
 			}
+			
 		}
 
 		Showtime showtime = showList.get(input - 1);
@@ -111,7 +109,6 @@ public class ShowtimeView extends View {
 		System.out.println("1. Select seat");
 		System.out.println("2. Show Prices");
 		System.out.println("3. Go back");
-		Scanner sc = new Scanner(System.in);
 		int input = readUserChoice(1,3);
 		switch (input) {
 			case 1:
