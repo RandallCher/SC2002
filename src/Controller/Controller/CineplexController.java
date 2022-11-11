@@ -386,13 +386,13 @@ public final class CineplexController extends DataController {
      */
     public static ArrayList<Movie> getMovieByTitle(String title) {
         ArrayList<Movie> searchResult = new ArrayList<>();
-        ArrayList<Movie> nothing = new ArrayList<>();
+        
         for (Movie movie : movieListing) {
             if (movie.getTitle().toUpperCase().contains(title.toUpperCase()))
                 searchResult.add(movie);
  
         }
-        return (searchResult.isEmpty() ? nothing : searchResult);
+        return (searchResult.isEmpty() ? null : searchResult);
     }
 
     /**
