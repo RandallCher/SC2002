@@ -382,19 +382,17 @@ public final class CineplexController extends DataController {
      * This method is to get the search result by matching the movie title.
      * 
      * @param title the movie title to be searched
-     * @return the list of movies {@code ArrayList<Movie>} whose title contains the searched input.  
+     * @return the list of movies {@code ArrayList<Movie>} whose title contains the searched input, returns   an empty array if no movie with input title exists. 
      */
     public static ArrayList<Movie> getMovieByTitle(String title) {
         ArrayList<Movie> searchResult = new ArrayList<>();
-        ArrayList<Movie> nothing = new ArrayList<>();
         for (Movie movie : movieListing) {
             if (movie.getTitle().toUpperCase().contains(title.toUpperCase()))
                 searchResult.add(movie);
-            else
-                nothing.add(movie);
-                nothing.clear();
         }
-        return (searchResult.isEmpty() ? nothing : searchResult);
+
+        //if no movie is found, seachResult will be empty. So just return it
+        return searchResult;
     }
 
     /**

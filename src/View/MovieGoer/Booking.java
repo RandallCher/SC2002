@@ -1,11 +1,12 @@
 package View.MovieGoer;
-import Controller.CineplexController;
-import Controller.InputController;
+
 import Model.*;
 
-
-import View.View.*;
-import View.MovieGoerView;
+import Model.Cinema;
+import Model.Customer;
+import Model.Holiday;
+import Model.Movie;
+import Model.Seat;
 import View.View;
 import Model.Showtime;
 import Model.Parameters.AgeGroup;
@@ -32,7 +33,7 @@ public class Booking extends View{
 		basePrice = seat.getShowtime().getCinema().getBasePrice();
 
 	}
-/** Method displays the menu if booking is not finished
+	/** Method displays the menu if booking is not finished
 	 *
 	 */
 	public void start() {
@@ -49,8 +50,7 @@ public class Booking extends View{
 		printBookingDetail();
 		System.out.println("1. Press 1 to enter your information");
 		System.out.println("2. Press 2 to go back");
-		Scanner sc = new Scanner(System.in);
-		int input = sc.nextInt();
+		int input = readUserChoice(1,2);
 		switch (input){
 			case 1: promptCustomerInformation();
 				break;
@@ -58,7 +58,7 @@ public class Booking extends View{
 				break;
 		}
 	}
-/** Method helps compute price depending on weekday/weekend and holiday
+	/** Method helps compute price depending on weekday/weekend and holiday
 	 *
 	 */
 	private void computeBasePrice() {
@@ -78,7 +78,7 @@ public class Booking extends View{
 
 		}
 	}
-/** Method displays the details of the movie booking
+	/** Method displays the details of the movie booking
 	 *
 	 */
 	private void printBookingDetail() {
@@ -101,17 +101,15 @@ public class Booking extends View{
 	private void promptCustomerInformation() {
 		AgeGroup ageGroup = AgeGroup.ADULT;
 		Scanner sc = new Scanner(System.in);
-		System.out.println("Enter your name:");
-		String name = sc.nextLine();
-		System.out.println("Enter your mobile number:");
-		String mobile = sc.nextLine();
-		System.out.println("Enter your Email address:");
-		String email = sc.nextLine();
+
+		String name = readString("Enter your name:");
+		String mobile = readString("Enter your mobile number:");
+		String email = readString("Enter your Email address:");
 		System.out.println("Select your age group: ");
 		System.out.println("1. Child");
 		System.out.println("2. Adult");
 		System.out.println("3. Elderly ");
-		int input = sc.nextInt();
+		int input = readUserChoice(1,3);
 		switch (input){
 			case 1: ageGroup = AgeGroup.CHILD;
 				break;
@@ -135,4 +133,4 @@ public class Booking extends View{
 						seat.getShowtime().getMovie())));
 	}
 
-}
+}}

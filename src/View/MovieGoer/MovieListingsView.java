@@ -11,8 +11,7 @@ import java.util.*;
 import java.util.ArrayList;
 
 import static Controller.CineplexController.*;
-import static Controller.CineplexController.getMovieRating;
-import static Controller.CineplexController.getTop5MovieListing;
+import static Controller.InputController.*;
 
 /**
  * Create class to help with displaying movie listing
@@ -23,17 +22,16 @@ public class MovieListingsView extends View {
 	 * Method searches movie based on user input and displays result
 	 */
 	protected void start(Movie movie) {
-        displayMovieDetails(movie);
-    }
+		displayMovieDetails(movie);
+	}
 
 	public void searchMovie() {
 		Scanner sc = new Scanner(System.in);
-		System.out.println("Enter Movie Title: ");
-		String movieTitle = sc.nextLine();
+		String movieTitle = readString("Enter Movie Title: ");
 		String lowerCaseTitle = movieTitle.toLowerCase();
 		ArrayList<Movie> foundMovies = getMovieByTitle(lowerCaseTitle);
 
-		if (foundMovies == null) {
+		if (foundMovies.isEmpty()) {
 			System.out.println("No such movie found!");
 			return;
 		} else {
@@ -49,7 +47,7 @@ public class MovieListingsView extends View {
 
 	/**
 	 * //Method displays all movies if false and displays top 5 movies if true
-	 * 
+	 *
 	 * @param topFive shows top5 movies if true else shows list of all movies
 	 */
 
@@ -75,8 +73,8 @@ public class MovieListingsView extends View {
 		if (!topFive || CineplexController.getSystem().get("movieOrder")) {// rating
 
 			for (int i = 0; i < movieList.size(); i++) {
-					System.out.printf("%-1s. %-40s %-15s [%-2s]\n", i + 1 , movieList.get(i).getTitle(),
-							movieList.get(i).getMovieStatus(), getMovieRating(movieList.get(i)));
+				System.out.printf("%-1s. %-40s %-15s [%-2s]\n", i + 1 , movieList.get(i).getTitle(),
+						movieList.get(i).getMovieStatus(), getMovieRating(movieList.get(i)));
 
 
 			}
@@ -89,7 +87,7 @@ public class MovieListingsView extends View {
 			}
 		}
 		System.out.println((movieList.size()+1-back)  +". Go Back");
-		int input = sc.nextInt();
+		int input = readUserChoice(1,movieList.size());
 		//Option to go Back
 		if( input > movieList.size()){
 			navigateNextView(this, new MovieGoerView());
@@ -103,7 +101,7 @@ public class MovieListingsView extends View {
 
 	/**
 	 * This method is to display the details of a movie
-	 * 
+	 *
 	 * @param movie the movie selected
 	 */
 
@@ -112,8 +110,8 @@ public class MovieListingsView extends View {
 		System.out.println("1. Display showtime");
 		System.out.println("2. View or write reviews");
 		System.out.println("3. Restart from main menu");
-		Scanner sc = new Scanner(System.in);
-		int input = sc.nextInt();
+
+		int input = readUserChoice(1,3);
 		switch (input) {
 			case 1:
 				if(movie.getMovieStatus()==MovieStatus.END_OF_SHOWING||movie.getMovieStatus()==MovieStatus.COMING_SOON){

@@ -77,11 +77,11 @@ public class EditShowtimeView extends View {
 	 * 
 	 * @return movie that is chosen, or null if no movie with the entered title exists. 
 	 */
-	private Movie getMovieChoice() {
+	 private Movie getMovieChoice() {
 		String movieTitle = InputController.readString("Enter movie title to view/modify showtimes: ");
 		ArrayList<Movie> movieList =CineplexController.getMovieByTitle(movieTitle);
 
-		if (movieList == null) {
+		if (movieList.isEmpty()) {
 			return null;
 		} 
 		return movieList.get(0); //return the first movie with the input name
