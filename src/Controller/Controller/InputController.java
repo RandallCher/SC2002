@@ -43,29 +43,31 @@ public class InputController implements Controller {
 	/**
 	 * This method is to ask user for confirmation from std input
 	 * 
-	 * @param message message(s) to be shown to the user
+	 * @param message message to be shown to the user
 	 * @return true if the input is 'y' or 'Y'. false otherwise
 	 */
-	public static boolean confirmation(String... message) {
-		for (String s : message)
-			System.out.println(s);
+	public static boolean confirmation(String message) {
+		System.out.println(message);
+
 		Scanner sc = new Scanner(System.in);
 		if (sc.next().toUpperCase().equals("Y"))
 			return true;
+		else if (sc.next().toUpperCase().equals('N'))
+			return false; 
 		else
-			return false;
+			System.out.println("Invalid input. Please try again");
+			return confirmation(message); 
 	}
 
 
 	/**
 	 * This method is to read a string from a std input.
 	 * 
-	 * @param message message(s) to be shown to the user.
+	 * @param message message to be shown to the user.
 	 * @return the input from std input.
 	 */
-	public static String readString(String... message) {
-		for (String s : message)
-			System.out.println(s);
+	public static String readString(String message) {
+		System.out.println(message);
 
 		Scanner sc = new Scanner(System.in);
 		return sc.nextLine().strip();
@@ -74,12 +76,11 @@ public class InputController implements Controller {
 	/**
 	 * This method is to read a double from a std input.
 	 * 
-	 * @param message message(s) to be shown to the user.
+	 * @param message message to be shown to the user.
 	 * @return the input from std input.
 	 */
-	public static double readDouble(String... message) {
-		for (String s : message)
-			System.out.println(s);
+	public static double readDouble(String message) {
+		System.out.println(message);
 
 		Scanner sc = new Scanner(System.in);
 		double input;
@@ -148,10 +149,10 @@ public class InputController implements Controller {
 	 * This method reads a string from std input in MM-dd kk:mm format and converts
 	 * it to a Date
 	 * 
-	 * @param message the message(s) to be shown to the user
+	 * @param message the message to be shown to the user
 	 * @return {@code Date} after formatting
 	 */
-	public static Date readDateMMddkkmm(String... message) {
+	public static Date readDateMMddkkmm(String message) {
 		SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd kk:mm");
 		try {
 			String input = readString(message); // call readString method to read a string
@@ -168,10 +169,10 @@ public class InputController implements Controller {
 	 * This method reads a string from std input in MM-dd format and converts it to
 	 * a Date
 	 * 
-	 * @param message the message(s) to be shown to the user
+	 * @param message the message to be shown to the user
 	 * @return {@code Date} after formatting
 	 */
-	public static Date readDateddMMyyyy(String... message) {
+	public static Date readDateddMMyyyy(String message) {
 		Date date;
 		try {
 			String input = readString(message);

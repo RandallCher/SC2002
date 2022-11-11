@@ -10,6 +10,8 @@ import Model.*;
 import Model.Parameters.AgeRestriction;
 import Model.Parameters.MovieStatus;
 
+
+
 /**
  * This class represents the View for staff to edit movie listings
  */
@@ -44,6 +46,7 @@ public class EditMovieListingView extends View {
 
 	/**
 	 * This method displays all movie titles and statuses
+	 * @param displayAll boolean value that indicates whether to display all details of a movie
 	 */
 	protected void displayMovieListings(boolean displayAll) {
 		ArrayList<Movie> movieListing = CineplexController.getMovieListing();
@@ -62,6 +65,7 @@ public class EditMovieListingView extends View {
 
 	/**
 	 * This method displays full movie details for a movie
+	 * @param movie the movie to display the details 
 	 */
 	protected void displayMovieDetails(Movie movie) {
 		System.out.print("Title: " + movie.getTitle() + "\n"
@@ -81,7 +85,7 @@ public class EditMovieListingView extends View {
 	}
 
 	/**
-	 * This method creates a new movie listing
+	 * This method creates a new movie listing stores it inside the file 
 	 */
 	private void addMovieListing() {
 		String title, director, synopsis, castString, movieStatusString, ageRestrictionString;
@@ -231,11 +235,11 @@ public class EditMovieListingView extends View {
 	/**
 	 * This method removes a movie listing and all cinema show times
 	 * 
-	 * @param movie
+	 * @param movie movie to be removed
 	 */
 	private void removeListing(Movie movie) {
-		System.out.println("Confirm the removal of " + movie.getTitle() + "? (Y to confirm)");
-		boolean confirmation = InputController.confirmation("Confirm the removal of " + movie.getTitle() + "? (Y to confirm)");
+		System.out.println("Confirm the removal of " + movie.getTitle() + "? (Y/N)");
+		boolean confirmation = InputController.confirmation("Confirm the removal of " + movie.getTitle() + "? (Y/N)");
 		if (!confirmation) {
 			System.out.println("Listing is not removed.");
 			return;

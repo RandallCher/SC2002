@@ -21,7 +21,7 @@ public class EditShowtimeView extends View {
 		// get movie choice
 		Movie movie = getMovieChoice();
 		while (movie == null) {
-			boolean reTry = InputController.confirmation("No movie by that title exists. Try again? (Y to confirm) ");
+			boolean reTry = InputController.confirmation("No movie by that title exists. Try again? (Y/N) ");
 
 			if (reTry) {
 				boolean showList = InputController.confirmation("Need a list of all movie listings? (Y/N) "); 
@@ -75,7 +75,7 @@ public class EditShowtimeView extends View {
 	/**
 	 * This method reads user input for movie choice in order to update showtimes. 
 	 * 
-	 * @return movie c
+	 * @return movie that is chosen, or null if no movie with the entered title exists. 
 	 */
 	private Movie getMovieChoice() {
 		String movieTitle = InputController.readString("Enter movie title to view/modify showtimes: ");
@@ -154,7 +154,7 @@ public class EditShowtimeView extends View {
 		
 
 		Showtime showtime = showtimeList.get(index - 1);
-		boolean confirm = InputController.confirmation("Are you sure you want to delete showtime: " + showtime.getDetails() + "? (Y to confirm) "); 
+		boolean confirm = InputController.confirmation("Are you sure you want to delete showtime: " + showtime.getDetails() + "? (Y/N) "); 
 		if (confirm) {
 			try {
 				CineplexController.removeShowtime(showtime);

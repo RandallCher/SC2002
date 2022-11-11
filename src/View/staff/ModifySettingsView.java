@@ -47,7 +47,7 @@ public class ModifySettingsView extends View {
 		System.out.println("**** Configuring Top Five Movies ****");
 	
 
-		// if file exists but empty file default value for movieOrder will be true
+		// if file exists but empty, default value for movieOrder will be true
 		if (CineplexController.getSystem().get("movieOrder") == null) {
 			CineplexController.getSystem().put("movieOrder", true);
 			try {
@@ -62,13 +62,13 @@ public class ModifySettingsView extends View {
 		boolean isRatingRanked = CineplexController.getSystem().get("movieOrder");
 		if (isRatingRanked) {
 			System.out.print(
-					"Top Five movies are currently ranked by ratings.\nChange to ranking by sales? (Y to confirm) ");
+					"Top Five movies are currently ranked by ratings.\nChange to ranking by sales? (Y/N) ");
 		} else {
 			System.out.print(
-					"Top Five movies are currently ranked by sales.\nChange to ranking by ratings? (Y to confirm) ");
+					"Top Five movies are currently ranked by sales.\nChange to ranking by ratings? (Y/N) ");
 		}
 
-		boolean choice = InputController.confirmation();
+		boolean choice = InputController.confirmation(null);
 		if (!choice) {
 			System.out.println("No changes made.\n");
 			return;
@@ -90,11 +90,11 @@ public class ModifySettingsView extends View {
 	protected void configureHolidays() {
 		while (true) {
 			System.out.println("**** Configuring Holidays ****");
-			System.out.print("1: View current holidays\n"
-					+ "2: Add a holiday\n"
-					+ "3: Remove a holiday\n"
-					+ "4: Exit\n\n"
-					+ "Enter your choice: ");
+			System.out.print( "1: View current holidays\n"
+							+ "2: Add a holiday\n"
+							+ "3: Remove a holiday\n"
+							+ "4: Go back\n\n"
+							+ "Enter your choice: ");
 			int choice = InputController.readUserChoice(4, 1);
 			switch (choice) {
 				case 1:

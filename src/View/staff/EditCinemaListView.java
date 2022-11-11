@@ -11,7 +11,7 @@ import Model.Cinema;
 import Model.Parameters.Cineplex;
 
 /**
- * This
+ * This class 
  */
 public class EditCinemaListView extends View {
 
@@ -29,13 +29,13 @@ public class EditCinemaListView extends View {
 			int choice = InputController.readUserChoice(4, 1);
 			switch (choice) {
 				case 1:
-					displayCineplexList(scan);
+					displayCineplexList();
 					break;
 				case 2:
-					displayCinemasByCineplex(scan);
+					displayCinemasByCineplex();
 					break;
 				case 3:
-					addCinema(scan);
+					addCinema();
 					break;
 				case 4:
 					this.end();
@@ -48,16 +48,13 @@ public class EditCinemaListView extends View {
 
 	/**
 	 * This method displays all cineplexes
-	 * 
-	 * @param scan is the Scanner
 	 */
-	public void displayCineplexList(Scanner scan) {
+	public void displayCineplexList() {
 		System.out.println();
-		int index = 0;
+		int index = 1;
 		System.out.println("**** Cineplex List ****");
 		for (Cineplex c : Cineplex.values()) {
-			index++;
-			System.out.println(index + ": " + c);
+			System.out.println(index++ + ": " + c);
 		}
 		System.out.println();
 	}
@@ -65,19 +62,17 @@ public class EditCinemaListView extends View {
 	/**
 	 * This method displays all cinemas in a cineplex.
 	 * 
-	 * @param scan is the scanner
 	 */
-	public void displayCinemasByCineplex(Scanner scan) {
-		// Get cineplex
-		displayCineplexList(scan);
+	public void displayCinemasByCineplex() {
+		displayCineplexList();
+
 		System.out.print("Enter cineplex id to view cinemas: ");
 		int cineplexID = InputController.readUserChoice(Cineplex.values().length, 1);
 		Cineplex cineplex = Cineplex.values()[cineplexID - 1];
 
-		// Display cinemas in cineplex
 		ArrayList<Cinema> cinemaList = CineplexController.getCinemaList(cineplex);
 		if (cinemaList == null) {
-			System.out.println("No cinema at this cineplex.");
+			System.out.println("No cinemas at this cineplex yet.");
 		} else {
 			for (Cinema cinema : cinemaList) {
 				System.out.print(cinema + "(" + (cinema.isPlatinum() ? "Platinum, " : "")
@@ -88,46 +83,19 @@ public class EditCinemaListView extends View {
 	}
 
 	/**
-	 * This method allows staff to add a new cinema.
-	 * 
-	 * @param scan
+	 * This method adds a new cinema to a cineplex.
 	 */
-	public void addCinema(Scanner scan) {
-		displayCineplexList(scan);
+	public void addCinema() {
+		displayCineplexList();
 
 		System.out.print("Enter index of cineplex to add cinema: ");
 		int index = InputController.readUserChoice(Cineplex.values().length, 1);
 		Cineplex cineplex = Cineplex.values()[index-1];
 
-		System.out.print("Enter cinema code of new cinema: ");
-		String code = scan.nextLine();
-
-		String answer;
-		boolean isPlat;
-		while (true) {
-			System.out.print("Is this a platinum cinema? (Y/N) ");
-			answer = scan.nextLine();
-			if (!answer.equals("Y") && !answer.equals("N")) {
-				System.out.println("Invalid input. Try again.");
-				continue;
-			}
-			isPlat = answer.equals("Y");
-			break;
-		}
-		boolean is3D;
-		while (true) {
-			System.out.print("Is this a 3D cinema? (Y/N) ");
-			answer = scan.nextLine();
-			if (!answer.equals("Y") && !answer.equals("N")) {
-				System.out.println("Invalid input. Try again.");
-				continue;
-			}
-			is3D = answer.equals("Y");
-			break;
-		}
-
-		System.out.print("Enter base ticket price for this cinema: ");
-		double basePrice = InputController.readDouble();
+		String code = InputController.readString("Enter cinema code of new cinema: ");
+		boolean isPlat = InputController.confirmation("Is this a platinum cinema? (Y/N) ");
+		boolean is3D = InputController.confirmation("Is this a 3D cinema? (Y/N) ");
+		double basePrice = InputController.readDouble("Enter base ticket price for this cinema: ");
 
 		try {
 			CineplexController.addCinema(new Cinema(cineplex, isPlat, is3D, code, basePrice));

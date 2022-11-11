@@ -9,6 +9,7 @@ import Controller.CineplexController;
 
 /**
  * This is the main staff view
+ * This basically prints all options for a staff member to select. 
  */
 public class StaffView extends View {
 
