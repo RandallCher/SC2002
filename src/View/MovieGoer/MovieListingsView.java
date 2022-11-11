@@ -98,7 +98,7 @@ public class MovieListingsView extends View {
 		if( input > movieList.size()){
 			navigateNextView(this, new MovieGoerView());
 		}
-		Movie movie = movieList.get(input - 1);
+		Movie movie = movieList.get(input );
 
 		displayMovieDetails(movie);
 
@@ -112,7 +112,7 @@ public class MovieListingsView extends View {
 	 */
 
 	public void displayMovieDetails(Movie movie) {
-		System.out.println("Movie details");
+		System.out.println("Movie details for: "+movie.getTitle());
 		System.out.println("1. Display showtime");
 		System.out.println("2. View or write reviews");
 		System.out.println("3. Restart from main menu");
