@@ -39,6 +39,24 @@ public class InputController implements Controller {
 
 	}
 
+	
+	/**
+	 * This method is to ask user for confirmation from std input
+	 * 
+	 * @param message message(s) to be shown to the user
+	 * @return true if the input is 'y' or 'Y'. false otherwise
+	 */
+	public static boolean confirmation(String... message) {
+		for (String s : message)
+			System.out.println(s);
+		Scanner sc = new Scanner(System.in);
+		if (sc.next().toUpperCase().equals("Y"))
+			return true;
+		else
+			return false;
+	}
+
+
 	/**
 	 * This method is to read a string from a std input.
 	 * 
@@ -166,22 +184,6 @@ public class InputController implements Controller {
 	}
 
 	
-	/**
-	 * This method is to ask user for confirmation from std input
-	 * 
-	 * @param message message(s) to be shown to the user
-	 * @return true if the input is Y. false otherwise
-	 */
-	public static boolean confirmation(String... message) {
-		for (String s : message)
-			System.out.println(s);
-		Scanner sc = new Scanner(System.in);
-		if (sc.next().toUpperCase().equals("Y"))
-			return true;
-		else
-			return false;
-	}
-
 	
 
 	/**

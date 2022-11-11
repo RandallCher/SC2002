@@ -16,7 +16,7 @@ public class ModifySettingsView extends View {
 					+ "1: Configure ticket prices\n"
 					+ "2: Configure holidays\n"
 					+ "3: Configure top five movies\n"
-					+ "4: Exit\n\n"
+					+ "4: Back to previous page\n\n"
 					+ "Enter your choice: ");
 			int choice = InputController.readUserChoice(4,1);
 			
