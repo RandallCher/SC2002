@@ -5,6 +5,7 @@ import View.MovieGoer.*;
 
 /**
  * This is the main movie goer view.
+ * This basically prints all the options for the user to select.
  */
 public class MovieGoerView extends View {
     public void start() {
