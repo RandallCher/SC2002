@@ -4,7 +4,7 @@ import Controller.CineplexController;
 import Model.Parameters;
 import Model.Parameters.MovieStatus;
 import Model.Movie;
-import View.View;
+import View.*;
 
 import java.io.IOException;
 import java.util.*;
@@ -55,46 +55,53 @@ public class MovieListingsView extends View {
 
 	public void displayMovieListings(boolean topFive) {
 		ArrayList<Movie> movieList;
+		int back = 0;
 		Scanner sc = new Scanner(System.in);
 		if (topFive == false) {
 			movieList = getMovieListing();
 
 		} else {
-			System.out.println("Getting top 5 movies"); 
+			System.out.println("Getting top 5 movies");
 			movieList = getTop5MovieListing();
 		}
 		// If no movies go back
-		if(movieList.size() == 0){
+		if(movieList == null){
 			System.out.println("No movies. ");
 			System.out.println("1. Go Back");
 			sc.nextLine();
 			start();
 		}
+
 		if (!topFive || CineplexController.getSystem().get("movieOrder")) {// rating
+
 			for (int i = 0; i < movieList.size(); i++) {
 				if(movieList.get(i).getMovieStatus()!= MovieStatus.END_OF_SHOWING){
-					System.out.printf("%-1s %-40s %-15s [%-2s]\n", i + 1, movieList.get(i).getTitle(),
-						movieList.get(i).getMovieStatus(), getMovieRating(movieList.get(i)));
+					System.out.printf("%-1s. %-40s %-15s [%-2s]\n", i + 1 - back, movieList.get(i).getTitle(),
+							movieList.get(i).getMovieStatus(), getMovieRating(movieList.get(i)));
+				}
+				else{
+					back++;
 				}
 
 			}
 		} else {
 			// sales
 			for (int i = 0; i < movieList.size(); i++) {
-				System.out.printf("%-1s %-40s %-15s [%-2s]\n", i + 1, movieList.get(i).getTitle(),
+				System.out.printf("%-1s %-40s %-15s [%-2s]\n", i + 1 - back, movieList.get(i).getTitle(),
 						movieList.get(i).getMovieStatus(), movieList.get(i).getSales());
 
 			}
 		}
-		System.out.println((movieList.size()+1)  +". Go Back");
+		System.out.println((movieList.size()+1-back)  +". Go Back");
 		int input = sc.nextInt();
 		//Option to go Back
 		if( input > movieList.size()){
-			start();
+			navigateNextView(this, new MovieGoerView());
 		}
-		Movie movie = movieList.get(input - 1);
+		Movie movie = movieList.get(input );
 
 		displayMovieDetails(movie);
+
 
 	}
 
@@ -105,7 +112,7 @@ public class MovieListingsView extends View {
 	 */
 
 	public void displayMovieDetails(Movie movie) {
-		System.out.println("Movie details");
+		System.out.println("Movie details for: "+movie.getTitle());
 		System.out.println("1. Display showtime");
 		System.out.println("2. View or write reviews");
 		System.out.println("3. Restart from main menu");
