@@ -382,7 +382,7 @@ public final class CineplexController extends DataController {
      * This method is to get the search result by matching the movie title.
      * 
      * @param title the movie title to be searched
-     * @return the list of movies {@code ArrayList<Movie>} whose title contains the searched input.  
+     * @return the list of movies {@code ArrayList<Movie>} whose title contains the searched input, returns   an empty array if no movie with input title exists. 
      */
     public static ArrayList<Movie> getMovieByTitle(String title) {
         ArrayList<Movie> searchResult = new ArrayList<>();
