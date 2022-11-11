@@ -15,7 +15,6 @@ import Model.Parameters.Cineplex;
  */
 public class EditCinemaListView extends View {
 
-	private boolean help;
 
 	public void start() {
 		while (true) {
