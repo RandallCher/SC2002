@@ -23,6 +23,10 @@ public class Movie implements SerializableModel{
 	public Movie() {
 		this.sales = 0;
 	}
+	public void setPrice(int price){
+		this.price = price;
+	}
+
 	public void setTitle(String title){
 		this.title = title;
 	}
@@ -72,6 +76,7 @@ public class Movie implements SerializableModel{
 	public MovieStatus getMovieStatus(){
 		return this.movieStatus;
 	}
+
 
 	
 	public String toString() {
