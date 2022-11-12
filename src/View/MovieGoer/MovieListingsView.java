@@ -1,12 +1,10 @@
 package View.MovieGoer;
 
 import Controller.CineplexController;
-import Model.Parameters;
 import Model.Parameters.MovieStatus;
 import Model.Movie;
 import View.*;
 
-import java.io.IOException;
 import java.util.*;
 import java.util.ArrayList;
 
@@ -87,7 +85,7 @@ public class MovieListingsView extends View {
 			}
 		}
 		System.out.println((movieList.size()+1-back)  +". Go Back");
-		int input = readUserChoice(movieList.size(),1);
+		int input = readUserChoice(movieList.size()+1,1);
 		//Option to go Back
 		if( input > movieList.size()){
 			navigateNextView(this, new MovieGoerView());

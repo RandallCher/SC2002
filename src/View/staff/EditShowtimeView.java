@@ -2,6 +2,7 @@ package View.staff;
 
 import View.View;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Date;
 
@@ -123,15 +124,17 @@ public class EditShowtimeView extends View {
 		}
 
 		Date time = InputController.readDateMMddkkmm("Enter time in format 'MM-dd HH:mm': ");
+		System.out.println(time); 
 		Showtime newShowtime = new Showtime();
 		newShowtime.setMovie(movie);
 		newShowtime.setTime(time);
 		newShowtime.setCinema(cinema);
 		try {
-			CineplexController.addShowtime(newShowtime);
+			CineplexController.addShowtime(newShowtime, movie);
 			System.out.println("Successfully added showtime.");
-		} catch (Exception e) {
+		} catch (IOException e) {
 			System.out.println("Failed to add showtime.");
+			e.printStackTrace();
 		}
 	}
 

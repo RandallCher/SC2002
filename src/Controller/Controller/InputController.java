@@ -55,13 +55,14 @@ public class InputController implements Controller {
 		System.out.println(message);
 
 		Scanner sc = new Scanner(System.in);
-		if (sc.next().toUpperCase().equals("Y"))
+		String input = sc.next(); 
+		if (input.toUpperCase().equals("Y"))
 			return true;
-		else if (sc.next().toUpperCase().equals('N'))
+		if (input.toUpperCase().equals("N"))
 			return false; 
-		else
-			System.out.println("Invalid input. Please try again");
-			return confirmation(message); 
+		
+		System.out.println("Invalid input. Please try again");
+		return confirmation(message); 
 	}
 
 
@@ -92,6 +93,7 @@ public class InputController implements Controller {
 
 		try {
 			input = sc.nextDouble();
+			sc.nextLine(); //flush down scanner 
 		} catch (InputMismatchException e) {
 			System.out.println("Invalid input. Please try again");
 			sc.nextLine(); // flush down the scanner
