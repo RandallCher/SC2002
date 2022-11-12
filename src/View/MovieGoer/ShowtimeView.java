@@ -10,8 +10,8 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.Calendar;
 
-import static Controller.InputController.readUserChoice; 
-import static Controller.InputController.isEqualDate; 
+import static Controller.InputController.readUserChoice;
+import static Controller.InputController.isEqualDate;
 import static Controller.CineplexController.getMovieShowtime;
 
 
@@ -45,7 +45,7 @@ public class ShowtimeView extends View {
 		calendar.add(Calendar.DAY_OF_YEAR, 1);
 		Date dayAfter = calendar.getTime();
 		Date chosenDate = null;
-		
+
 		SimpleDateFormat simpleDateFormat = new SimpleDateFormat("dd/MM/yyyy");
 		String todayStr = simpleDateFormat.format(today).toString();
 		String tomorrowStr = simpleDateFormat.format(tomorrow).toString();
@@ -72,7 +72,7 @@ public class ShowtimeView extends View {
 		}
 
 		ArrayList<Showtime> showList = new ArrayList<>();
-		ArrayList<Showtime> allShowtimes = getMovieShowtime(movie); 
+		ArrayList<Showtime> allShowtimes = getMovieShowtime(movie);
 		if (allShowtimes != null) {
 			for(Showtime curShowtime: allShowtimes){
 				if (isEqualDate(curShowtime.getTime(), chosenDate)){
@@ -92,9 +92,9 @@ public class ShowtimeView extends View {
 		else{
 			System.out.println("Please choose a timeslot");
 			for(int i = 0; i<showList.size();i++){
-				System.out.println(i+1 + showList.get(i).toString());
+				System.out.println(i+1 +". "+ showList.get(i).toString());
 			}
-			choice = readUserChoice(showList.size(), 1); 
+			choice = readUserChoice(showList.size(), 1);
 		}
 
 		Showtime showtime = showList.get(choice - 1);
@@ -123,7 +123,7 @@ public class ShowtimeView extends View {
 				break;
 			case 2:
 				displayPrice(showtime);
-				displayBookSeatMenu(showtime);
+				displayShowtimeDetailMenu(showtime);
 			case 3:
 				destroy();
 				break;
@@ -140,9 +140,9 @@ public class ShowtimeView extends View {
 		double price = showtime.getCinema().getBasePrice();
 		Movie movie = showtime.getMovie();
 		System.out.println(movie.getTitle());
-		System.out.println("Weekdays       Weekends");
-		System.out.println("Adults: " + price + "   " + price*1.5);
-		System.out.println("Senior Citizen/Child: " + price*0.75 + "   " + price*1.5*0.75);
+		System.out.printf("%-20s %-10s %-10s\n","Type:","Weekdays","Weekends" );
+		System.out.printf("%-21s %-10.2f %-10.2f\n","Adult:",price,price*1.5 );
+		System.out.printf("Senior Citizen/Child: %-10.2f %-10.2f\n",price*0.75,price*1.5*0.75);
 
 	}
 
@@ -193,7 +193,6 @@ public class ShowtimeView extends View {
 			displayBookSeatMenu(showtime);
 		}
 		else {
-			System.out.println(showtime.getMovie().getSales());
 			navigateNextView(this, new Booking(showtime.getSeatAt(row, column)));
 		}
 	}

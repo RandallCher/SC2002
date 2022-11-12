@@ -74,9 +74,9 @@ public class Payment extends View{
 		}
 
 
-		GST = Math.round(basePrice*0.07);
+		GST = basePrice*0.07;
 
-		totalPrice = Math.round(basePrice + GST);
+		totalPrice = basePrice + GST;
 
 	}
 
@@ -86,19 +86,20 @@ public class Payment extends View{
 	 */
 	private void displayMenu() throws IOException {
 		System.out.println("Payment Details");
-		System.out.println("Ticket price: " + basePrice);
-		System.out.println("Grand total: " + totalPrice);
-		System.out.println("Total includes GST of: " + GST);
-
+		System.out.printf("Ticket price: %.2f\n",basePrice);
+		System.out.printf("Grand total: %.2f\n",totalPrice);
+		System.out.printf("Total includes GST of: %.2f\n",GST);
 
 		if (customer.getAgeGroup()!=AgeGroup.ADULT) {
 			System.out.println("Discount 25%");
 		}
+
 		Calendar cal = Calendar.getInstance();
 		cal.setTime(seat.getShowtime().getTime());
 		if (cal.get(Calendar.HOUR_OF_DAY ) >=18){
 			System.out.println("Evening Surcharge 25%");
 		}
+
 		System.out.println("1. Confirm your payment");
 		System.out.println("2. Go back");
 
