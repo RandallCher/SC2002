@@ -1,6 +1,5 @@
 package View.MovieGoer;
 
-import Model.*;
 
 import Model.Cinema;
 import Model.Customer;

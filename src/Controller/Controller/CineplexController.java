@@ -601,4 +601,15 @@ public final class CineplexController extends DataController {
         updateMovieShowtime();
     }
 
+    /**
+     * This method is to remove a staff acount from the database 
+     * @param username username of the staff account
+     * @param password password of the staff account 
+     * @throws IOException 
+     */
+    public static void removeStaffAccount(String userName, String password) throws IOException{
+        staffAccount.remove(userName);  
+        updateStaffAccount();         
+    } 
+
 }
