@@ -22,5 +22,14 @@ public class BookingHistory implements SerializableModel{
 		this.customer = customer;
 		this.seat = seat;
 	}
+	public Customer getCustomer(){
+		return this.customer;
+	}
+	public Seat getSeat(){
+		return this.seat;
+	}
+	public String getTID(){
+		return this.TID;
+	}
 
 }
