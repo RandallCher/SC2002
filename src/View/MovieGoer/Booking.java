@@ -102,11 +102,10 @@ public class Booking extends View{
 	 */
 	private void promptCustomerInformation() {
 		AgeGroup ageGroup = AgeGroup.ADULT;
-		Scanner sc = new Scanner(System.in);
 
 		String name = readString("Enter your name:");
-		String mobile = readString("Enter your mobile number:");
-		String email = readString("Enter your Email address:");
+		String mobile = readMobileNumber("Enter your mobile number:");
+		String email = readEmail("Enter your Email address:");
 		System.out.println("Select your age group: ");
 		System.out.println("1. Child");
 		System.out.println("2. Adult");
