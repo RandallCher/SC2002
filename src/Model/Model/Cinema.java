@@ -76,9 +76,6 @@ public class Cinema implements SerializableModel {
 		return true;
 	}
 
-	public int hashCode() {
-		return code.hashCode();
-	}
 
 	public String toString() {
 		return code;

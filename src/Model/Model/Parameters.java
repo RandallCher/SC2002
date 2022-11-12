@@ -90,18 +90,18 @@ public class Parameters {
 		SENIOR_CITIZEN("SENIOR_CITIZEN");
 		;
 
-		private String status;
+		private String ageGroup;
 
 		/**
 		 * 
 		 * @param status
 		 */
-		AgeGroup(String status) {
-			this.status = status;
+		AgeGroup(String ageGroup) {
+			this.ageGroup = ageGroup;
 		}
 		@Override
 		public String toString(){
-			return this.status;
+			return this.ageGroup;
 		}
 
 
