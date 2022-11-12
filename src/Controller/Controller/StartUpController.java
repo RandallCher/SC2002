@@ -232,72 +232,237 @@ public final class StartUpController extends DataController{
         HashMap<Cineplex, ArrayList<Cinema>> cinemaList = new HashMap<>();
 
 
-        //FOR CINEPLEX CINELEISURE_ORCHARD
+          //FOR CINEPLEX CINELEISURE_ORCHARD
         ArrayList<Cinema> cinemaListing1 = new ArrayList<>();
 
        //Cinema 1 
         Cineplex cineplex1 = Cineplex.CINELEISURE_ORCHARD; 
-        boolean isplatinum1 = true;
-        boolean is3D1 = true;
-        String code1 = "CIN1"; 
-        double baseprice1 = 3.0;
-	    Cinema cinema1 = new Cinema(cineplex1, isplatinum1, is3D1, code1, baseprice1);
+        boolean isplatinum11 = true;
+        boolean is3D11 = true;
+        String code11 = "CIN1";
+        double baseprice11 = 3.0;
+	    Cinema cinema1 = new Cinema(cineplex1, isplatinum11, is3D11, code11, baseprice11);
         cinemaListing1.add(cinema1);
         
 	    
         //Cinema 2
-        boolean isplatinum2 = false;
-        boolean is3D2 = true;
-        String code2 = "CIN2"; 
-        double baseprice2 = 2.0;        
-	    Cinema cinema2 = new Cinema(cineplex1, isplatinum2, is3D2, code2, baseprice2);
+        boolean isplatinum12 = false;
+        boolean is3D12 = true;
+        String code12 = "CIN2";
+        double baseprice12 = 2.0;
+	    Cinema cinema2 = new Cinema(cineplex1, isplatinum12, is3D12, code12, baseprice12);
         cinemaListing1.add(cinema2);    
         
 	    
 	    //Cinema 3
-        boolean isplatinum3 = true;
-        boolean is3D3 = false;
-        String code3 = "CIN3"; 
-        double baseprice3 = 2.0;
-	    Cinema cinema3 = new Cinema(cineplex1, isplatinum3, is3D3, code3, baseprice3);
+        boolean isplatinum13 = true;
+        boolean is3D13 = false;
+        String code13 = "CIN3";
+        double baseprice13 = 2.0;
+	    Cinema cinema3 = new Cinema(cineplex1, isplatinum13, is3D13, code13, baseprice13);
         cinemaListing1.add(cinema3);    
         
         cinemaList.put(cineplex1, cinemaListing1); 
 
-        
-         //FOR CINEPLEX CAUSEWAY_POINT
+
+        //FOR CINEPLEX CAUSEWAY_POINT
         ArrayList<Cinema> cinemaListing2 = new ArrayList<>();
 
        //Cinema 1 
         Cineplex cineplex2 = Cineplex.CAUSEWAY_POINT; 
-        isplatinum1 = true;
-        is3D1 = true;
-        code1 = "CAU1"; 
-        baseprice1 = 3.0;
-	    cinema1 = new Cinema(cineplex1, isplatinum1, is3D1, code1, baseprice1);
+        boolean isplatinum21 = true;
+        boolean is3D21 = true;
+        String code21 = "CAU1";
+        double baseprice21 = 3.0;
+	    cinema1 = new Cinema(cineplex2, isplatinum21, is3D21, code21, baseprice21);
         cinemaListing2.add(cinema1);
         
 	    
         //Cinema 2
-        isplatinum2 = false;
-        is3D2 = true;
-        code2 = "CAU2"; 
-        baseprice2 = 2.0;        
-	    cinema2 = new Cinema(cineplex1, isplatinum2, is3D2, code2, baseprice2);
-        cinemaListing1.add(cinema2);    
+        boolean isplatinum22 = false;
+        boolean is3D22 = true;
+        String code22 = "CAU2";
+        double baseprice22 = 2.0;
+	    cinema2 = new Cinema(cineplex2, isplatinum22, is3D22, code22, baseprice22);
+        cinemaListing2.add(cinema2);
         
 	    
 	    //Cinema 3
-        isplatinum3 = true;
-        is3D3 = false;
-        code3 = "CAU3"; 
-        baseprice3 = 2.0;
-	    cinema3 = new Cinema(cineplex1, isplatinum3, is3D3, code3, baseprice3);
-        cinemaListing1.add(cinema3);    
+        boolean isplatinum23 = true;
+        boolean is3D23 = false;
+        String code23 = "CAU3";
+        double baseprice23 = 2.0;
+	    cinema3 = new Cinema(cineplex2, isplatinum23, is3D23, code23, baseprice23);
+        cinemaListing2.add(cinema3);
         
-        cinemaList.put(cineplex2, cinemaListing2); 
+        cinemaList.put(cineplex2, cinemaListing2);
 
-        // TO DO ADD FOR REMAINING CINEPLEXES. EACH CINEPLEX MUST HAVE AT LEAST 3 CINEMAS
+
+        //FOR CINEPLEX AMK_HUB
+        ArrayList<Cinema> cinemaListing3 = new ArrayList<>();
+
+        //Cinema 1
+        Cineplex cineplex3 = Cineplex.AMK_HUB;
+        boolean isplatinum31 = true;
+        boolean is3D31 = true;
+        String code31 = "AMK1";
+        double baseprice31 = 3.0;
+        cinema1 = new Cinema(cineplex3, isplatinum31, is3D31, code31, baseprice31);
+        cinemaListing3.add(cinema1);
+
+
+        //Cinema 2
+        boolean isplatinum32 = false;
+        boolean is3D32 = true;
+        String code32 = "AMK2";
+        double baseprice32 = 2.0;
+        cinema2 = new Cinema(cineplex3, isplatinum32, is3D32, code32, baseprice32);
+        cinemaListing3.add(cinema2);
+
+
+        //Cinema 3
+        boolean isplatinum33 = true;
+        boolean is3D33 = false;
+        String code33 = "AMk3";
+        double baseprice33 = 2.0;
+        cinema3 = new Cinema(cineplex3, isplatinum33, is3D33, code33, baseprice33);
+        cinemaListing3.add(cinema3);
+
+        cinemaList.put(cineplex3, cinemaListing3);
+
+
+
+        //FOR CINEPLEX DOWNTOWN_EAST
+        ArrayList<Cinema> cinemaListing4 = new ArrayList<>();
+
+        //Cinema 1
+        Cineplex cineplex4 = Cineplex.DOWNTOWN_EAST;
+        boolean  isplatinum41 = true;
+        boolean is3D41 = true;
+        String code41 = "DWE1";
+        double baseprice41 = 3.0;
+        cinema1 = new Cinema(cineplex4, isplatinum41, is3D41, code41, baseprice41);
+        cinemaListing4.add(cinema1);
+
+
+        //Cinema 2
+        boolean isplatinum42 = false;
+        boolean is3D42 = true;
+        String code42 = "DWE2";
+        double baseprice42 = 2.0;
+        cinema2 = new Cinema(cineplex4, isplatinum42, is3D42, code42, baseprice42);
+        cinemaListing4.add(cinema2);
+
+
+        //Cinema 3
+        boolean isplatinum43 = true;
+        boolean is3D43 = false;
+        String code43 = "DWE3";
+        double baseprice43 = 2.0;
+        cinema3 = new Cinema(cineplex4, isplatinum43, is3D43, code43, baseprice43);
+        cinemaListing4.add(cinema3);
+
+        cinemaList.put(cineplex4, cinemaListing4);
+
+
+        //FOR CINEPLEX WEST_MALL
+        ArrayList<Cinema> cinemaListing5 = new ArrayList<>();
+
+        //Cinema 1
+        Cineplex cineplex5 = Cineplex.WEST_MALL;
+        boolean isplatinum51 = true;
+        boolean is3D51 = true;
+        String code51 = "WEST1";
+        double baseprice51 = 3.0;
+        cinema1 = new Cinema(cineplex5, isplatinum51, is3D51, code51, baseprice51);
+        cinemaListing5.add(cinema1);
+
+
+        //Cinema 2
+        boolean isplatinum52 = false;
+        boolean is3D52 = true;
+        String code52 = "WEST2";
+        double baseprice52 = 2.0;
+        cinema2 = new Cinema(cineplex5, isplatinum52, is3D52, code52, baseprice52);
+        cinemaListing5.add(cinema2);
+
+
+        //Cinema 3
+        boolean isplatinum53 = true;
+        boolean is3D53 = false;
+        String code53 = "WEST3";
+        double baseprice53 = 2.0;
+        cinema3 = new Cinema(cineplex5, isplatinum53, is3D53, code53, baseprice53);
+        cinemaListing5.add(cinema3);
+
+        cinemaList.put(cineplex5, cinemaListing5);
+
+
+        //FOR CINEPLEX JEM
+        ArrayList<Cinema> cinemaListing6 = new ArrayList<>();
+
+        //Cinema 1
+        Cineplex cineplex6 = Cineplex.WEST_MALL;
+        boolean isplatinum61 = true;
+        boolean is3D61 = true;
+        String code61 = "JEM1";
+        double baseprice61 = 3.0;
+        cinema1 = new Cinema(cineplex6, isplatinum61, is3D61, code61, baseprice61);
+        cinemaListing6.add(cinema1);
+
+
+        //Cinema 2
+        boolean isplatinum62 = false;
+        boolean is3D62 = true;
+        String code62 = "JEM2";
+        double baseprice62 = 2.0;
+        cinema2 = new Cinema(cineplex6, isplatinum62, is3D62, code62, baseprice62);
+        cinemaListing6.add(cinema2);
+
+
+        //Cinema 3
+        boolean isplatinum63 = true;
+        boolean is3D63 = false;
+        String code63 = "JEM3";
+        double baseprice63 = 2.0;
+        cinema3 = new Cinema(cineplex6, isplatinum63, is3D63, code63, baseprice63);
+        cinemaListing6.add(cinema3);
+
+        cinemaList.put(cineplex6, cinemaListing6);
+
+
+        //FOR CINEPLEX PARKWAY_PARADE
+        ArrayList<Cinema> cinemaListing7 = new ArrayList<>();
+
+        //Cinema 1
+        Cineplex cineplex7 = Cineplex.WEST_MALL;
+        boolean isplatinum71 = true;
+        boolean is3D71 = true;
+        String code71 = "PP1";
+        double baseprice71 = 3.0;
+        cinema1 = new Cinema(cineplex7, isplatinum71, is3D71, code71, baseprice71);
+        cinemaListing7.add(cinema1);
+
+
+        //Cinema 2
+        boolean isplatinum72 = false;
+        boolean is3D72 = true;
+        String code72 = "PP2";
+        double baseprice72 = 2.0;
+        cinema2 = new Cinema(cineplex7, isplatinum72, is3D72, code72, baseprice72);
+        cinemaListing7.add(cinema2);
+
+
+        //Cinema 3
+        boolean isplatinum73 = true;
+        boolean is3D73 = false;
+        String code73 = "PP3";
+        double baseprice73 = 2.0;
+        cinema3 = new Cinema(cineplex7, isplatinum73, is3D73, code73, baseprice73);
+        cinemaListing7.add(cinema3);
+
+        cinemaList.put(cineplex7, cinemaListing7);
+
 
 
         writeFile(CINEMALIST_FILENAME,cinemaList); 
