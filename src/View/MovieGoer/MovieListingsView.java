@@ -61,39 +61,46 @@ public class MovieListingsView extends View {
 			movieList = getTop5MovieListing();
 		}
 		// If no movies go back
-		if(movieList == null){
+		if (movieList == null) {
 			System.out.println("No movies. ");
 			System.out.println("1. Go Back");
 			sc.nextLine();
 			start();
 		}
 
-		if (!topFive || CineplexController.getSystem().get("movieOrder")) {// rating
+		ArrayList<Movie> showingMoviesList = new ArrayList<>();
+		for (int j = 0; j < movieList.size(); j++) {
+			if (movieList.get(j).getMovieStatus() == MovieStatus.END_OF_SHOWING) {
+				continue;
+			} else
+				showingMoviesList.add(movieList.get(j));
+		}
 
-			for (int i = 0; i < movieList.size(); i++) {
-				System.out.printf("%-1s. %-40s %-15s [%-2s]\n", i + 1 , movieList.get(i).getTitle(),
-						movieList.get(i).getMovieStatus(), getMovieRating(movieList.get(i)));
-
+		if (!topFive || CineplexController.getSystem().get("movieOrder")) {
+			// rating
+			for (int i = 0; i < showingMoviesList.size(); i++) {
+				System.out.printf("%-1s. %-40s %-15s [%-2s]\n", i + 1, showingMoviesList.get(i).getTitle(),
+						showingMoviesList.get(i).getMovieStatus(), getMovieRating(showingMoviesList.get(i)));
 
 			}
 		} else {
 			// sales
-			for (int i = 0; i < movieList.size(); i++) {
-				System.out.printf("%-1s %-40s %-15s [%-2s]\n", i + 1 - back, movieList.get(i).getTitle(),
-						movieList.get(i).getMovieStatus(), movieList.get(i).getSales());
+			for (int i = 0; i < showingMoviesList.size(); i++) {
+				System.out.printf("%-1s %-40s %-15s [%-2s]\n", i + 1 - back, showingMoviesList.get(i).getTitle(),
+						showingMoviesList.get(i).getMovieStatus(), showingMoviesList.get(i).getSales());
 
 			}
 		}
-		System.out.println((movieList.size()+1-back)  +". Go Back");
-		int input = readUserChoice(movieList.size()+1,1);
-		//Option to go Back
-		if( input > movieList.size()){
-			navigateNextView(this, new MovieGoerView());
+		System.out.println((showingMoviesList.size() + 1 - back) + ". Go Back");
+		System.out.print("Enter index of movie to view details: ");
+		int input = readUserChoice(showingMoviesList.size() + 1, 1);
+		// Option to go Back
+		if (input > showingMoviesList.size()) {
+			return;
 		}
-		Movie movie = movieList.get(input -1);
+		Movie movie = showingMoviesList.get(input - 1);
 
 		displayMovieDetails(movie);
-
 
 	}
 
@@ -104,19 +111,20 @@ public class MovieListingsView extends View {
 	 */
 
 	public void displayMovieDetails(Movie movie) {
-		System.out.println("Movie details for: "+movie.getTitle());
+		System.out.println("Movie details for: " + movie.getTitle());
 		System.out.println("1. Display showtime");
 		System.out.println("2. View or write reviews");
 		System.out.println("3. Restart from main menu");
 
-		int input = readUserChoice(3,1);
+		int input = readUserChoice(3, 1);
 		switch (input) {
 			case 1:
-				if(movie.getMovieStatus()==MovieStatus.END_OF_SHOWING||movie.getMovieStatus()==MovieStatus.COMING_SOON){
+				if (movie.getMovieStatus() == MovieStatus.END_OF_SHOWING
+						|| movie.getMovieStatus() == MovieStatus.COMING_SOON) {
 					System.out.println("----Movie is not currently showing----");
 					System.out.println("Restarting from MOVIE GOER MENU");
 					break;
-				}else{
+				} else {
 					navigateNextView(this, new ShowtimeView(movie));
 					break;
 				}

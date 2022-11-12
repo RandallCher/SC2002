@@ -1,11 +1,11 @@
 package View;
 
-import static Controller.InputController.readUserChoice; 
+import static Controller.InputController.readUserChoice;
 import View.MovieGoer.*;
 
 /**
- * This is the main movie goer view.
- * This basically prints all the options for the user to select.
+ * This class is the main movie goer view. It provides a movie goer with all
+ * possible options
  */
 public class MovieGoerView extends View {
     public void start() {
@@ -17,9 +17,9 @@ public class MovieGoerView extends View {
                     + "4: View booking history\n"
                     + "5: Back to previous page\n\n"
                     + "Enter your choice: ");
- 
+
             int choice = readUserChoice(5, 1);
-    
+
             switch (choice) {
                 case 1:
                     MovieListingsView movielistings = new MovieListingsView();
