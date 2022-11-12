@@ -14,7 +14,7 @@ public class Customer implements SerializableModel {
 	private String email;
 	private AgeGroup ageGroup;
 
-	public void setMovieStatus(AgeGroup ageGroup){
+	public void setCustomerStatus(AgeGroup ageGroup){
 		this.ageGroup = ageGroup;
 	}
 
@@ -74,11 +74,5 @@ public class Customer implements SerializableModel {
 		return true;
 	}
 
-	public int hashCode() {
-		// 
-		int result = name.hashCode();
-		//The HashCode is computed as s[0]*31^(n-1) + s[1]*31^(n-2) + ... + s[n-1]
-		return result;
-	}
 
 }
