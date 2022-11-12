@@ -435,7 +435,7 @@ public final class StartUpController extends DataController{
         ArrayList<Cinema> cinemaListing7 = new ArrayList<>();
 
         //Cinema 1
-        Cineplex cineplex7 = Cineplex.WEST_MALL;
+        Cineplex cineplex7 = Cineplex.PARKWAY_PARADE;
         boolean isplatinum71 = true;
         boolean is3D71 = true;
         String code71 = "PP1";
