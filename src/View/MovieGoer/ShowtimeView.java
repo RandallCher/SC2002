@@ -183,7 +183,9 @@ public class ShowtimeView extends View {
 		int row = readUserChoice(16,1);
 		System.out.println("Enter column number");
 		int column = readUserChoice(16,1);
-
+		if(column<=8){
+			column++;
+		}
 		if (showtime.getSeatAt(row, column).isBooked()) {
 			System.out.println("Seat is unavailable");
 			displayBookSeatMenu(showtime);
