@@ -502,10 +502,10 @@ public final class CineplexController extends DataController {
      * local files.
      * 
      * @param showtime the showtime to be added
+     * @param movie movie of the showtime
      * @throws IOException when the file address is invalid
      */
-    public static void addShowtime(Showtime showtime) throws IOException {
-        Movie movie = showtime.getMovie();
+    public static void addShowtime(Showtime showtime, Movie movie) throws IOException {
         if (movieShowtime.get(movie) == null)
             movieShowtime.put(movie, new ArrayList<>());
         movieShowtime.get(movie).add(showtime);
