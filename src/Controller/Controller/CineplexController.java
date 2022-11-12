@@ -199,8 +199,8 @@ public final class CineplexController extends DataController {
     private static void readMovieShowtime() throws IOException, ClassNotFoundException {
         if (readFile(SHOWTIME_FILENAME) == null)
             movieShowtime = new HashMap<>();
-        else
-            movieShowtime = (HashMap<Movie, ArrayList<Showtime>>) readFile(SHOWTIME_FILENAME);
+        else 
+            movieShowtime = (HashMap<Movie, ArrayList<Showtime>>) readFile(SHOWTIME_FILENAME);        
     }
 
     /**
@@ -345,10 +345,12 @@ public final class CineplexController extends DataController {
      * @return the showtime of the movie
      */
     public static ArrayList<Showtime> getMovieShowtime(Movie movie) {
-        if (movieShowtime == null) return null; 
-        for (Movie cur: movieShowtime.keySet()){
-            ArrayList<Showtime> showtimes = movieShowtime.get(movie); 
-            if (cur.equals(movie)) return showtimes; 
+        if (movieShowtime == null) return null;        
+        for (Map.Entry<Movie, ArrayList<Showtime>> entry: movieShowtime.entrySet()){
+            Movie cur = entry.getKey(); 
+            ArrayList<Showtime> curShowtime = entry.getValue(); 
+            if (movie.equals(cur)) return curShowtime; 
+            
         }
         return null;
     }
@@ -522,6 +524,7 @@ public final class CineplexController extends DataController {
         if (cinemaList.get(cinema.getCineplex()) == null)
             cinemaList.put(cinema.getCineplex(), new ArrayList<>());
         cinemaList.get(cinema.getCineplex()).add(cinema);
+        updateCinemaList(); 
     }
 
     /**

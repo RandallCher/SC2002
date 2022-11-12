@@ -1,12 +1,10 @@
 package View.MovieGoer;
 
 import Controller.CineplexController;
-import Model.Parameters;
 import Model.Parameters.MovieStatus;
 import Model.Movie;
 import View.*;
 
-import java.io.IOException;
 import java.util.*;
 import java.util.ArrayList;
 
