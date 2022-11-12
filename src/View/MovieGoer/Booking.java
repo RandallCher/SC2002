@@ -1,6 +1,5 @@
 package View.MovieGoer;
 
-import Model.*;
 
 import Model.Cinema;
 import Model.Customer;
@@ -31,6 +30,7 @@ public class Booking extends View{
 		this.seat = seat;
 		bookingFinished = false;
 		basePrice = seat.getShowtime().getCinema().getBasePrice();
+		computeBasePrice();
 
 	}
 	/** Method displays the menu if booking is not finished

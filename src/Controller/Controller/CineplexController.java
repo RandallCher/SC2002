@@ -50,7 +50,7 @@ public final class CineplexController extends DataController {
             readReviewList();
             readHolidayList();
             readMovieShowtime();
-            System.out.println("All files exist"); 
+            System.out.println("Data files loaded"); 
 
         } catch (FileNotFoundException e){ 
             //File not found means first time running the application. 
@@ -600,5 +600,16 @@ public final class CineplexController extends DataController {
         movieShowtime.remove(movie);
         updateMovieShowtime();
     }
+
+    /**
+     * This method is to remove a staff acount from the database 
+     * @param username username of the staff account
+     * @param password password of the staff account 
+     * @throws IOException 
+     */
+    public static void removeStaffAccount(String userName, String password) throws IOException{
+        staffAccount.remove(userName);  
+        updateStaffAccount();         
+    } 
 
 }

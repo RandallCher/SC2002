@@ -111,7 +111,7 @@ public class Showtime implements SerializableModel {
 
 	/**
 	 * 
-	 * @param o
+	 * @param o object to be compared 
 	 */
 	public boolean equals(Object o) {
 		if (getClass() != o.getClass()) {

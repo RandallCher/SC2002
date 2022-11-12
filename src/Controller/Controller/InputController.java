@@ -10,6 +10,11 @@ import java.math.BigDecimal;
 import java.text.SimpleDateFormat;
 import java.text.ParseException;
 
+
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
+
 /**This class contains useful utility functions to validate user inputs for data formatting*/
 public class InputController implements Controller {
 
@@ -144,6 +149,46 @@ public class InputController implements Controller {
 				return null;
 		}
 	}
+
+	/**
+     * This method is to read an Email address from standard input.
+     * @param message the message to be shown to the user
+     * @return the input from standard input with Email format
+     */
+    public static String readEmail(String message) {
+        String input = readString(message);
+        Pattern EMAIL_PATTERN = Pattern.compile(
+                "^[_A-Za-z0-9-\\+]+(\\.[_A-Za-z0-9-]+)*@" +
+                        "[A-Za-z0-9-]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{2,})$");
+        Matcher matcher = EMAIL_PATTERN.matcher(input);
+        if (matcher.matches()) {
+            return input;
+        }
+        else {
+            System.out.println("Invalid Email address, try again.");
+            return readEmail(message);
+        }
+    }
+
+
+	/**
+     * This method is to read a mobile phone number from standard input.
+     * @param message the message to be shown to the user
+     * @return the phone number input from standard input 
+     */
+    public static String readMobileNumber(String message) {
+        String input = readString(message);
+        Pattern MOBILE_PATTERN = Pattern.compile( 
+                "^(6|8|9)\\d{7}$");
+        Matcher matcher = MOBILE_PATTERN.matcher(input);
+        if (matcher.matches()) {
+            return input;
+        }
+        else {
+            System.out.println("Invalid Singapore Phone Number, try again.");
+            return readMobileNumber(message);
+        }
+    }
 
 	/**
 	 * This method reads a string from std input in MM-dd kk:mm format and converts

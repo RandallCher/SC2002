@@ -85,7 +85,6 @@ public final class StartUpController extends DataController{
         cast1.add("Pierce Brosnan"); 
         cast1.add("Noah Centineo");
         cast1.add("Sarah Shahi"); 
-        int sales1 = 10; 
 
         Movie movie1 = new Movie();
 		movie1.setAgeRestrictions(ageRestriction1);
@@ -105,7 +104,7 @@ public final class StartUpController extends DataController{
         String synopsis2 = 
         "Queen Ramonda, Shuri, M'Baku, Okoye and the Dora Milaje fight to protect their nation from intervening world powers in the wake of King T'Challa's death. As the Wakandans strive to embrace their next chapter, the heroes must band together with Nakia and Everett Ross to forge a new path for their beloved kingdom."
         ; 
-		MovieStatus movieStatus2 = MovieStatus.COMING_SOON;
+		MovieStatus movieStatus2 = MovieStatus.NOW_SHOWING;
 		AgeRestriction ageRestriction2 = AgeRestriction.PG13;
 
         ArrayList<String> cast2 = new ArrayList<>();
@@ -131,7 +130,7 @@ public final class StartUpController extends DataController{
         String synopsis3 = 
         "Jake Sully and Ney'tiri have formed a family and are doing everything to stay together. However, they must leave their home and explore the regions of Pandora. When an ancient threat resurfaces, Jake must fight a difficult war against the humans."
         ; 
-		MovieStatus movieStatus3 = MovieStatus.COMING_SOON;
+		MovieStatus movieStatus3 = MovieStatus.NOW_SHOWING;
 		AgeRestriction ageRestriction3 = AgeRestriction.PG13;
 
         ArrayList<String> cast3 = new ArrayList<>();
@@ -189,17 +188,36 @@ public final class StartUpController extends DataController{
     private static void CreateDefaultHolidayList() throws IOException {
         File f = new File(HOLIDAYLIST_FILENAME);
         f.createNewFile();
-        //TODO ADD HOLIDAYS 
-        ArrayList<Holiday> holidaysList = new ArrayList<>();
+        HashMap<String, Holiday> holidayList = new HashMap<>();
+        Calendar calendar = Calendar.getInstance();
 
-         //Holiday
+        //Holidays
          
-        // String holidayName1 = ("Christmas");
-        // Date date = InputController.readDateddMMyyyy("Enter Holiday Date in dd/MM/yyyy: ");
-        // Holiday holiday1 = new Holiday(holidayName1, date);
-         //holidaysList.add(holiday1);
+        String holidayName1 = "Christmas";
+        calendar.set(2022, 11, 25);
+        Date chrismas = calendar.getTime(); 
+        Holiday holiday1 = new Holiday(holidayName1, chrismas);
+        holidayList.put(holidayName1, holiday1);
 
-        // writeFile(HOLIDAYLIST_FILENAME,holidaysList);
+        String holidayName2 = "New Year's Day";
+        calendar.set(2023, 0, 1);
+        Date newYearDay = calendar.getTime(); 
+        Holiday holiday2 = new Holiday(holidayName2, newYearDay);
+        holidayList.put(holidayName2, holiday2);
+
+        String holidayName3 = "Chinese New Year";
+        calendar.set(2023, 0, 24);
+        Date chineseNewYear = calendar.getTime(); 
+        Holiday holiday3 = new Holiday(holidayName3, chineseNewYear);
+        holidayList.put(holidayName3, holiday3);
+
+        String holidayName4 = "Good Friday";
+        calendar.set(2023, 3, 7);
+        Date goodFriday = calendar.getTime(); 
+        Holiday holiday4 = new Holiday(holidayName4, goodFriday);
+        holidayList.put(holidayName4, holiday4);
+
+        writeFile(HOLIDAYLIST_FILENAME,holidayList);
  
     }
 
@@ -222,7 +240,7 @@ public final class StartUpController extends DataController{
         boolean isplatinum1 = true;
         boolean is3D1 = true;
         String code1 = "CIN1"; 
-        double baseprice1 = 2.0;
+        double baseprice1 = 3.0;
 	    Cinema cinema1 = new Cinema(cineplex1, isplatinum1, is3D1, code1, baseprice1);
         cinemaListing1.add(cinema1);
         
@@ -255,7 +273,7 @@ public final class StartUpController extends DataController{
         isplatinum1 = true;
         is3D1 = true;
         code1 = "CAU1"; 
-        baseprice1 = 2.0;
+        baseprice1 = 3.0;
 	    cinema1 = new Cinema(cineplex1, isplatinum1, is3D1, code1, baseprice1);
         cinemaListing2.add(cinema1);
         

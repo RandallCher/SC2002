@@ -141,8 +141,8 @@ public class ShowtimeView extends View {
 		Movie movie = showtime.getMovie();
 		System.out.println(movie.getTitle());
 		System.out.println("Weekdays       Weekends");
-		System.out.println("Adults: " + price+Movie.price + "   " + price+Movie.price*1.5);
-		System.out.println("Senior Citizen/Child: " + price+Movie.price*0.75 + "   " + price+Movie.price*1.5*0.75);
+		System.out.println("Adults: " + price + "   " + price*1.5);
+		System.out.println("Senior Citizen/Child: " + price*0.75 + "   " + price*1.5*0.75);
 
 	}
 
@@ -153,9 +153,9 @@ public class ShowtimeView extends View {
 	private void displaySeat(Seat[][] seats) {
 		System.out.println("                    -------Screen------");
 		System.out.println("     1  2  3  4  5  6  7  8     9 10 11 12 13 14 15 16");
-		for (int row = 8; row >=0; row--) {
+		for (int row = 0; row <= 8; row++) {
 			System.out.print(row + 1 + "   ");
-			for (int column = 0; column <=16; column++) {
+			for (int column = 0; column <= 16; column++) {
 				if (seats[row][column] == null){
 					System.out.print("   ");
 				}
@@ -180,7 +180,7 @@ public class ShowtimeView extends View {
 
 
 		System.out.println("Enter row number");
-		int row = readUserChoice(9,1);
+		int row = readUserChoice(16,1);
 		System.out.println("Enter column number");
 		int column = readUserChoice(16,1);
 

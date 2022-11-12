@@ -1,10 +1,12 @@
 package View;
 
+import java.io.IOException;
 import java.util.Scanner;
 
 import View.staff.*;
 
 import Controller.InputController;
+import Model.Parameters.Cineplex;
 import Controller.CineplexController;
 
 /**
@@ -37,10 +39,11 @@ public class StaffView extends View {
 					+ "3: Create/Update/Remove movie listings\n"
 					+ "4: Create/Update/Remove showtimes\n"
 					+ "5: Create a new staff account\n"
-					+ "6: Back to previous page\n\n"
+					+ "6: Remove a staff account from the database\n"
+					+ "7: Back to previous page\n\n"
 					+ "Enter your choice: ");
 				
-			int choice = InputController.readUserChoice(6, 1);
+			int choice = InputController.readUserChoice(7, 1);
 			switch (choice) {
 				case 1:
 					navigateNextView(this, new ModifySettingsView());
@@ -63,10 +66,12 @@ public class StaffView extends View {
 					break;
 
 				case 6:
+					removeStaff(); 
+					break; 
+
+				default: 
 					this.end();
 					break;
-				default:
-					System.out.println("Invalid input. Try again.");
 			}
 		}
 	}
@@ -119,6 +124,29 @@ public class StaffView extends View {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-	
 	}
+
+	
+	/**
+	 * This method allows a staff to remove other staff accounts from the database. 
+	 */
+	public void removeStaff(){
+		String username, password; 
+		username = InputController.readString("Enter username of the staff account to be removed: ");
+		password = InputController.readString("Enter password of the staff account to be removed: ");
+		if (!CineplexController.verification(username,password)) {
+			System.out.println("Invalid Credentials."); 
+			return; 
+		}
+		try{
+	   		CineplexController.removeStaffAccount(username, password); 
+			System.out.println("Removed the indicated staff account");
+
+		} catch (IOException e){
+			System.out.println("Error occured!. Failed to remove the indicated staff account");
+			e.printStackTrace();
+		}
+	}
+
+	
 }
