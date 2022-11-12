@@ -2,6 +2,7 @@ package View.staff;
 
 import View.View;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Date;
 
@@ -131,8 +132,9 @@ public class EditShowtimeView extends View {
 		try {
 			CineplexController.addShowtime(newShowtime, movie);
 			System.out.println("Successfully added showtime.");
-		} catch (Exception e) {
+		} catch (IOException e) {
 			System.out.println("Failed to add showtime.");
+			e.printStackTrace();
 		}
 	}
 

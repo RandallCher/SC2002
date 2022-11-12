@@ -1,6 +1,6 @@
 package Model;
 
-public class Seat {
+public class Seat implements SerializableModel {
 
 /**
  *  This class get details about a customer's booking's seat
