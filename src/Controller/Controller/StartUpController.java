@@ -6,13 +6,12 @@ import Model.*;
 import java.io.File; 
 import java.io.IOException;
 import java.util.*;
-import java.util.spi.CalendarDataProvider; 
 import java.util.Calendar;
 
 
 /**
- * This class is only called for the first time use of the application (i.e. no data files exist) to set * up default admin account and some default files for ease of use. 
- * This class will never be called if the required data fileS already exists. 
+ * This class is only called for the first time use of the application (i.e. no data files exist) to set up default admin account and some default files for ease of use. 
+ * This class will never be called if the required data files already exists. 
  */
 
 
