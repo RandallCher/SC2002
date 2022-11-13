@@ -90,7 +90,7 @@ public class Booking extends View{
 		System.out.println("Date" + formatDateMMddkkmm(showtime.getTime()));
 		System.out.println("Ticket type: " + ticketType);
 		System.out.println("Cinema: " + cinema + " (" + cinema.getCineplex() + ")");
-		System.out.println("Seat: Row " + (seat.getRow()+1) + " Col " + seat.getCol()+1);
+		System.out.println("Seat: Row " + (seat.getRow()+1) + " Col " + (seat.getCol()+1));
 		System.out.println("Ticket price (excluding GST): " + Math.round(basePrice));
 	}
 
