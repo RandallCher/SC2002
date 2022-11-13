@@ -163,7 +163,7 @@ public class EditMovieListingView extends View {
 					+ "8: Remove movie listing\n"
 					+ "9: Go back\n\n"
 					+ "Enter your choice: ");
-			int choice = InputController.readUserChoice(8, 1);
+			int choice = InputController.readUserChoice(9, 1);
 			switch (choice) {
 				case 1:
 					String newTitle = InputController.readString("Enter updated movie title: "); 
@@ -244,7 +244,6 @@ public class EditMovieListingView extends View {
 	 * @param movie movie to be removed
 	 */
 	private void removeListing(Movie movie) {
-		System.out.println("Confirm the removal of " + movie.getTitle() + "? (Y/N)");
 		boolean confirmation = InputController.confirmation("Confirm the removal of " + movie.getTitle() + "? (Y/N)");
 		if (!confirmation) {
 			System.out.println("Listing is not removed.");

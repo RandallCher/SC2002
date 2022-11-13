@@ -142,7 +142,9 @@ public class MovieListingsView extends View {
 	 * Gets last view before current view
 	 */
 	protected void destroy() {
-		getPrevView();
+		//getPrevView();
+		navigateNextView(this, new MovieGoerView());
+
 	}
 
 }

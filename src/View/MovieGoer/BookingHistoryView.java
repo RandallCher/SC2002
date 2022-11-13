@@ -33,8 +33,6 @@ public class BookingHistoryView extends View {
 				BookingHistory cur = bookingHistory.get(i); 
 				System.out.println( i+1 + " Customer : " + cur.getCustomer().getName());
 				System.out.println("  Transaction ID: "+ cur.getTID()); 
-				System.out.printf("  Seat: Row %d, Column %d \n\n", cur.getSeat().getRow(), cur.getSeat().getCol()); 
-
 			}
 
 

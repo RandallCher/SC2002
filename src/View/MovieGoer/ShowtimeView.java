@@ -4,6 +4,7 @@ import Model.Movie;
 import Model.Seat;
 import Model.Showtime;
 import View.View;
+import View.MovieGoerView; 
 import java.text.SimpleDateFormat;
 
 import java.util.ArrayList;
@@ -180,20 +181,23 @@ public class ShowtimeView extends View {
 
 
 		System.out.println("Enter row number");
-		int row = readUserChoice(16,1);
+		int row = readUserChoice(9,1);
 		System.out.println("Enter column number");
-		int column = readUserChoice(16,1);
+		int column = readUserChoice(16,1) - 1;
 		if(column<=8){
 			column++;
 		}
+
+		if (showtime.getSeatAt(row, column) == null) {
+			System.out.println("Seat does not exist");
+			displayBookSeatMenu(showtime);
+		}
+
 		if (showtime.getSeatAt(row, column).isBooked()) {
 			System.out.println("Seat is unavailable");
 			displayBookSeatMenu(showtime);
 		}
-		else if (showtime.getSeatAt(row, column) == null) {
-			System.out.println("Seat does not exist");
-			displayBookSeatMenu(showtime);
-		}
+		
 		else {
 			navigateNextView(this, new Booking(showtime.getSeatAt(row, column)));
 		}
@@ -202,7 +206,7 @@ public class ShowtimeView extends View {
 	 *	Gets last view before current view
 	 */
 	protected void destroy() {
-		getPrevView();
+		navigateNextView(this, new MovieGoerView());
 	}
 
 }

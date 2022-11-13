@@ -1,5 +1,4 @@
 package View.MovieGoer;
-import java.awt.*;
 import java.io.IOException;
 import java.util.UUID;
 
@@ -13,7 +12,6 @@ import Model.Parameters.AgeGroup;
 import View.View;
 import java.util.Calendar;
 
-import java.lang.Math;
 
 public class Payment extends View{
 

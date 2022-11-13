@@ -61,14 +61,14 @@ public class ModifySettingsView extends View {
 
 		boolean isRatingRanked = CineplexController.getSystem().get("movieOrder");
 		if (isRatingRanked) {
-			System.out.print(
+			System.out.println(
 					"Top Five movies are currently ranked by ratings.\nChange to ranking by sales? (Y/N) ");
 		} else {
-			System.out.print(
+			System.out.println(
 					"Top Five movies are currently ranked by sales.\nChange to ranking by ratings? (Y/N) ");
 		}
 
-		boolean choice = InputController.confirmation(null);
+		boolean choice = InputController.confirmation("");
 		if (!choice) {
 			System.out.println("No changes made.\n");
 			return;
