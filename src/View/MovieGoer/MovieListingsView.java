@@ -32,6 +32,16 @@ public class MovieListingsView extends View {
 		if (foundMovies.isEmpty()) {
 			System.out.println("No such movie found!");
 			return;
+		}
+
+		for (Movie movie: foundMovies){ //remove movies with end_of_showing status 
+			if (movie.getMovieStatus() == MovieStatus.END_OF_SHOWING){
+				foundMovies.remove(movie); 
+			}
+		}
+		if (foundMovies.isEmpty()) {
+			System.out.println("No such movie found!");
+			return;
 		} else {
 			System.out.println(foundMovies.size() + " results have been found.");
 			for (int i = 0; i < foundMovies.size(); i++) {

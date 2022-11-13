@@ -38,9 +38,7 @@ public class Holiday implements SerializableModel{
 	 * @param date
 	 * @param rate
 	 */
-	// NOTE (from Phoebe): I've changed this from
-	// public Holiday(String name, Date date, double rate)
-	// to public Holiday(String name, Date date) with a fixed rate of 1.2
+
 	public Holiday(String name, Date date) {
 		this.name = name;
 		this.date = date;
@@ -48,7 +46,7 @@ public class Holiday implements SerializableModel{
 	}
 
 	public String printDetail() {
-		return ("The Date is: " + date + "\n" + " The Price is: " + rate * Movie.price + "\n");
+		return ("The Date is: " + date + "\n" + " The Name is: " + this.name + "\n");
 
 	}
 

@@ -159,11 +159,10 @@ public class EditMovieListingView extends View {
 					+ "4: Update movie cast\n"
 					+ "5: Update movie status\n"
 					+ "6: Update age restriction\n"
-					+ "7: Update movie price\n"
-					+ "8: Remove movie listing\n"
-					+ "9: Go back\n\n"
+					+ "7: Remove movie listing\n"
+					+ "8: Go back\n\n"
 					+ "Enter your choice: ");
-			int choice = InputController.readUserChoice(9, 1);
+			int choice = InputController.readUserChoice(8, 1);
 			switch (choice) {
 				case 1:
 					String newTitle = InputController.readString("Enter updated movie title: "); 
@@ -215,12 +214,8 @@ public class EditMovieListingView extends View {
 					movie.setAgeRestrictions(ageRestriction);
 					System.out.println("Change successful.");
 					break;
+			
 				case 7:
-					int price = InputController.readUserChoice(100,1);
-					movie.setPrice(price);
-					System.out.println("Change successful.");
-					break;
-				case 8:
 					removeListing(movie);
 					break;
 				default:
