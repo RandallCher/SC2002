@@ -50,7 +50,7 @@ public final class CineplexController extends DataController {
             readReviewList();
             readHolidayList();
             readMovieShowtime();
-            System.out.println("Data files loaded"); 
+    
 
         } catch (FileNotFoundException e){ 
             //File not found means first time running the application. 

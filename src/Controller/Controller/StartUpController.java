@@ -175,6 +175,31 @@ public final class StartUpController extends DataController{
 		movie4.setSypnosis(synopsis4);
         movieListing.add(movie4); 
 
+        //movie 5
+         String title5 = "Ajooma";
+        String director5 = "Shuming He";
+        String synopsis5 = 
+        "A middle-aged widowed Singaporean woman named Auntie has spent the majority of her life providing for her family. As her adult son Sam becomes more independent, she is left to deal with a completely new identity outside of her roles as a daughter, wife, and mother.\n A solo vacation to Korea turns into a wild adventure when she meets Jung Su, an elderly security officer, and Kwon-Woo, a teenage tour guide who can't seem to get his life together. The trio embark on an unexpected roller coaster ride where hearts flutter and unlikely bonds are formed."
+        ; 
+		MovieStatus movieStatus5 = MovieStatus.NOW_SHOWING;
+		AgeRestriction ageRestriction5 = AgeRestriction.NC16;
+
+        ArrayList<String> cast5 = new ArrayList<>();
+        cast5.add("Hong Huifang"); 
+        cast5.add("Yeo Jin-goo"); 
+        cast5.add("Hyung-suk Kang");
+        cast5.add("Jung Dong-hwan"); 
+
+        Movie movie5 = new Movie();
+		movie5.setAgeRestrictions(ageRestriction5);
+		movie5.setCast(cast5);
+		movie5.setTitle(title5);
+		movie5.setDirector(director5);
+		movie5.setMovieStatus(movieStatus5);
+		movie5.setSypnosis(synopsis5);
+        movieListing.add(movie5); 
+
+
 
         writeFile(MOVIE_FILENAME,movieListing);
     }
@@ -240,7 +265,7 @@ public final class StartUpController extends DataController{
         boolean isplatinum11 = true;
         boolean is3D11 = true;
         String code11 = "CIN1";
-        double baseprice11 = 3.0;
+        double baseprice11 = 12.0;
 	    Cinema cinema1 = new Cinema(cineplex1, isplatinum11, is3D11, code11, baseprice11);
         cinemaListing1.add(cinema1);
         
@@ -249,7 +274,7 @@ public final class StartUpController extends DataController{
         boolean isplatinum12 = false;
         boolean is3D12 = true;
         String code12 = "CIN2";
-        double baseprice12 = 2.0;
+        double baseprice12 = 10.0;
 	    Cinema cinema2 = new Cinema(cineplex1, isplatinum12, is3D12, code12, baseprice12);
         cinemaListing1.add(cinema2);    
         
@@ -258,7 +283,7 @@ public final class StartUpController extends DataController{
         boolean isplatinum13 = true;
         boolean is3D13 = false;
         String code13 = "CIN3";
-        double baseprice13 = 2.0;
+        double baseprice13 = 8.0;
 	    Cinema cinema3 = new Cinema(cineplex1, isplatinum13, is3D13, code13, baseprice13);
         cinemaListing1.add(cinema3);    
         
@@ -273,7 +298,7 @@ public final class StartUpController extends DataController{
         boolean isplatinum21 = true;
         boolean is3D21 = true;
         String code21 = "CAU1";
-        double baseprice21 = 3.0;
+        double baseprice21 = 12.0;
 	    cinema1 = new Cinema(cineplex2, isplatinum21, is3D21, code21, baseprice21);
         cinemaListing2.add(cinema1);
         
@@ -282,7 +307,7 @@ public final class StartUpController extends DataController{
         boolean isplatinum22 = false;
         boolean is3D22 = true;
         String code22 = "CAU2";
-        double baseprice22 = 2.0;
+        double baseprice22 = 10.0;
 	    cinema2 = new Cinema(cineplex2, isplatinum22, is3D22, code22, baseprice22);
         cinemaListing2.add(cinema2);
         
@@ -291,7 +316,7 @@ public final class StartUpController extends DataController{
         boolean isplatinum23 = true;
         boolean is3D23 = false;
         String code23 = "CAU3";
-        double baseprice23 = 2.0;
+        double baseprice23 = 8.0;
 	    cinema3 = new Cinema(cineplex2, isplatinum23, is3D23, code23, baseprice23);
         cinemaListing2.add(cinema3);
         
@@ -306,7 +331,7 @@ public final class StartUpController extends DataController{
         boolean isplatinum31 = true;
         boolean is3D31 = true;
         String code31 = "AMK1";
-        double baseprice31 = 3.0;
+        double baseprice31 = 12.0;
         cinema1 = new Cinema(cineplex3, isplatinum31, is3D31, code31, baseprice31);
         cinemaListing3.add(cinema1);
 
@@ -315,7 +340,7 @@ public final class StartUpController extends DataController{
         boolean isplatinum32 = false;
         boolean is3D32 = true;
         String code32 = "AMK2";
-        double baseprice32 = 2.0;
+        double baseprice32 = 10.0;
         cinema2 = new Cinema(cineplex3, isplatinum32, is3D32, code32, baseprice32);
         cinemaListing3.add(cinema2);
 
@@ -324,7 +349,7 @@ public final class StartUpController extends DataController{
         boolean isplatinum33 = true;
         boolean is3D33 = false;
         String code33 = "AMk3";
-        double baseprice33 = 2.0;
+        double baseprice33 = 8.0;
         cinema3 = new Cinema(cineplex3, isplatinum33, is3D33, code33, baseprice33);
         cinemaListing3.add(cinema3);
 
@@ -340,7 +365,7 @@ public final class StartUpController extends DataController{
         boolean  isplatinum41 = true;
         boolean is3D41 = true;
         String code41 = "DWE1";
-        double baseprice41 = 3.0;
+        double baseprice41 = 12.0;
         cinema1 = new Cinema(cineplex4, isplatinum41, is3D41, code41, baseprice41);
         cinemaListing4.add(cinema1);
 
@@ -349,7 +374,7 @@ public final class StartUpController extends DataController{
         boolean isplatinum42 = false;
         boolean is3D42 = true;
         String code42 = "DWE2";
-        double baseprice42 = 2.0;
+        double baseprice42 = 10.0;
         cinema2 = new Cinema(cineplex4, isplatinum42, is3D42, code42, baseprice42);
         cinemaListing4.add(cinema2);
 
@@ -358,7 +383,7 @@ public final class StartUpController extends DataController{
         boolean isplatinum43 = true;
         boolean is3D43 = false;
         String code43 = "DWE3";
-        double baseprice43 = 2.0;
+        double baseprice43 = 8.0;
         cinema3 = new Cinema(cineplex4, isplatinum43, is3D43, code43, baseprice43);
         cinemaListing4.add(cinema3);
 
@@ -373,7 +398,7 @@ public final class StartUpController extends DataController{
         boolean isplatinum51 = true;
         boolean is3D51 = true;
         String code51 = "WEST1";
-        double baseprice51 = 3.0;
+        double baseprice51 = 12.0;
         cinema1 = new Cinema(cineplex5, isplatinum51, is3D51, code51, baseprice51);
         cinemaListing5.add(cinema1);
 
@@ -382,7 +407,7 @@ public final class StartUpController extends DataController{
         boolean isplatinum52 = false;
         boolean is3D52 = true;
         String code52 = "WEST2";
-        double baseprice52 = 2.0;
+        double baseprice52 = 10.0;
         cinema2 = new Cinema(cineplex5, isplatinum52, is3D52, code52, baseprice52);
         cinemaListing5.add(cinema2);
 
@@ -391,7 +416,7 @@ public final class StartUpController extends DataController{
         boolean isplatinum53 = true;
         boolean is3D53 = false;
         String code53 = "WEST3";
-        double baseprice53 = 2.0;
+        double baseprice53 = 8.0;
         cinema3 = new Cinema(cineplex5, isplatinum53, is3D53, code53, baseprice53);
         cinemaListing5.add(cinema3);
 
@@ -406,7 +431,7 @@ public final class StartUpController extends DataController{
         boolean isplatinum61 = true;
         boolean is3D61 = true;
         String code61 = "JEM1";
-        double baseprice61 = 3.0;
+        double baseprice61 = 12.0;
         cinema1 = new Cinema(cineplex6, isplatinum61, is3D61, code61, baseprice61);
         cinemaListing6.add(cinema1);
 
@@ -415,7 +440,7 @@ public final class StartUpController extends DataController{
         boolean isplatinum62 = false;
         boolean is3D62 = true;
         String code62 = "JEM2";
-        double baseprice62 = 2.0;
+        double baseprice62 = 10.0;
         cinema2 = new Cinema(cineplex6, isplatinum62, is3D62, code62, baseprice62);
         cinemaListing6.add(cinema2);
 
@@ -424,7 +449,7 @@ public final class StartUpController extends DataController{
         boolean isplatinum63 = true;
         boolean is3D63 = false;
         String code63 = "JEM3";
-        double baseprice63 = 2.0;
+        double baseprice63 = 8.0;
         cinema3 = new Cinema(cineplex6, isplatinum63, is3D63, code63, baseprice63);
         cinemaListing6.add(cinema3);
 
@@ -439,7 +464,7 @@ public final class StartUpController extends DataController{
         boolean isplatinum71 = true;
         boolean is3D71 = true;
         String code71 = "PP1";
-        double baseprice71 = 3.0;
+        double baseprice71 = 12.0;
         cinema1 = new Cinema(cineplex7, isplatinum71, is3D71, code71, baseprice71);
         cinemaListing7.add(cinema1);
 
@@ -448,7 +473,7 @@ public final class StartUpController extends DataController{
         boolean isplatinum72 = false;
         boolean is3D72 = true;
         String code72 = "PP2";
-        double baseprice72 = 2.0;
+        double baseprice72 = 10.0;
         cinema2 = new Cinema(cineplex7, isplatinum72, is3D72, code72, baseprice72);
         cinemaListing7.add(cinema2);
 
@@ -457,7 +482,7 @@ public final class StartUpController extends DataController{
         boolean isplatinum73 = true;
         boolean is3D73 = false;
         String code73 = "PP3";
-        double baseprice73 = 2.0;
+        double baseprice73 = 8.0;
         cinema3 = new Cinema(cineplex7, isplatinum73, is3D73, code73, baseprice73);
         cinemaListing7.add(cinema3);
 
@@ -477,8 +502,6 @@ public final class StartUpController extends DataController{
     private static void CreateDefaultShowtime() throws IOException{
         File f = new File(SHOWTIME_FILENAME); 
         f.createNewFile(); 
-
-        //TODO ADD SHOWTIMES
     }
 
 

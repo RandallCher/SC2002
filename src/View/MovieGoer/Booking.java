@@ -11,8 +11,6 @@ import Model.Showtime;
 import Model.Parameters.AgeGroup;
 
 import java.text.SimpleDateFormat;
-import java.util.Scanner;
-
 import static Controller.InputController.*;
 import static Controller.CineplexController.*;
 
