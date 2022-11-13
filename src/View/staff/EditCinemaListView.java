@@ -3,7 +3,6 @@ package View.staff;
 import View.View;
 
 import java.util.ArrayList;
-import java.util.Scanner;
 
 import Controller.CineplexController;
 import Controller.InputController;
@@ -18,7 +17,6 @@ public class EditCinemaListView extends View {
 
 	public void start() {
 		while (true) {
-			Scanner scan = new Scanner(System.in);
 			System.out.print("------------- CINEMA LIST MENU -------------\n"
 					+ "1: View all cineplexes\n"
 					+ "2: View cinemas in a cineplex\n"

@@ -1,12 +1,10 @@
 package View;
 
 import java.io.IOException;
-import java.util.Scanner;
 
 import View.staff.*;
 
 import Controller.InputController;
-import Model.Parameters.Cineplex;
 import Controller.CineplexController;
 
 /**

@@ -83,8 +83,6 @@ public class Booking extends View{
 		Showtime showtime = seat.getShowtime();
 		Movie movie = showtime.getMovie();
 		Cinema cinema = showtime.getCinema();
-		SimpleDateFormat simpleDateFormat = new SimpleDateFormat("MM/dd/yyyy");
-		String date = simpleDateFormat.format(showtime.getTime());
 		System.out.println(movie.getTitle());
 		System.out.println(movie.getAgeRestriction());
 		System.out.println("Date" + formatDateMMddkkmm(showtime.getTime()));

@@ -1,6 +1,7 @@
 package View.MovieGoer;
 
 import Controller.CineplexController;
+import Controller.InputController;
 import Model.Parameters.MovieStatus;
 import Model.Movie;
 import View.*;
@@ -24,7 +25,6 @@ public class MovieListingsView extends View {
 	}
 
 	public void searchMovie() {
-		Scanner sc = new Scanner(System.in);
 		String movieTitle = readString("Enter Movie Title: ");
 		String lowerCaseTitle = movieTitle.toLowerCase();
 		ArrayList<Movie> foundMovies = getMovieByTitle(lowerCaseTitle);
@@ -49,7 +49,7 @@ public class MovieListingsView extends View {
 			for (int i = 0; i < foundMovies.size(); i++) {
 				System.out.println(i + 1 + ". " + foundMovies.get(i).getTitle());
 			}
-			int choice = sc.nextInt();
+			int choice = readUserChoice(foundMovies.size(), 1);
 			displayMovieDetails(foundMovies.get(choice - 1));
 		}
 
@@ -64,7 +64,6 @@ public class MovieListingsView extends View {
 	public void displayMovieListings(boolean topFive) {
 		ArrayList<Movie> movieList;
 		int back = 0;
-		Scanner sc = new Scanner(System.in);
 		if (topFive == false) {
 			movieList = getMovieListing();
 
@@ -76,7 +75,7 @@ public class MovieListingsView extends View {
 		if (movieList == null) {
 			System.out.println("No movies. ");
 			System.out.println("1. Go Back");
-			sc.nextLine();
+			int dummy = InputController.readUserChoice(1, 1);
 			start();
 		}
 
