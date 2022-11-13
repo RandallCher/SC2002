@@ -11,6 +11,7 @@ import Controller.InputController;
 import Model.Cinema;
 import Model.Movie;
 import Model.Showtime;
+import Model.Parameters.MovieStatus;
 
 /**
  * This class represents the View for editing the showtimes for a movie
@@ -21,6 +22,7 @@ public class EditShowtimeView extends View {
 
 		// get movie choice
 		Movie movie = getMovieChoice();
+		
 		while (movie == null) {
 			boolean reTry = InputController.confirmation("No movie by that title exists. Try again? (Y/N) ");
 
@@ -35,6 +37,16 @@ public class EditShowtimeView extends View {
 
 			} else
 				this.end();
+		}
+
+		if (movie.getMovieStatus() == MovieStatus.END_OF_SHOWING){
+			System.out.println("This movie is not showing in cinemas anymore"); 
+			this.end(); 
+		}
+		
+		if (movie.getMovieStatus() == MovieStatus.COMING_SOON){
+			System.out.println("This movie will be coming soon. It is currently not available yet."); 
+			this.end(); 
 		}
 
 		// Showtime menu
@@ -64,7 +76,6 @@ public class EditShowtimeView extends View {
 					modifyShowtime(movie);
 					break;
 				case 5:
-				//to test this part 
 					this.start();
 					break;
 				default:
@@ -115,7 +126,6 @@ public class EditShowtimeView extends View {
 	 */
 	private void addShowtime(Movie movie) {
 		System.out.println("**** Adding Showtime ****");
-
 		String code = InputController.readString("Enter cinema code: ");
 		Cinema cinema = CineplexController.getCinemaByCode(code);
 		if (cinema == null) {

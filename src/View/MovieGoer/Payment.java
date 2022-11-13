@@ -69,7 +69,7 @@ public class Payment extends View{
 		//Adjusts price if evening
 		Calendar cal = Calendar.getInstance();
 		cal.setTime(seat.getShowtime().getTime());
-		if (cal.get(Calendar.HOUR_OF_DAY ) >=18){
+		if (cal.get(Calendar.HOUR_OF_DAY ) >=18){ //evening showtime 
 			basePrice *= 1.25;
 		}
 
