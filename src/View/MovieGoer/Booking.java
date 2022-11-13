@@ -10,7 +10,6 @@ import View.View;
 import Model.Showtime;
 import Model.Parameters.AgeGroup;
 
-import java.text.SimpleDateFormat;
 import static Controller.InputController.*;
 import static Controller.CineplexController.*;
 
