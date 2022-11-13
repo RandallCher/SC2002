@@ -10,7 +10,6 @@ import Controller.CineplexController;
  **/ 
 public class Movie implements SerializableModel{
 
-	public static int price;
 	private String title;
 	private String director;
 	private String sypnosis;
@@ -23,9 +22,7 @@ public class Movie implements SerializableModel{
 	public Movie() {
 		this.sales = 0;
 	}
-	public void setPrice(int price){
-		this.price = price;
-	}
+	
 
 	public void setTitle(String title){
 		this.title = title;
